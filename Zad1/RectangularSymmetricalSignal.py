@@ -1,0 +1,10 @@
+from RectangularSignal import RectangularSignal
+
+
+class RectangularSymmetricalSignal(RectangularSignal):
+    def __init__(self):
+        super().__init__()
+
+    def signal(self, x: float):
+        x = x % self.T
+        return self.A if x < self.T * self.kw else -self.A
