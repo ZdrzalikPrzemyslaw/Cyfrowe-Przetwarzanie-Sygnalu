@@ -14,5 +14,5 @@ class TriangleSignal(Signal):
 
     def signal(self, x: float):
         x = x % self.T
-        return self.A / (self.kw * self.T) * (x - self.T) if x < self.T * self.kw \
-            else - self.A / (self.T * (1 - self.kw)) * (x - self.T)
+        return (self.A / (self.kw * self.T)) * x if x < self.T * self.kw \
+            else - self.A / (self.T * (1 - self.kw)) * x + (self.A / (1 - self.kw))

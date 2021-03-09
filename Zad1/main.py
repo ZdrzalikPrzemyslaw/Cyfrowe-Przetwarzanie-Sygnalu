@@ -2,6 +2,7 @@
 import matplotlib.pyplot as plt
 from Signal import Signal
 from SingularJump import SingularJump
+from TriangleSignal import TriangleSignal
 from RectangularSignal import RectangularSignal
 from RectangularSymmetricalSignal import RectangularSymmetricalSignal
 from SinusoidalSignal import SinusoidalSignal
@@ -14,12 +15,12 @@ from SinusoidalSignalWyprostowanyJednopolowkowo import SinusoidalSignalWyprosowa
 
 
 def print_hi(signal: Signal):
-    plt.plot([x / 100 for x in range(-1000, 1000)], [signal.signal(x / 100) for x in range(-1000, 1000)])
+    plt.plot([x / 100 for x in range(0, 1000)], [signal.signal(x / 100) for x in range(0, 1000)])
     plt.show()
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi(SingularJump())
+    print_hi(TriangleSignal())
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
