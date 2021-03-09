@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from Impulse import Impulse
 from Signal import Signal
 from SingularImpulse import SingularImpulse
+from ImpulseNoise import ImpulseNoise
 
 
 # Press Shift+F10 to execute it or replace it with your code.
@@ -22,6 +23,6 @@ def plot_discrete(impulse: Impulse):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    plot_discrete(SingularImpulse())
+    plot_discrete(ImpulseNoise())
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
