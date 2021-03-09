@@ -6,6 +6,7 @@ from Signal import Signal
 from SingularImpulse import SingularImpulse
 from ImpulseNoise import ImpulseNoise
 from UniformlyDistributedNoise import UniformlyDistributedNoise
+from GaussianNoise import GaussianNoise
 
 
 def plot_analog(signal: Signal):
@@ -19,4 +20,4 @@ def plot_discrete(impulse: Impulse):
 
 
 if __name__ == '__main__':
-    plot_analog(UniformlyDistributedNoise())
+    plot_analog(GaussianNoise())
