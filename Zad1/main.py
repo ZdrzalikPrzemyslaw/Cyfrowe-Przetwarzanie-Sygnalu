@@ -5,10 +5,7 @@ from Impulse import Impulse
 from Signal import Signal
 from SingularImpulse import SingularImpulse
 from ImpulseNoise import ImpulseNoise
-
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from UniformlyDistributedNoise import UniformlyDistributedNoise
 
 
 def plot_analog(signal: Signal):
@@ -21,8 +18,5 @@ def plot_discrete(impulse: Impulse):
     plt.show()
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    plot_discrete(ImpulseNoise())
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    plot_analog(UniformlyDistributedNoise())
