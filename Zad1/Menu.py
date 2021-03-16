@@ -1,3 +1,5 @@
+from Impulse.ImpulseNoise import ImpulseNoise
+from Impulse.SingularImpulse import SingularImpulse
 from Signal.GaussianNoise import GaussianNoise
 from Signal.RectangularSignal import RectangularSignal
 from Signal.RectangularSymmetricalSignal import RectangularSymmetricalSignal
@@ -127,11 +129,22 @@ def wybor_1():
 
     # todo poprawić, 3 razy to samo
     if choice == 10:
-        signal_impulse = SingularJump(amplitude, get_ns())
-        pass
+        signal_impulse = SingularImpulse(amplitude, get_ns())
+        print("Podaj częstotliwość próbkowania")
+        try:
+            delta_time = 1 / float(input())
+        except ValueError:
+            print("zly input")
+            pass
 
     if choice == 11:
-        signal_impulse = SingularJump(amplitude, get_ts())
+        signal_impulse = ImpulseNoise(amplitude, get_probability())
+        print("Podaj częstotliwość próbkowania")
+        try:
+            delta_time = 1 / float(input())
+        except ValueError:
+            print("zly input")
+            pass
         pass
 
     return SignalData(signal_impulse, beg_time, beg_time + duration, delta_time)
@@ -167,6 +180,17 @@ def get_ns():
 def get_ts():
     ts = 0
     print("Podaj czas skoku jednostkowego")
+    try:
+        ts = float(input())
+    except ValueError:
+        print("zly input")
+        pass
+    return ts
+
+
+def get_probability():
+    ts = 0.1
+    print("Podaj prawdopodobieństwo wystąpienia wartości amplitudy")
     try:
         ts = float(input())
     except ValueError:

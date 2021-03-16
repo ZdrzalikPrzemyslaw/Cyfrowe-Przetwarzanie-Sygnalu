@@ -6,10 +6,10 @@ class ImpulseNoise(Impulse):
     p: float
     A: float
 
-    def __init__(self):
+    def __init__(self, amplitude: float = 1, probability: float = 0.5):
         super().__init__()
-        self.p = 0.1
-        self.A = 1
+        self.p = probability
+        self.A = amplitude
 
     def generate_values(self, x: float):
         return self.A if random.random() <= self.p else 0
