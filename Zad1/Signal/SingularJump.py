@@ -10,7 +10,7 @@ class SingularJump(Signal):
         self.A = 1
         self.ts = 0
 
-    def signal(self, x: float):
+    def generate_value(self, x: float):
         if x == self.ts:
             return self.A / 2
         return self.A if x > self.ts else 0

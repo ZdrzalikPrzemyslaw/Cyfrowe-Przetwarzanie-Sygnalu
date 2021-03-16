@@ -6,5 +6,5 @@ class SinusoidalSignalWyprostowanyDwupolowkowo(SinusoidalSignal):
     def __init__(self):
         super().__init__()
 
-    def signal(self, x: float):
+    def generate_value(self, x: float):
         return self.A * math.fabs(math.sin(x))

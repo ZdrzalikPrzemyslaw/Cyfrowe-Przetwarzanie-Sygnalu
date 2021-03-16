@@ -12,7 +12,7 @@ class TriangleSignal(Signal):
         self.T = 2
         self.kw = 0.5
 
-    def signal(self, x: float):
+    def generate_value(self, x: float):
         x = x % self.T
         return (self.A / (self.kw * self.T)) * x if x < self.T * self.kw \
             else - self.A / (self.T * (1 - self.kw)) * x + (self.A / (1 - self.kw))

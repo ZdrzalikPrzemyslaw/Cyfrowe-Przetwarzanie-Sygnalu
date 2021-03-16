@@ -10,5 +10,5 @@ class SingularImpulse(Impulse):
         self.ns = 0
         self.A = 1
 
-    def impulse(self, x: float):
+    def generate_values(self, x: float):
         return self.A if x == self.ns else 0

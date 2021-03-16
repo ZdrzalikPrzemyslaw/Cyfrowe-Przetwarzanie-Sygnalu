@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from Impulse.Impulse import Impulse
 from Signal.Signal import Signal
-from SignalAndImpulseCreator import create_signal
+from SignalAndImpulseCreator import create_signal_and_impulse
 from Signal.RectangularSignal import RectangularSignal
 
 
@@ -19,5 +19,5 @@ def plot_discrete(impulse_dictionary: dict):
 
 
 if __name__ == '__main__':
-    dic = create_signal(RectangularSignal(), 0.0, 10.0, 0.01)
+    dic = create_signal_and_impulse(RectangularSignal(), 0.0, 10.0, 0.01)
     plot_analog(dic)

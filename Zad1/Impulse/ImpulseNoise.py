@@ -13,5 +13,5 @@ class ImpulseNoise(Impulse):
         self.p = 0.1
         self.A = 1
 
-    def impulse(self, x: float):
+    def generate_values(self, x: float):
         return self.A if random.random() <= self.p else 0

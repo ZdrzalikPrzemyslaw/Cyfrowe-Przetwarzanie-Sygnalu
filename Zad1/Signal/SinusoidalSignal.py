@@ -11,5 +11,5 @@ class SinusoidalSignal(Signal):
         self.A = 1
         self.T = 1
 
-    def signal(self, x: float):
+    def generate_value(self, x: float):
         return self.A * math.sin(x)

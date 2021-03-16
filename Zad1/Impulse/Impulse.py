@@ -1,6 +1,9 @@
-class Impulse:
-    def __init__(self):
-        pass
+from SignalAndImpulse import SignalAndImpulse
 
-    def impulse(self, x: float):
+
+class Impulse(SignalAndImpulse):
+    def __init__(self):
+        super().__init__()
+
+    def generate_values(self, x: float):
         return 1

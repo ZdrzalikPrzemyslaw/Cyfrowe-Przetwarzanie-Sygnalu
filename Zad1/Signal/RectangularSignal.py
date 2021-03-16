@@ -12,6 +12,6 @@ class RectangularSignal(Signal):
         self.T = 2
         self.kw = 0.5
 
-    def signal(self, x: float):
+    def generate_value(self, x: float):
         x = x % self.T
         return self.A if x < self.T * self.kw else 0

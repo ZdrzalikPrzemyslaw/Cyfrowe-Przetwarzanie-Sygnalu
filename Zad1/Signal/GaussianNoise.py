@@ -11,5 +11,5 @@ class GaussianNoise(Signal):
         super().__init__()
         self.A = 1
 
-    def signal(self, x):
+    def generate_value(self, x):
         return random.gauss(0, 1) * 2 * self.A - self.A
