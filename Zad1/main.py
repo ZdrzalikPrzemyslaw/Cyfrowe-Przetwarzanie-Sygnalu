@@ -1,20 +1,23 @@
-# This is a sample Python script.
 import matplotlib.pyplot as plt
+import numpy as np
+from Impulse.Impulse import Impulse
+from Signal.Signal import Signal
+from SignalAndImpulseCreator import create_signal
+from Signal.RectangularSignal import RectangularSignal
 
-from Impulse import Impulse
-from Signal import Signal
-from Signal.GaussianNoise import GaussianNoise
 
-
-def plot_analog(signal: Signal):
-    plt.plot([x / 100 for x in range(0, 1000)], [signal.signal(x / 100) for x in range(0, 1000)])
+def plot_analog(signal_dictionary: dict):
+    array_from_list = np.asarray(list(signal_dictionary.items()))
+    plt.plot(array_from_list[:, 0], array_from_list[:, 1])
     plt.show()
 
 
-def plot_discrete(impulse: Impulse):
-    plt.scatter([x / 1 for x in range(-5, 5)], [impulse.impulse(x / 1) for x in range(-5, 5)])
+def plot_discrete(impulse_dictionary: dict):
+    array_from_list = np.asarray(list(impulse_dictionary.items()))
+    plt.scatter(array_from_list[:, 0], array_from_list[:, 1])
     plt.show()
 
 
 if __name__ == '__main__':
-    plot_analog(GaussianNoise())
+    dic = create_signal(RectangularSignal(), 0.0, 10.0, 0.01)
+    plot_analog(dic)
