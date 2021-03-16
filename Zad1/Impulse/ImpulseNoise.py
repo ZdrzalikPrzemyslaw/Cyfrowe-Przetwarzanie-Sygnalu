@@ -3,13 +3,11 @@ import random
 
 
 class ImpulseNoise(Impulse):
-    ns: int
     p: float
     A: float
 
     def __init__(self):
         super().__init__()
-        self.ns = 0
         self.p = 0.1
         self.A = 1
 

@@ -6,11 +6,11 @@ class RectangularSignal(Signal):
     A: float
     kw: float
 
-    def __init__(self):
+    def __init__(self, amplitude: float = 1, term: float = 1, kw: float = 0.5):
         super().__init__()
-        self.A = 1
-        self.T = 2
-        self.kw = 0.5
+        self.A = amplitude
+        self.T = term
+        self.kw = kw
 
     def generate_value(self, x: float):
         x = x % self.T

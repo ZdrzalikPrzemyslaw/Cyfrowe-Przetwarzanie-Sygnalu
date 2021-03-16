@@ -2,8 +2,8 @@ from Signal.RectangularSignal import RectangularSignal
 
 
 class RectangularSymmetricalSignal(RectangularSignal):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, amplitude: float = 1, term: float = 1, kw: float = 0.5):
+        super().__init__(amplitude, term, kw)
 
     def generate_value(self, x: float):
         x = x % self.T

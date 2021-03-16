@@ -1,16 +1,11 @@
+from Signal.RectangularSignal import RectangularSignal
 from Signal.Signal import Signal
 
 
-class TriangleSignal(Signal):
-    T: float
-    A: float
-    kw: float
+class TriangleSignal(RectangularSignal):
 
-    def __init__(self):
-        super().__init__()
-        self.A = 1
-        self.T = 2
-        self.kw = 0.5
+    def __init__(self, amplitude: float = 1, term: float = 1, kw: float = 0.5):
+        super().__init__(amplitude, term, kw)
 
     def generate_value(self, x: float):
         x = x % self.T

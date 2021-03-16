@@ -5,10 +5,10 @@ class SingularJump(Signal):
     ts: float
     A: float
 
-    def __init__(self):
+    def __init__(self, amplitude: float = 1, ts: float = 0):
         super().__init__()
-        self.A = 1
-        self.ts = 0
+        self.A = amplitude
+        self.ts = ts
 
     def generate_value(self, x: float):
         if x == self.ts:

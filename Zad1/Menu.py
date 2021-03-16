@@ -1,3 +1,11 @@
+from Signal.GaussianNoise import GaussianNoise
+from Signal.RectangularSignal import RectangularSignal
+from Signal.RectangularSymmetricalSignal import RectangularSymmetricalSignal
+from Signal.SingularJump import SingularJump
+from Signal.SinusoidalSignal import SinusoidalSignal
+from Signal.SinusoidalSignalWyprostowanyDwupolowkowo import SinusoidalSignalWyprostowanyDwupolowkowo
+from Signal.SinusoidalSignalWyprostowanyJednopolowkowo import SinusoidalSignalWyprosowanyJednopolowkowo
+from Signal.TriangleSignal import TriangleSignal
 from Signal.UniformlyDistributedNoise import UniformlyDistributedNoise
 from SignalAndImpulse import SignalAndImpulse
 from SignalAndImpulseCreator import SignalData
@@ -58,7 +66,7 @@ def wybor_1():
         print("Zły wybór : (")
         return
     beg_time = 0
-    end_time = 10
+    duration = 10
     delta_time = 0.05
     print("Podaj czas początkowy")
     try:
@@ -66,30 +74,105 @@ def wybor_1():
     except ValueError:
         print("zly input")
         pass
-    print("Podaj czas końcowy")
+    print("Podaj czas trwania")
     try:
-        end_time = float(input())
-    except ValueError:
-        print("zly input")
-        pass
-    print("Podaj odstęp pomiędzy pomiarami wartości")
-    try:
-        delta_time = float(input())
+        duration = float(input())
     except ValueError:
         print("zly input")
         pass
     signal_impulse = SignalAndImpulse()
+    print("Podaj amplitudę sygnału")
+    amplitude = 1
+    try:
+        amplitude = float(input())
+    except ValueError:
+        print("zly input")
+        pass
+
     if choice == 1:
-        print("Podaj Amplitudę sygnału")
-        amplitude = 1
-        try:
-            amplitude = float(input())
-        except ValueError:
-            print("zly input")
-            pass
         signal_impulse = UniformlyDistributedNoise(amplitude)
         pass
-    return SignalData(signal_impulse, beg_time, end_time, delta_time)
+
+    if choice == 2:
+        signal_impulse = GaussianNoise(amplitude)
+        pass
+
+    if choice == 3:
+        signal_impulse = SinusoidalSignal(amplitude, get_term())
+        pass
+
+    if choice == 4:
+        signal_impulse = SinusoidalSignalWyprosowanyJednopolowkowo(amplitude, get_term())
+        pass
+
+    if choice == 5:
+        signal_impulse = SinusoidalSignalWyprostowanyDwupolowkowo(amplitude, get_term())
+        pass
+
+    if choice == 6:
+        signal_impulse = RectangularSignal(amplitude, get_term(), get_kw())
+        pass
+
+    if choice == 7:
+        signal_impulse = RectangularSymmetricalSignal(amplitude, get_term(), get_kw())
+        pass
+
+    if choice == 8:
+        signal_impulse = TriangleSignal(amplitude, get_term(), get_kw())
+        pass
+
+    if choice == 9:
+        signal_impulse = SingularJump(amplitude, get_ts())
+        pass
+
+    if choice == 10:
+        signal_impulse = SingularJump(amplitude, get_ns())
+        pass
+
+    if choice == 11:
+        signal_impulse = SingularJump(amplitude, get_ts())
+        pass
+
+    return SignalData(signal_impulse, beg_time, beg_time + duration, delta_time)
+
+
+# TODO: zrobic ze amplituda dodatnia, kw od 0 co 1 itd
+def get_kw():
+    kw = 0.5
+    try:
+        kw = float(input())
+    except ValueError:
+        print("zly input")
+        pass
+    return kw
+
+def get_ns():
+    ns = 0.5
+    try:
+        ns = float(input())
+    except ValueError:
+        print("zly input")
+        pass
+    return ns
+
+def get_ts():
+    ts = 0.5
+    try:
+        ts = float(input())
+    except ValueError:
+        print("zly input")
+        pass
+    return ts
+
+
+def get_term():
+    term = 1
+    try:
+        term = float(input())
+    except ValueError:
+        print("zly input")
+        pass
+    return term
 
 
 def wybor_2():
