@@ -1,4 +1,4 @@
-from SinusoidalSignal import SinusoidalSignal
+from Signal.SinusoidalSignal import SinusoidalSignal
 import math
 
 

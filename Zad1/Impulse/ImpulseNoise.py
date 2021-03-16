@@ -1,4 +1,4 @@
-from Impulse import Impulse
+from Impulse.Impulse import Impulse
 import random
 
 

@@ -3,10 +3,7 @@ import matplotlib.pyplot as plt
 
 from Impulse import Impulse
 from Signal import Signal
-from SingularImpulse import SingularImpulse
-from ImpulseNoise import ImpulseNoise
-from UniformlyDistributedNoise import UniformlyDistributedNoise
-from GaussianNoise import GaussianNoise
+from Signal.GaussianNoise import GaussianNoise
 
 
 def plot_analog(signal: Signal):
