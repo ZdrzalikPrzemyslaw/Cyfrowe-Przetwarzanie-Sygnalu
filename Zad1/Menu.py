@@ -128,20 +128,30 @@ def wybor_1():
         pass
 
     # todo poprawić, 3 razy to samo
+
     if choice == 10:
         signal_impulse = SingularImpulse(amplitude, get_ns())
         print("Podaj częstotliwość próbkowania")
         try:
-            delta_time = 1 / float(input())
+            inp = float(input())
+            if inp == 0:
+                delta_time = 1
+                raise ValueError
+            delta_time = 1 / inp
         except ValueError:
             print("zly input")
             pass
 
     if choice == 11:
+        print("JESTEM TU")
         signal_impulse = ImpulseNoise(amplitude, get_probability())
         print("Podaj częstotliwość próbkowania")
         try:
-            delta_time = 1 / float(input())
+            inp = float(input())
+            if inp == 0 :
+                delta_time = 1
+                raise ValueError
+            delta_time = 1 / inp
         except ValueError:
             print("zly input")
             pass
