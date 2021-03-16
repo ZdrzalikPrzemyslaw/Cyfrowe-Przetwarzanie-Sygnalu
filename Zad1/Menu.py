@@ -1,4 +1,7 @@
+from Signal.UniformlyDistributedNoise import UniformlyDistributedNoise
+from SignalAndImpulse import SignalAndImpulse
 from SignalAndImpulseCreator import SignalData
+from plot import plot
 
 
 def choose_mode():
@@ -21,7 +24,7 @@ def program_loop():
     while choice != 5:
         choice = choose_mode()
         if choice == 1:
-            wybor_1()
+            plot(wybor_1())
         elif choice == 2:
             wybor_2()
         elif choice == 3:
@@ -75,7 +78,7 @@ def wybor_1():
     except ValueError:
         print("zly input")
         pass
-
+    signal_impulse = SignalAndImpulse()
     if choice == 1:
         print("Podaj Amplitudę sygnału")
         amplitude = 1
@@ -84,8 +87,9 @@ def wybor_1():
         except ValueError:
             print("zly input")
             pass
-        return SignalData()
+        signal_impulse = UniformlyDistributedNoise(amplitude)
         pass
+    return SignalData(signal_impulse, beg_time, end_time, delta_time)
 
 
 def wybor_2():
