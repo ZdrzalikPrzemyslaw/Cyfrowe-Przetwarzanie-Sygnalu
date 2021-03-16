@@ -11,7 +11,7 @@ def create_signal_and_impulse(signal: SignalAndImpulse, start_time: float, end_t
     return data
 
 
-class RENAME_ME():
+class SignalData:
     is_signal: bool
     time_values_dict: dict
 
