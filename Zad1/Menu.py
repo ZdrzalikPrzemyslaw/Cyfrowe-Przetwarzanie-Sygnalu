@@ -81,7 +81,7 @@ def wybor_1():
         print("zly input")
         pass
     signal_impulse = SignalAndImpulse()
-    print("Podaj amplitudę sygnału")
+    print("Podaj amplitudę")
     amplitude = 1
     try:
         amplitude = float(input())
@@ -125,6 +125,7 @@ def wybor_1():
         signal_impulse = SingularJump(amplitude, get_ts())
         pass
 
+    # todo poprawić, 3 razy to samo
     if choice == 10:
         signal_impulse = SingularJump(amplitude, get_ns())
         pass
@@ -139,24 +140,33 @@ def wybor_1():
 # TODO: zrobic ze amplituda dodatnia, kw od 0 co 1 itd
 def get_kw():
     kw = 0.5
+    print("Podaj współczynnik wypełnienia")
     try:
-        kw = float(input())
+        inp = float(input())
+        if 0 <= inp <= 1:
+            kw = inp
+        else:
+            raise ValueError
     except ValueError:
-        print("zly input")
+        print("zly input wsp. wypełnienia")
         pass
     return kw
 
+
 def get_ns():
-    ns = 0.5
+    ns = 0
+    print("Podaj numer próbki dla której występuje skok amplitudy")
     try:
-        ns = float(input())
+        ns = int(input())
     except ValueError:
         print("zly input")
         pass
     return ns
 
+
 def get_ts():
-    ts = 0.5
+    ts = 0
+    print("Podaj czas skoku jednostkowego")
     try:
         ts = float(input())
     except ValueError:
@@ -167,6 +177,7 @@ def get_ts():
 
 def get_term():
     term = 1
+    print("Podaj okres")
     try:
         term = float(input())
     except ValueError:
