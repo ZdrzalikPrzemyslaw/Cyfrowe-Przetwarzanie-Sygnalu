@@ -1,3 +1,6 @@
+from SignalAndImpulseCreator import SignalData
+
+
 def choose_mode():
     i = -1
     while i not in [1, 2, 3, 4, 5]:
@@ -13,113 +16,85 @@ def choose_mode():
     return i
 
 
+def program_loop():
+    choice = -1
+    while choice != 5:
+        choice = choose_mode()
+        if choice == 1:
+            wybor_1()
+        elif choice == 2:
+            wybor_2()
+        elif choice == 3:
+            wybor_3()
+        elif choice == 4:
+            wybor_4()
+
+
 def wybor_1():
-    L = -1
-    while L > 1024 or L < 512 or L % 64 != 0:
+    choice = -1
+    print("Wybierz rodzaj sygnału / szumu / impulsu: \n"
+          "1.  Szum o rozkładzie jednostajnym \n"
+          "2.  Szum gaussowski \n"
+          "3.  Sygnał sinusoidalny \n"
+          "4.  Sygnał sinusoidalny wyprostowany jednopołówkowo\n"
+          "5.  Sygnał sinusoidalny wyprostowany dwupołówkowo\n"
+          "6.  Sygnał prostokątny\n"
+          "7.  Sygnał prostokątny symetryczny\n"
+          "8.  Sygnał trójkątny\n"
+          "9.  Skok jednostkowy\n"
+          "10. Impuls jednostkowy\n"
+          "11. Szum impulsowy\n"
+          )
+    try:
+        choice = int(input())
+    except ValueError:
+        print("zly input")
+        pass
+    if choice not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]:
+        # fixme:
+        print("Zły wybór : (")
+        return
+    beg_time = 0
+    end_time = 10
+    delta_time = 0.05
+    print("Podaj czas początkowy")
+    try:
+        beg_time = float(input())
+    except ValueError:
+        print("zly input")
+        pass
+    print("Podaj czas końcowy")
+    try:
+        end_time = float(input())
+    except ValueError:
+        print("zly input")
+        pass
+    print("Podaj odstęp pomiędzy pomiarami wartości")
+    try:
+        delta_time = float(input())
+    except ValueError:
+        print("zly input")
+        pass
+
+    if choice == 1:
+        print("Podaj Amplitudę sygnału")
+        amplitude = 1
         try:
-            L = int(input("Podaj dlugosc klucza w bitach, dlugosc musi znajdowac sie "
-                          "w przedziale od 512 do 1024 ( 512, 576, 640, 704, 768, 832, 896, 960, 1024)"
-                          " i byc podzielna przez 64 \n"))
+            amplitude = float(input())
         except ValueError:
             print("zly input")
             pass
-    p, q, g = gen_param(L)
-    write_to_file_parameters(p, q, g)
+        return SignalData()
+        pass
 
 
 def wybor_2():
-    p, q, g = read_file_parameters()
-    if p == -1:
-        fail = "a"
-        while fail != "n" and fail != "T":
-            fail = input("nie udalo sie otworzyc pliku z parametrami funkcji, czy chcesz teraz wygenerowac? [T,n] \n")
-            if fail != "n" and fail != "T":
-                print("prosze podać T lub n ")
-        if fail == "n":
-            return
-        elif fail == "T":
-            wybor_1()
-            p, q, g = read_file_parameters()
-            if p == -1:
-                print("nie udalo sie wygenerowac parametrow")
-                return
-    x, y = gen_key(p, q, g)
-    write_to_file_public_key(y)
-    write_to_file_private_key(x)
+    pass
 
 
 def wybor_3():
-    p, q, g = read_file_parameters()
-    if p == -1:
-        fail = "a"
-        while fail != "n" and fail != "T":
-            fail = input("nie udalo sie otworzyc pliku z parametrami funkcji, czy chcesz teraz wygenerowac? [T,n] \n")
-            if fail != "n" and fail != "T":
-                print("prosze podać T lub n")
-        if fail == "n":
-            return
-        elif fail == "T":
-            wybor_1()
-            p, q, g = read_file_parameters()
-            if p == -1:
-                print("nie udalo sie wygenerowac parametrow")
-                return
-    x = read_file_private_key()
-    if x == -1:
-        return
-    choice = "a"
-    while choice != "P" and choice != "k":
-        choice = input("czy chcesz wygenerowac podpis z pliku czy z konsoli? [P,k] \n")
-        if choice != "P" and choice != "k":
-            print("prosze podać P lub k")
-    message = ""
-    if choice == "k":
-        while message == "":
-            message = input("podaj wybrana wiadomosc \n")
-            if message == "":
-                print("nie udalo sie odczytac wiadomosci lub wiadomosc "
-                      "jest pusta, prosze wprowadzic wiadomosc przez konsole")
-    elif choice == "P":
-        message = ""
-        file = input("podaj nazwe pliku \n")
-        message = read_file_message(file)
-        while message == -1:
-            print("nie udalo sie odczytac wiadomosci lub wiadomosc "
-                  "jest pusta, prosze wprowadzic wiadomosc przez konsole")
-            message = input("podaj wybrana wiadomosc \n")
-    r, s = sign(p, q, g, x, message)
-    write_to_file_sign(r, s)
+    pass
 
 
 def wybor_4():
-    p, q, g = read_file_parameters()
-    if p == -1:
-        return
-    y = read_file_public_key()
-    if y == -1:
-        return
-    choice = "a"
-    while choice != "P" and choice != "k":
-        choice = input("czy chcesz sprawdzic podpis wiadomosci z pliku czy z konsoli? [P,k] \n")
-        if choice != "P" and choice != "k":
-            print("prosze podać P lub k")
-    message = ""
-    if choice == "k":
-        while message == "":
-            message = input("podaj wybrana wiadomosc \n")
-            if message == "":
-                print("nie udalo sie odczytac wiadomosci lub wiadomosc "
-                      "jest pusta, prosze wprowadzic wiadomosc przez konsole")
-    elif choice == "P":
-        file = input("podaj nazwe pliku \n")
-        message = read_file_message(file)
-        while message == -1:
-            print("nie udalo sie odczytac wiadomosci lub wiadomosc "
-                  "jest pusta, prosze wprowadzic wiadomosc przez konsole")
-            message = input("podaj wybrana wiadomosc \n")
-    r, s = read_file_sign()
-    is_good_signature = verify_signature(p, q, g, r, s, message, y)
-    if is_good_signature:
-        print("podpis wiadomosci jest poprawny")
-        return
-    print("podpis wiadomosci jest nie poprawny")
+    pass

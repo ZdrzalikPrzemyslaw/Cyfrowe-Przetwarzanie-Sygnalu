@@ -3,8 +3,6 @@ from Signal.Signal import Signal
 
 
 class UniformlyDistributedNoise(Signal):
-    ns: int
-    p: float
     A: float
 
     def __init__(self):
