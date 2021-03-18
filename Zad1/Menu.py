@@ -86,7 +86,11 @@ def wybor_1():
     print("Podaj amplitudę")
     amplitude = 1
     try:
-        amplitude = float(input())
+        inp = float(input())
+        if 0 <= inp:
+            amplitude = inp
+        else:
+            raise ValueError
     except ValueError:
         print("zly input")
         pass
