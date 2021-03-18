@@ -193,6 +193,10 @@ def get_probability():
     print("Podaj prawdopodobieństwo wystąpienia wartości amplitudy")
     try:
         ts = float(input())
+        if 0 <= ts <= 1:
+            kw = ts
+        else:
+            raise ValueError
     except ValueError:
         print("zly input")
         pass
