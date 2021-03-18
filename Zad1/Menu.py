@@ -130,7 +130,7 @@ def wybor_1():
     # todo poprawić, 3 razy to samo
 
     if choice == 10:
-        signal_impulse = SingularImpulse(amplitude, get_ns())
+        signal_impulse = SingularImpulse(amplitude)
         print("Podaj częstotliwość próbkowania")
         try:
             inp = float(input())
@@ -160,7 +160,6 @@ def wybor_1():
     return SignalData(signal_impulse, beg_time, beg_time + duration, delta_time)
 
 
-# TODO: zrobic ze amplituda dodatnia, kw od 0 co 1 itd
 def get_kw():
     kw = 0.5
     print("Podaj współczynnik wypełnienia")
@@ -176,22 +175,15 @@ def get_kw():
     return kw
 
 
-def get_ns():
-    ns = 0
-    print("Podaj numer próbki dla której występuje skok amplitudy")
-    try:
-        ns = int(input())
-    except ValueError:
-        print("zly input")
-        pass
-    return ns
-
-
 def get_ts():
     ts = 0
     print("Podaj czas skoku jednostkowego")
     try:
-        ts = float(input())
+        inp = float(input())
+        if 0 <= inp:
+            ts = inp
+        else:
+            raise ValueError
     except ValueError:
         print("zly input")
         pass
@@ -202,9 +194,9 @@ def get_probability():
     ts = 0.1
     print("Podaj prawdopodobieństwo wystąpienia wartości amplitudy")
     try:
-        ts = float(input())
-        if 0 <= ts <= 1:
-            kw = ts
+        inp = float(input())
+        if 0 <= inp <= 1:
+            ts = inp
         else:
             raise ValueError
     except ValueError:
@@ -217,7 +209,11 @@ def get_term():
     term = 1
     print("Podaj okres")
     try:
-        term = float(input())
+        inp = float(input())
+        if 0 <= inp:
+            term = inp
+        else:
+            raise ValueError
     except ValueError:
         print("zly input")
         pass
