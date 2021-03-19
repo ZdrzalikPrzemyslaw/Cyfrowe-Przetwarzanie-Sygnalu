@@ -16,11 +16,11 @@ from plot import plot
 
 def choose_mode():
     i = -1
-    while i not in [1, 2, 3, 4, 5]:
+    while i not in [1, 2, 3, 4]:
         print("1. Generacja sygnału/szumu/impulsu \n"
               "2. Odczyt z pliku binarnego \n"
               "3. Operacje na sygnałach \n"
-              "5. Wylacz program")
+              "4. Wylacz program")
         try:
             i = int(input())
         except ValueError:
@@ -233,4 +233,4 @@ def wybor_3():
 
 
 def wybor_4():
-    pass
+    exit()
