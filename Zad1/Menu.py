@@ -1,6 +1,8 @@
 import datetime
 from typing import Union
 
+import numpy as np
+
 from SingalsAndImpulses.Impulse.ImpulseNoise import ImpulseNoise
 from SingalsAndImpulses.Impulse.SingularImpulse import SingularImpulse
 from SingalsAndImpulses.Signal.GaussianNoise import GaussianNoise
@@ -16,7 +18,6 @@ from SingalsAndImpulses.Signal.UniformlyDistributedNoise import UniformlyDistrib
 from SingalsAndImpulses.SignalAndImpulse import SignalAndImpulse
 from SingalsAndImpulses.SignalAndImpulseCreator import SignalData
 from global_vars import signals
-from plot import plot
 
 EXIT_PROGRAM = 7
 
@@ -43,7 +44,7 @@ def program_loop():
         choice = choose_mode()
         if choice == 1:
             signal_data = wybor_1()
-            plot(signal_data)
+            signal_data.plot()
             signals[datetime.datetime.now().isoformat()] = signal_data
             ch = 'x'
             while ch not in ['y', 'n']:
@@ -86,7 +87,6 @@ def wybor_1() -> Union[None, SignalData]:
         return
     beg_time = 0
     duration = 10
-    delta_time = 0.05
     print("Podaj czas początkowy")
     try:
         beg_time = float(input())
@@ -178,7 +178,7 @@ def wybor_1() -> Union[None, SignalData]:
             pass
         pass
 
-    return SignalData(signal_impulse, beg_time, beg_time + duration, delta_time)
+    return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration)
 
 
 def get_kw():
@@ -239,6 +239,9 @@ def get_term():
         print("zly input")
         pass
     return term
+
+
+
 
 
 def wybor_2():

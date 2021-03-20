@@ -1,6 +1,9 @@
 from typing import Union
 
 import numpy as np
+import pprint
+
+import matplotlib.pyplot as plt
 
 from SingalsAndImpulses.Signal.Signal import Signal
 from SingalsAndImpulses.Signal.SinusoidalSignal import SinusoidalSignal
@@ -135,3 +138,25 @@ class SignalData:
         path: str = "../file.txt"
         with open(path, 'w') as file:
             file.write(self.__str__())
+
+    def plot_analog(self):
+        array_from_list = np.asarray(list(self.time_values_dict.items()))
+        plt.plot(array_from_list[:, 0], array_from_list[:, 1])
+        plt.show()
+        unique = np.unique(array_from_list[:, 1])
+        plt.hist(array_from_list[:, 1], bins=len(unique))
+        plt.show()
+
+    def plot_discrete(self):
+        array_from_list = np.asarray(list(self.time_values_dict.items()))
+        plt.scatter(array_from_list[:, 0], array_from_list[:, 1])
+        plt.show()
+        unique = np.unique(array_from_list[:, 1])
+        plt.hist(array_from_list[:, 1], bins=len(unique))
+        plt.show()
+
+    def plot(self):
+        if self.is_signal:
+            self.plot_analog()
+        else:
+            self.plot_discrete()
