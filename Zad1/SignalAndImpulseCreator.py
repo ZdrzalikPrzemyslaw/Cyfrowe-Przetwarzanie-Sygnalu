@@ -79,34 +79,43 @@ class SignalData:
             ret_val.time_values_dict = times_values_dict
             return ret_val
 
+    def __get_values_for_calc(self) -> dict:
+        if self.T is None:
+            return self.time_values_dict
+        elif (self.end_time - self.start_time) % self.T == 0:
+            return self.time_values_dict
+        else:
+            end_time = self.end_time - ((self.end_time - self.start_time) % self.T)
+            return dict([(k, self.time_values_dict[k]) for k in self.time_values_dict if k <= end_time])
+
     def mean(self) -> float:
         ret_val = 0
-        for key, value in self.time_values_dict.items():
+        for key, value in self.__get_values_for_calc().items():
             ret_val += value
         return ret_val / len(self.time_values_dict)
 
     def mean_abs(self) -> float:
         ret_val = 0
-        for key, value in self.time_values_dict.items():
+        for key, value in self.__get_values_for_calc().items():
             ret_val += abs(value)
         return ret_val / len(self.time_values_dict)
 
     def mean_power(self) -> float:
         ret_val = 0
-        for key, value in self.time_values_dict.items():
+        for key, value in self.__get_values_for_calc().items():
             ret_val += value ** 2
         return ret_val / len(self.time_values_dict)
 
     def variance(self) -> float:
         ret_val = 0
         mean = self.mean()
-        for key, value in self.time_values_dict.items():
+        for key, value in self.__get_values_for_calc().items():
             ret_val += (value - mean) ** 2
         return ret_val / len(self.time_values_dict)
 
     def root_mean_square(self):
         # TODO: sprawdzic czy to rzeczywiscie jest sqrt
-        return self.variance() ** (1.0/2)
+        return self.variance() ** (1.0 / 2)
 
     def write_self_to_file(self, path: str):
         with open(path, 'w') as file:
