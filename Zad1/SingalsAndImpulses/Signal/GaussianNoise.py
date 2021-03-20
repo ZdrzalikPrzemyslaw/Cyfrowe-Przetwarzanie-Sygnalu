@@ -1,4 +1,5 @@
 import random
+
 from SingalsAndImpulses.Signal.Signal import Signal
 
 

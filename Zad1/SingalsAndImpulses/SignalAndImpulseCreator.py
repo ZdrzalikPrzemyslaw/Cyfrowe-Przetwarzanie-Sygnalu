@@ -23,13 +23,16 @@ class SignalData:
     is_real: bool
     T: Union[float, None]
 
+    def __repr__(self):
+        return "Signal" if self.is_signal is True else "Impulse"
+
     def __str__(self):
-        return "is_signal {0}" \
-               "\nstart_time {1}" \
-               "\nend_time {2}" \
-               "\ndelta {3}" \
-               "\nT {4}" \
-               "\nis_real {5}" \
+        return "is_signal: {0}" \
+               "\nstart_time: {1}" \
+               "\nend_time: {2}" \
+               "\ndelta: {3}" \
+               "\nT: {4}" \
+               "\nis_real: {5}" \
                "\ntime_values: \n{6}".format(str(self.is_signal),
                                              str(self.start_time),
                                              str(self.end_time),

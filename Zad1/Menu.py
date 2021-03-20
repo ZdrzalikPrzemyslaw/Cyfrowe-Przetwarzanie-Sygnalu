@@ -1,6 +1,5 @@
-from typing import Union
-
 import datetime
+from typing import Union
 
 from SingalsAndImpulses.Impulse.ImpulseNoise import ImpulseNoise
 from SingalsAndImpulses.Impulse.SingularImpulse import SingularImpulse
@@ -10,22 +9,26 @@ from SingalsAndImpulses.Signal.RectangularSymmetricalSignal import RectangularSy
 from SingalsAndImpulses.Signal.SingularJump import SingularJump
 from SingalsAndImpulses.Signal.SinusoidalSignal import SinusoidalSignal
 from SingalsAndImpulses.Signal.SinusoidalSignalWyprostowanyDwupolowkowo import SinusoidalSignalWyprostowanyDwupolowkowo
-from SingalsAndImpulses.Signal.SinusoidalSignalWyprostowanyJednopolowkowo import SinusoidalSignalWyprosowanyJednopolowkowo
+from SingalsAndImpulses.Signal.SinusoidalSignalWyprostowanyJednopolowkowo import \
+    SinusoidalSignalWyprosowanyJednopolowkowo
 from SingalsAndImpulses.Signal.TriangleSignal import TriangleSignal
 from SingalsAndImpulses.Signal.UniformlyDistributedNoise import UniformlyDistributedNoise
 from SingalsAndImpulses.SignalAndImpulse import SignalAndImpulse
 from SingalsAndImpulses.SignalAndImpulseCreator import SignalData
-from globals import signals
+from global_vars import signals
 from plot import plot
+
+EXIT_PROGRAM = 7
 
 
 def choose_mode():
     i = -1
-    while i not in [1, 2, 3, 4]:
+    while i not in [1, 2, 3, 4, EXIT_PROGRAM]:
         print("1. Generacja sygnału/szumu/impulsu \n"
               "2. Odczyt z pliku binarnego \n"
               "3. Operacje na sygnałach \n"
-              "4. Wylacz program")
+              "4. Wyswietl sygnały znajdujące się w pamięci progamu \n" +
+              str(EXIT_PROGRAM) + ". Wylacz program")
         try:
             i = int(input())
         except ValueError:
@@ -36,7 +39,7 @@ def choose_mode():
 
 def program_loop():
     choice = -1
-    while choice != 5:
+    while choice != EXIT_PROGRAM:
         choice = choose_mode()
         if choice == 1:
             signal_data = wybor_1()
@@ -247,4 +250,4 @@ def wybor_3():
 
 
 def wybor_4():
-    exit()
+    print(signals)
