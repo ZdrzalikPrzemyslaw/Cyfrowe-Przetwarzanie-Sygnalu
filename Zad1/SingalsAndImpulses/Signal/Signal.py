@@ -1,4 +1,4 @@
-from SignalAndImpulse import SignalAndImpulse
+from SingalsAndImpulses.SignalAndImpulse import SignalAndImpulse
 
 
 class Signal(SignalAndImpulse):

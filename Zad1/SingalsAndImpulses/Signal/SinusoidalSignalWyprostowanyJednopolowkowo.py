@@ -1,4 +1,4 @@
-from Signal.SinusoidalSignal import SinusoidalSignal
+from SingalsAndImpulses.Signal.SinusoidalSignal import SinusoidalSignal
 import math
 
 
@@ -8,4 +8,4 @@ class SinusoidalSignalWyprosowanyJednopolowkowo(SinusoidalSignal):
         super().__init__(amplitude, term)
 
     def generate_value(self, x: float):
-        return 0.5 * self.A * (math.sin(x/self.T) + math.fabs(math.sin(x/self.T)))
+        return 0.5 * self.A * (math.sin(x/self.T * 2 * math.pi) + math.fabs(math.sin(x/self.T * 2 * math.pi)))

@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from SignalAndImpulseCreator import SignalData
+from SingalsAndImpulses.SignalAndImpulseCreator import SignalData
 
 
 def plot_analog(signal_dictionary: dict):

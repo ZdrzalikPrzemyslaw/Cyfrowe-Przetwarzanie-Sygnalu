@@ -1,4 +1,4 @@
-from Signal.SinusoidalSignal import SinusoidalSignal
+from SingalsAndImpulses.Signal.SinusoidalSignal import SinusoidalSignal
 import math
 
 
@@ -9,4 +9,4 @@ class SinusoidalSignalWyprostowanyDwupolowkowo(SinusoidalSignal):
         super().__init__(amplitude, term)
 
     def generate_value(self, x: float):
-        return self.A * math.fabs(math.sin(x/self.T))
+        return self.A * math.fabs(math.sin(x/self.T * 2 * math.pi))

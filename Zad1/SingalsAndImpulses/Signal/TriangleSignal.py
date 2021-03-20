@@ -1,5 +1,4 @@
-from Signal.RectangularSignal import RectangularSignal
-from Signal.Signal import Signal
+from SingalsAndImpulses.Signal.RectangularSignal import RectangularSignal
 
 
 class TriangleSignal(RectangularSignal):

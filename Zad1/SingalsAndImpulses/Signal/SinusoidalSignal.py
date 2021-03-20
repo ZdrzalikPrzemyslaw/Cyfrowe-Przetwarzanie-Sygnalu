@@ -1,4 +1,4 @@
-from Signal.Signal import Signal
+from SingalsAndImpulses.Signal.Signal import Signal
 import math
 
 
@@ -12,4 +12,4 @@ class SinusoidalSignal(Signal):
         self.T = term
 
     def generate_value(self, x: float):
-        return self.A * math.sin(x)
+        return self.A * math.sin(x * 2 * math.pi / self.T)

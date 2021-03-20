@@ -1,21 +1,20 @@
 from typing import Union
 
 import datetime
-import msvcrt
 
-from Impulse.ImpulseNoise import ImpulseNoise
-from Impulse.SingularImpulse import SingularImpulse
-from Signal.GaussianNoise import GaussianNoise
-from Signal.RectangularSignal import RectangularSignal
-from Signal.RectangularSymmetricalSignal import RectangularSymmetricalSignal
-from Signal.SingularJump import SingularJump
-from Signal.SinusoidalSignal import SinusoidalSignal
-from Signal.SinusoidalSignalWyprostowanyDwupolowkowo import SinusoidalSignalWyprostowanyDwupolowkowo
-from Signal.SinusoidalSignalWyprostowanyJednopolowkowo import SinusoidalSignalWyprosowanyJednopolowkowo
-from Signal.TriangleSignal import TriangleSignal
-from Signal.UniformlyDistributedNoise import UniformlyDistributedNoise
-from SignalAndImpulse import SignalAndImpulse
-from SignalAndImpulseCreator import SignalData
+from SingalsAndImpulses.Impulse.ImpulseNoise import ImpulseNoise
+from SingalsAndImpulses.Impulse.SingularImpulse import SingularImpulse
+from SingalsAndImpulses.Signal.GaussianNoise import GaussianNoise
+from SingalsAndImpulses.Signal.RectangularSignal import RectangularSignal
+from SingalsAndImpulses.Signal.RectangularSymmetricalSignal import RectangularSymmetricalSignal
+from SingalsAndImpulses.Signal.SingularJump import SingularJump
+from SingalsAndImpulses.Signal.SinusoidalSignal import SinusoidalSignal
+from SingalsAndImpulses.Signal.SinusoidalSignalWyprostowanyDwupolowkowo import SinusoidalSignalWyprostowanyDwupolowkowo
+from SingalsAndImpulses.Signal.SinusoidalSignalWyprostowanyJednopolowkowo import SinusoidalSignalWyprosowanyJednopolowkowo
+from SingalsAndImpulses.Signal.TriangleSignal import TriangleSignal
+from SingalsAndImpulses.Signal.UniformlyDistributedNoise import UniformlyDistributedNoise
+from SingalsAndImpulses.SignalAndImpulse import SignalAndImpulse
+from SingalsAndImpulses.SignalAndImpulseCreator import SignalData
 from globals import signals
 from plot import plot
 
@@ -45,8 +44,7 @@ def program_loop():
             signals[datetime.datetime.now().isoformat()] = signal_data
             ch = 'x'
             while ch not in ['y', 'n']:
-                print("Czy chcesz zachować plik sygnału? [y/n]")
-                ch = msvcrt.getch()
+                ch = input("Czy chcesz zachować plik sygnału? [y/n]")
                 if ch not in ['y', 'n']:
                     print("Invalid character")
                 elif ch == 'y':

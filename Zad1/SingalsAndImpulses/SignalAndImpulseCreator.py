@@ -2,9 +2,9 @@ from typing import Union
 
 import numpy as np
 
-from Signal.Signal import Signal
-from Signal.SinusoidalSignal import SinusoidalSignal
-from SignalAndImpulse import SignalAndImpulse
+from SingalsAndImpulses.Signal.Signal import Signal
+from SingalsAndImpulses.Signal.SinusoidalSignal import SinusoidalSignal
+from SingalsAndImpulses.SignalAndImpulse import SignalAndImpulse
 
 
 def create_signal_and_impulse(signal: SignalAndImpulse, start_time: float, end_time: float, delta: float):
@@ -129,6 +129,6 @@ class SignalData:
 
     def save_file(self):
         # TODO pobierz sciezke
-        path: str = "file.txt"
+        path: str = "../file.txt"
         with open(path, 'w') as file:
             file.write(self.__str__())

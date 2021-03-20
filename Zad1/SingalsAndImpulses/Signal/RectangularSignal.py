@@ -1,4 +1,4 @@
-from Signal.Signal import Signal
+from SingalsAndImpulses.Signal.Signal import Signal
 
 
 class RectangularSignal(Signal):
