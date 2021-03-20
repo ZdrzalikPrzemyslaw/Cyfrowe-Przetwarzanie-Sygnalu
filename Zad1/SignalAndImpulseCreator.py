@@ -20,6 +20,7 @@ class SignalData:
     start_time: float
     end_time: float
     delta: float
+    is_real: bool
     T: Union[float, None]
 
     def __str__(self):
@@ -28,16 +29,19 @@ class SignalData:
                "\nend_time {2}" \
                "\ndelta {3}" \
                "\nT {4}" \
-               "\ntime_values: \n{5}".format(str(self.is_signal),
+               "\nis_real {5}" \
+               "\ntime_values: \n{6}".format(str(self.is_signal),
                                              str(self.start_time),
                                              str(self.end_time),
                                              str(self.delta),
                                              str(self.T),
+                                             str(self.is_real),
                                              str(self.time_values_dict))
 
     def __init__(self, signal_and_impulse: SignalAndImpulse = SinusoidalSignal(1, 1), start_time: float = 0,
-                 end_time: float = 10, delta: float = 0.05, is_new: bool = True):
+                 end_time: float = 10, delta: float = 0.05, is_real: bool = True, is_new: bool = True):
         if is_new:
+            self.is_real = is_real
             self.start_time = start_time
             self.end_time = end_time
             self.delta = delta
@@ -68,6 +72,7 @@ class SignalData:
             end_time: float = float(file.readline().strip().split()[1])
             delta: float = float(file.readline().strip().split()[1])
             T: Union[float, None] = SignalData.__can_return_none(file.readline().strip().split()[1])
+            is_real: bool = bool(file.readline().strip().split()[1])
             file.readline()
             times_values_dict: dict = eval(file.readline().strip())
             ret_val = SignalData(is_new=False)
@@ -76,6 +81,7 @@ class SignalData:
             ret_val.end_time = end_time
             ret_val.delta = delta
             ret_val.T = T
+            ret_val.is_real = is_real
             ret_val.time_values_dict = times_values_dict
             return ret_val
 
