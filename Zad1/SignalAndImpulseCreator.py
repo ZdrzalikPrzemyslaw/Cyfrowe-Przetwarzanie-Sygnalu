@@ -65,7 +65,7 @@ class SignalData:
             return float(val)
 
     @staticmethod
-    def load_file(path: str):
+    def __load_file(path: str):
         with open(path, 'r') as file:
             is_signal: bool = bool(file.readline().strip().split()[1])
             start_time: float = float(file.readline().strip().split()[1])
@@ -123,6 +123,12 @@ class SignalData:
         # TODO: sprawdzic czy to rzeczywiscie jest sqrt
         return self.variance() ** (1.0 / 2)
 
-    def write_self_to_file(self, path: str):
+    def save_plot(self):
+        # TODO
+        pass
+
+    def save_file(self):
+        # TODO pobierz sciezke
+        path: str = "file.txt"
         with open(path, 'w') as file:
             file.write(self.__str__())

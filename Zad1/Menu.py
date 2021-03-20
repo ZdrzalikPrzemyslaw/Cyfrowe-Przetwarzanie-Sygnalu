@@ -1,3 +1,8 @@
+from typing import Union
+
+import datetime
+import msvcrt
+
 from Impulse.ImpulseNoise import ImpulseNoise
 from Impulse.SingularImpulse import SingularImpulse
 from Signal.GaussianNoise import GaussianNoise
@@ -11,6 +16,7 @@ from Signal.TriangleSignal import TriangleSignal
 from Signal.UniformlyDistributedNoise import UniformlyDistributedNoise
 from SignalAndImpulse import SignalAndImpulse
 from SignalAndImpulseCreator import SignalData
+from globals import signals
 from plot import plot
 
 
@@ -34,7 +40,17 @@ def program_loop():
     while choice != 5:
         choice = choose_mode()
         if choice == 1:
-            plot(wybor_1())
+            signal_data = wybor_1()
+            plot(signal_data)
+            signals[datetime.datetime.now().isoformat()] = signal_data
+            ch = 'x'
+            while ch not in ['y', 'n']:
+                print("Czy chcesz zachować plik sygnału? [y/n]")
+                ch = msvcrt.getch()
+                if ch not in ['y', 'n']:
+                    print("Invalid character")
+                elif ch == 'y':
+                    signal_data.save_file()
         elif choice == 2:
             wybor_2()
         elif choice == 3:
@@ -43,7 +59,7 @@ def program_loop():
             wybor_4()
 
 
-def wybor_1():
+def wybor_1() -> Union[None, SignalData]:
     choice = -1
     print("Wybierz rodzaj sygnału / szumu / impulsu: \n"
           "1.  Szum o rozkładzie jednostajnym \n"
@@ -152,7 +168,7 @@ def wybor_1():
         print("Podaj częstotliwość próbkowania")
         try:
             inp = float(input())
-            if inp == 0 :
+            if inp == 0:
                 delta_time = 1
                 raise ValueError
             delta_time = 1 / inp
