@@ -22,7 +22,6 @@ def plot_discrete(impulse_dictionary: dict):
     plt.show()
 
 
-
 def plot(data: SignalData):
     if data.is_signal:
         plot_analog(data.time_values_dict)
