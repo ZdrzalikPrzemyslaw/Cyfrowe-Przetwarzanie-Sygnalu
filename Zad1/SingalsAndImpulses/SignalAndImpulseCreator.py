@@ -167,26 +167,26 @@ class SignalData:
 
     def operation(self, signal, operation: str):
         if operation == "add":
-            self.make_operation(signal, self.__add_signals)
+            self.__make_operation(signal, self.__add_signals)
         elif operation == "sub":
-            self.make_operation(signal, self.__sub_signals)
+            self.__make_operation(signal, self.__sub_signals)
         elif operation == "mul":
-            self.make_operation(signal, self.__mul_signals)
+            self.__make_operation(signal, self.__mul_signals)
         elif operation == "div":
-            self.make_operation(signal, self.__div_signals)
+            self.__make_operation(signal, self.__div_signals)
         else:
             pass
 
-    def make_operation(self, signal, op):
+    def __make_operation(self, signal, op):
         new_signal = []
-        new_signal = self.calculating(self, signal, new_signal, op)
-        new_signal = self.calculating(signal, self, new_signal, op)
+        new_signal = self.__calculating(self, signal, new_signal, op)
+        new_signal = self.__calculating(signal, self, new_signal, op)
         arr = np.asarray(new_signal)
         plt.plot(arr[:, 0], arr[:, 1])
         plt.show()
 
     @staticmethod
-    def calculating(first_signal, second_signal, new_signal, op):
+    def __calculating(first_signal, second_signal, new_signal, op):
         list_self_signal_time = list(second_signal.time_values_dict.keys())
         list_self_signal_time.sort()
         list_signal_time = list(first_signal.time_values_dict.keys())
