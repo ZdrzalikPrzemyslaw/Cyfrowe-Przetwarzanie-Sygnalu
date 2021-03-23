@@ -262,7 +262,45 @@ def wybor_2():
 
 
 def wybor_3():
-    pass
+    while True:
+        print("Podaj sciezke pierwszego pliku: ")
+        try:
+            inp = input()
+            if os.path.isfile(inp):
+                first_signal = SignalData.load_file(inp)
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+
+    while True:
+        print("Podaj sciezke drugiego pliku: ")
+        try:
+            inp = input()
+            if os.path.isfile(inp):
+                second_signal = SignalData.load_file(inp)
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+
+    while i not in [1, 2, 3, 4]:
+        print("1. Dodawanie \n"
+              "2. Odejmowanie \n"
+              "3. Mnożenie \n"
+              "4. Dzielenie \n")
+        try:
+            i = int(input())
+        except ValueError:
+            print("zly input")
+            pass
+
+    operations = ["add", "sub", "mul", "div"]
+    first_signal.operation(second_signal, operations[i - 1])
 
 
 def wybor_4():

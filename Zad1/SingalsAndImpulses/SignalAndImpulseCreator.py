@@ -1,8 +1,7 @@
 from typing import Union
 
-import numpy as np
-
 import matplotlib.pyplot as plt
+import numpy as np
 
 from SingalsAndImpulses.Signal.Signal import Signal
 from SingalsAndImpulses.Signal.SinusoidalSignal import SinusoidalSignal
@@ -158,3 +157,27 @@ class SignalData:
             self.plot_analog()
         else:
             self.plot_discrete()
+
+    def operation(self, signal, operation: str):
+        if operation == "add":
+            self.__add_signals(signal)
+        elif operation == "sub":
+            self.__sub_signals(signal)
+        elif operation == "mul":
+            self.__mul_signals(signal)
+        elif operation == "div":
+            self.__div_signals(signal)
+        else:
+            pass
+
+    def __add_signals(self, signal):
+        pass
+
+    def __sub_signals(self, signal):
+        pass
+
+    def __mul_signals(self, signal):
+        pass
+
+    def __div_signals(self, signal):
+        pass
