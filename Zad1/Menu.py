@@ -45,6 +45,7 @@ def program_loop():
             signal_data = wybor_1()
             signal_data.plot()
             signals[datetime.datetime.now().isoformat()] = signal_data
+            signal_data.print_information()
             ch = 'x'
             while ch not in ['y', 'n']:
                 ch = input("Czy chcesz zachować plik sygnału? [y/n]")

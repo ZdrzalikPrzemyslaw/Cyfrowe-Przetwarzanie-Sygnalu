@@ -98,34 +98,42 @@ class SignalData:
             end_time = self.end_time - ((self.end_time - self.start_time) % self.T)
             return dict([(k, self.time_values_dict[k]) for k in self.time_values_dict if k <= end_time])
 
-    def mean(self) -> float:
+    def __mean(self) -> float:
         ret_val = 0
         for key, value in self.__get_values_for_calc().items():
             ret_val += value
         return ret_val / len(self.time_values_dict)
 
-    def mean_abs(self) -> float:
+    def __mean_abs(self) -> float:
         ret_val = 0
         for key, value in self.__get_values_for_calc().items():
             ret_val += abs(value)
         return ret_val / len(self.time_values_dict)
 
-    def mean_power(self) -> float:
+    def __mean_power(self) -> float:
         ret_val = 0
         for key, value in self.__get_values_for_calc().items():
             ret_val += value ** 2
         return ret_val / len(self.time_values_dict)
 
-    def variance(self) -> float:
+    def __variance(self) -> float:
         ret_val = 0
-        mean = self.mean()
+        mean = self.__mean()
         for key, value in self.__get_values_for_calc().items():
             ret_val += (value - mean) ** 2
         return ret_val / len(self.time_values_dict)
 
-    def root_mean_square(self):
+    def __root_mean_square(self):
         # TODO: sprawdzic czy to rzeczywiscie jest sqrt
-        return self.variance() ** (1.0 / 2)
+        return self.__variance() ** (1.0 / 2)
+
+    def print_information(self):
+        print("\nWartosc srednia: " + str(self.__mean()))
+        print("Wartosc srednia bezwzgledna: " + str(self.__mean_abs()))
+        print("Wartosc skuteczna: " + str(self.__root_mean_square()))
+        print("Wariancja: " + str(self.__variance()))
+        print("Moc srednia: " + str(self.__mean_power()) + "\n")
+
 
     def save_plot(self):
         # TODO
