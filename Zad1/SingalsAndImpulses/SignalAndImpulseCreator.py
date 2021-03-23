@@ -132,9 +132,8 @@ class SignalData:
         # TODO
         pass
 
-    def save_file(self):
+    def save_file(self, path: str):
         # TODO pobierz sciezke
-        path: str = "file.txt"
         with open(path, 'w') as file:
             file.write(self.__str__())
 

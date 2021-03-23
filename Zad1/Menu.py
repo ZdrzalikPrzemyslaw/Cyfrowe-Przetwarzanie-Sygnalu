@@ -2,7 +2,6 @@ import datetime
 import os
 from typing import Union
 
-from SingalsAndImpulses import SignalAndImpulseCreator
 from SingalsAndImpulses.Impulse.ImpulseNoise import ImpulseNoise
 from SingalsAndImpulses.Impulse.SingularImpulse import SingularImpulse
 from SingalsAndImpulses.Signal.GaussianNoise import GaussianNoise
@@ -52,7 +51,14 @@ def program_loop():
                 if ch not in ['y', 'n']:
                     print("Invalid character")
                 elif ch == 'y':
-                    signal_data.save_file()
+                    print("Podaj nazwę pliku")
+                    while True:
+                        inp = input()
+                        if not inp.isspace() or not len(inp) == 0:
+                            signal_data.save_file(inp)
+                            break
+                        else:
+                            print("zly input")
         elif choice == 2:
             wybor_2()
         elif choice == 3:
@@ -246,16 +252,13 @@ def wybor_2():
     try:
         inp = input()
         if os.path.isfile(inp):
-            path = inp
-            signal = SignalData.load_file(path)
+            signal = SignalData.load_file(inp)
             signal.plot()
         else:
             raise ValueError
     except ValueError:
         print("zly input")
         pass
-
-
 
 
 def wybor_3():
