@@ -180,7 +180,7 @@ class SignalData:
     def __make_operation(self, signal, op):
         new_signal = []
         new_signal = self.__calculating(self, signal, new_signal, op)
-        new_signal = self.__calculating(signal, self, new_signal, op)
+        # new_signal = self.__calculating(signal, self, new_signal, op)
         arr = np.asarray(new_signal)
         plt.plot(arr[:, 0], arr[:, 1])
         plt.show()
