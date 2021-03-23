@@ -1,8 +1,8 @@
 import datetime
+import os
 from typing import Union
 
-import numpy as np
-
+from SingalsAndImpulses import SignalAndImpulseCreator
 from SingalsAndImpulses.Impulse.ImpulseNoise import ImpulseNoise
 from SingalsAndImpulses.Impulse.SingularImpulse import SingularImpulse
 from SingalsAndImpulses.Signal.GaussianNoise import GaussianNoise
@@ -241,11 +241,21 @@ def get_term():
     return term
 
 
-
-
-
 def wybor_2():
-    pass
+    print("Podaj sciezke pliku: ")
+    try:
+        inp = input()
+        if os.path.isfile(inp):
+            path = inp
+            signal = SignalData.load_file(path)
+            signal.plot()
+        else:
+            raise ValueError
+    except ValueError:
+        print("zly input")
+        pass
+
+
 
 
 def wybor_3():

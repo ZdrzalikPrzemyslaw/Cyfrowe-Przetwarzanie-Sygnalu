@@ -1,7 +1,6 @@
 from typing import Union
 
 import numpy as np
-import pprint
 
 import matplotlib.pyplot as plt
 
@@ -71,7 +70,7 @@ class SignalData:
             return float(val)
 
     @staticmethod
-    def __load_file(path: str):
+    def load_file(path: str):
         with open(path, 'r') as file:
             is_signal: bool = bool(file.readline().strip().split()[1])
             start_time: float = float(file.readline().strip().split()[1])
@@ -135,7 +134,7 @@ class SignalData:
 
     def save_file(self):
         # TODO pobierz sciezke
-        path: str = "../file.txt"
+        path: str = "file.txt"
         with open(path, 'w') as file:
             file.write(self.__str__())
 
