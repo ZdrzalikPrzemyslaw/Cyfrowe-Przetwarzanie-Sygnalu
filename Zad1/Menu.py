@@ -288,7 +288,7 @@ def wybor_3():
         except ValueError:
             print("zly input")
             pass
-
+    i = 0
     while i not in [1, 2, 3, 4]:
         print("1. Dodawanie \n"
               "2. Odejmowanie \n"

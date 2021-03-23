@@ -134,7 +134,6 @@ class SignalData:
         print("Wariancja: " + str(self.__variance()))
         print("Moc srednia: " + str(self.__mean_power()) + "\n")
 
-
     def save_plot(self):
         # TODO
         pass
@@ -168,24 +167,61 @@ class SignalData:
 
     def operation(self, signal, operation: str):
         if operation == "add":
-            self.__add_signals(signal)
+            self.make_operation(signal, self.__add_signals)
         elif operation == "sub":
-            self.__sub_signals(signal)
+            self.make_operation(signal, self.__sub_signals)
         elif operation == "mul":
-            self.__mul_signals(signal)
+            self.make_operation(signal, self.__mul_signals)
         elif operation == "div":
-            self.__div_signals(signal)
+            self.make_operation(signal, self.__div_signals)
         else:
             pass
 
-    def __add_signals(self, signal):
-        pass
+    def make_operation(self, signal, op):
+        new_signal = []
+        new_signal = self.calculating(self, signal, new_signal, op)
+        new_signal = self.calculating(signal, self, new_signal, op)
+        arr = np.asarray(new_signal)
+        plt.plot(arr[:, 0], arr[:, 1])
+        plt.show()
 
-    def __sub_signals(self, signal):
-        pass
+    @staticmethod
+    def calculating(first_signal, second_signal, new_signal, op):
+        list_self_signal_time = list(second_signal.time_values_dict.keys())
+        list_self_signal_time.sort()
+        list_signal_time = list(first_signal.time_values_dict.keys())
+        list_signal_time.sort()
+        col = [new_signal[row][0] for row in range(len(new_signal))]
+        for i in list_self_signal_time:
+            if (i < first_signal.start_time or i > max(list_signal_time)) and i not in col:
+                new_signal.append([i, second_signal.time_values_dict[i]])
+            elif i not in col:
+                if i in list_signal_time:
+                    new_signal.append([i, op(second_signal.time_values_dict[i], first_signal.time_values_dict[i])])
+                else:
+                    index = next(x for x, val in enumerate(list_signal_time) if val > i)
+                    percentage = (i - list_signal_time[index - 1]) / (
+                            list_signal_time[index] - list_signal_time[index - 1])
+                    temp = first_signal.time_values_dict[index - 1] + (
+                            first_signal.time_values_dict[index] - first_signal.time_values_dict[
+                        index - 1]) * percentage
+                    new_signal.append([i, op(second_signal.time_values_dict[i], temp)])
+        return new_signal
 
-    def __mul_signals(self, signal):
-        pass
+    @staticmethod
+    def __add_signals(a, b):
+        return a + b
 
-    def __div_signals(self, signal):
-        pass
+    @staticmethod
+    def __sub_signals(a, b):
+        return a - b
+
+    @staticmethod
+    def __mul_signals(a, b):
+        return a * b
+
+    @staticmethod
+    def __div_signals(a, b):
+        if b == 0:
+            return 0
+        return a / b
