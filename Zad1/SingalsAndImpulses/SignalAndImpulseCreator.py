@@ -132,8 +132,20 @@ class SignalData:
         print("Moc srednia: " + str(self.__mean_power()) + "\n")
 
     def save_plot(self):
-        # TODO
-        pass
+        ch = 'x'
+        while ch not in ['y', 'n']:
+            ch = input("Czy chcesz zachować wykres sygnału? [y/n]")
+            if ch not in ['y', 'n']:
+                print("zly input")
+            elif ch == 'y':
+                print("Podaj nazwę pliku dla wykresu")
+                while True:
+                    inp = input()
+                    if not inp.isspace() or not len(inp) == 0:
+                        plt.savefig(inp + '.png')
+                        break
+                    else:
+                        print("zly input")
 
     def save_file(self):
         print("Podaj nazwę pliku")
@@ -149,6 +161,7 @@ class SignalData:
     def plot_analog(self):
         array_from_list = np.asarray(list(self.time_values_dict.items()))
         plt.plot(array_from_list[:, 0], array_from_list[:, 1])
+        self.save_plot()
         plt.show()
         unique = np.unique(array_from_list[:, 1])
         plt.hist(array_from_list[:, 1], bins=len(unique))
@@ -157,6 +170,7 @@ class SignalData:
     def plot_discrete(self):
         array_from_list = np.asarray(list(self.time_values_dict.items()))
         plt.scatter(array_from_list[:, 0], array_from_list[:, 1])
+        self.save_plot()
         plt.show()
         unique = np.unique(array_from_list[:, 1])
         plt.hist(array_from_list[:, 1], bins=len(unique))
