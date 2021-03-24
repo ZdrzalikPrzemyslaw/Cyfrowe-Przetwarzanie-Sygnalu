@@ -164,7 +164,6 @@ def wybor_1() -> Union[None, SignalData]:
             pass
 
     if choice == 11:
-        print("JESTEM TU")
         signal_impulse = ImpulseNoise(amplitude, get_probability())
         print("Podaj częstotliwość próbkowania")
         try:
@@ -177,8 +176,10 @@ def wybor_1() -> Union[None, SignalData]:
             print("zly input")
             pass
         pass
-
-    return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration)
+    if 'delta_time' in locals():
+        return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration, delta=delta_time)
+    else:
+        return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration)
 
 
 def get_kw():
