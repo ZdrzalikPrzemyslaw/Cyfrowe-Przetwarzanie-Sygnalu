@@ -25,8 +25,6 @@ Celem ćwiczenia jest wykonanie programu umożliwiającego generację wybranych 
 
 \section{Wstęp teoretyczny}
 
-
-
 Krótki opis wykorzystywanych metod~\cite{dowolna_etykieta_artykulu}. Proszę nie umieszczać ogólnie znanych z literatury
 wzorów oraz definicji. Należy podać jaka metoda została zastosowana, dlaczego oraz podać wykorzystaną literaturę (korzystając z odwołań do pozycji bibliografii~\cite{dowolna_etykieta_ksiazki}).\\
 Przygotowując bibliografię należy korzystać z podanego\\ 
@@ -35,162 +33,222 @@ szablonu \BibTeX-owego \texttt{bibliografia-wzor.bib}.
 
 \section{Eksperymenty i wyniki}
 
-Opis wykonywanych eksperymentów. Wymagane jest ilustrowanie przeprowadzanych doświadczeń wykresami oraz tabelami.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Eksperyment nr 1}
+\subsection{Eksperyment nr 1 - generowanie sygnału}
 
-Eksperyment nr 1...\\
-Identycznościowa funkcja aktywacji ma postać:
-\begin{equation}
- \forall\: s \in \mathbb{R}\:\:\:\: f(s) = s
- \label{równanie funkcji identycznościowej}
-\end{equation}
-Jak widać z definicji (\ref{równanie funkcji identycznościowej}) funkcja ta...
+Eksperyment 1 polegał na wygenerowaniu sygnału sinusoidalnego wyprosotwanego jednopołówkowo na podstawie podanych parametrów oraz wyświetleniu wykresu i histogramu dla sygnału. 
 
 \subsubsection{Założenia}
 
-\subsubsection{Przebieg}
-\newpage
+Funkcja opisująca sygnał: \begin{equation}  x(t) = \frac{1}{2}  A\{ \sin [ \frac{2\pi}{T}(t - t_1)] +  | \sin [ \frac{2 \pi}{T}(t - t_1)]  |\}  \end{equation}
 
-\subsubsection{Rezultat}
-
-Rezultaty badań eksperymentalnych przedstawione są w Tab. \ref{wyniki eksperymentu pierwszego}.
-\begin{table}[h!]
- \caption{Rezultaty eksperymentu nr 1}
- \centering
- \vspace{0.2cm}
- \begin{tabular}{c c c c}
-  \hline\hline\\[-0.4cm]
-  \textbf{Przypadek} & \textbf{Metoda 1} & \textbf{Metoda 2} & \textbf{Metoda 3}\\[0.1cm]
-  \hline
-  \textbf{1} & 50 & 837 & 970  \\
-  \textbf{2} & 47 & 877 & 230  \\
-  \textbf{3} & 31 &  25 & 415  \\
-  \textbf{4} & 35 & 144 & 2356 \\
-  \textbf{5} & 45 & 300 & 556  \\ [0.1cm]
-  \hline
- \end{tabular}
- \label{wyniki eksperymentu pierwszego}
-\end{table}
-
-\noindent Jak widać w Tab. \ref{wyniki eksperymentu pierwszego}...\newline
-Graficzna interpretacja wyników z Tab. \ref{wyniki eksperymentu pierwszego} 
-przedstawiona jest na wykresie Rys. \ref{rysunek do eksperymentu pierwszego} gdzie można zauważyć, że...
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{wykres.pdf}
+ \includegraphics[width=9.3cm]{spr_sygnal_sinus.png}
  \vspace{-0.3cm}
- \caption{Wykres dla wyników eksperymentu pierwszego}
+ \caption{Wykres przewidywany dla eksperymentu pierwszego.}
  \label{rysunek do eksperymentu pierwszego}
 \end{figure}
 
-\noindent Jak widać z wykresu Rys. \ref{rysunek do eksperymentu pierwszego}...\newline
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PODROZDZIAŁ PT. EKSPERYMENT NR 2 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \newpage
-\subsection{Eksperyment nr 2}
 
-Eksperyment nr 2 polegał na...\\
-Sigmoidalna funkcja aktywacji ma postać:
-\begin{equation}
- \forall\: s \in \mathbb{R}\:\:\:\:\:\: f(s) = \frac{1}{\:\:\:1 + e^{-\beta \cdot s}\:}\:,
- \:\:\:\:\textnormal{gdzie}\:\:\beta \in \mathbb{R}_{+}
- \label{równanie funkcji sigmoidalnej}
-\end{equation}
-Jak widać z równania definicyjnego (\ref{równanie funkcji sigmoidalnej}) 
-funkcja\footnote{ang. \textit{sigmoidal function} lub \textit{unipolar function}}
-ta ma wykres przedstawiony 
-na rysunku Rys. \ref{funkcja sigmoidalna}, gdzie paramater $\beta$ ...
-\begin{figure}[h!]
- \centering
- \includegraphics[width=7.3cm]{funkcja.png}
- \vspace{-0.1cm}
- \caption{Wykres funkcji sigmoidalnej}
- \label{funkcja sigmoidalna}
-\end{figure}
-
-\subsubsection{Założenia}
 
 \subsubsection{Przebieg}
 
-\subsubsection{Rezultat}
+Do wygenerowania wykresu zostały podane poniższe parametry: 
 
-Rezultaty badań eksperymentalnych przedstawione są w Tab. \ref{wyniki eksperymentu drugiego}.
-\vspace{-0.5cm}
-\begin{table}[h!]
- \caption{Rezultaty eksperymentu nr 2}
- \centering
- \vspace{0.2cm}
- \begin{tabular}{c c c }
-  \hline\hline\\[-0.4cm]
-  \textbf{Przypadek} & \textbf{Metoda 1} & \textbf{Metoda 2}\\[0.1cm]
-  \hline
-  \textbf{1} & 50 & 837 \\
-  \textbf{2} & 47 & 877 \\
-  \textbf{3} & 45 & 300 \\ [0.1cm]
-  \hline
- \end{tabular}
- \label{wyniki eksperymentu drugiego}
-\end{table}
-
-\noindent Jak widać w Tab. \ref{wyniki eksperymentu drugiego}...\newline
-Wyniki w Tab. \ref{wyniki eksperymentu drugiego} świadczą o tym, że...
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PODROZDZIAŁ PT. EKSPERYMENT NR N 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Eksperyment nr n}
-Eksperyment nr n zakładał, iż...\\
-Dla dowolnej liczby $N \in \mathbb{N}$ funkcję 
-$F_{N}:\mathbb{C}^{\:N}\!\rightarrow\mathbb{C}^{\:N}$
-zdefiniowaną w następujący sposób:
-\vspace{-0.4cm}
-\begin{equation}
- \forall\:\mathbf{x} \in \mathbb{C}^{\:N}\:\:\:\:\:
- \forall\:k \in \{\:0,\dots,N - 1\:\!\}\:\:\:\:\:
- F_{N}\:\!(\:\mathbf{x}\:)_{k}\:\stackrel{\Delta}{=}\:
- \frac{1}{\sqrt{N}}\:
- \sum_{n = 0}^{N - 1}\:x_{n}\:\cdot\:
- e^{-j 2 \pi n k / N}
- \label{równanie dyskretnej transformaty Fouriera}
-\end{equation}
-nazywamy $N$ -- punktowym prostym jednowymiarowym dyskretnym przekształceniem Fouriera.
-Na Rys. \ref{FFT} przedstawiono szybki algorytm obliczania dyskretnego 
-przekształcenia Fouriera\footnote{ang. \textit{Fast Fourier Transform}}.
 \begin{figure}[h!]
  \centering
- \includegraphics[width=0.8\linewidth]{transformata.pdf}
- \vspace{-0.1cm}
- \caption{Szybkie przekształcenie Fouriera}
- \label{FFT}
+ \includegraphics[width=9.3cm]{par_1.png}
+ \vspace{-0.3cm}
+ \caption{Parametry dla eksperymentu pierwszego.}
+ \label{rysunek do eksperymentu pierwszego}
 \end{figure}
+
+\newpage
+
+Wygenerowany wykres sygnały sinusoidalnego wyprostowanego jednopołówkowo:
+
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{wykr_sygnal_sinus.png}
+ \vspace{-0.3cm}
+ \caption{Wykres wygenerowanego sygnału dla eksperymentu pierwszego.}
+ \label{rysunek do eksperymentu pierwszego}
+\end{figure}
+
+
+
+Histogram dla wygenerowanego sygnału:
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{hist_1.png}
+ \vspace{-0.3cm}
+ \caption{Histogram dla wygenerowanego wykresu dla eksperymentu pierwszego.}
+ \label{rysunek do eksperymentu pierwszego}
+\end{figure}
+
+
+\newpage
+
+\subsubsection{Rezultat}
+
+Dla wygenerowanego wykresu zostały obliczone jego parametry.  \ref{wyniki eksperymentu pierwszego}.
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{wyniki_1.png}
+ \vspace{-0.3cm}
+ \caption{Obliczone parametry wygenerowanego sygnału.}
+ \label{rysunek do eksperymentu pierwszego}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Eksperyment nr 2 - generowanie impulsu}
+
+Eksperyment 2 polegał na wygenerowaniu szumu impulsowego na podstawie podanych parametrów oraz wyświetleniu wykresu i histogramu dla szumu. 
 
 \subsubsection{Założenia}
 
-\subsubsection{Przebieg}
+Szum impulsowy przyjmuje dwie wartości: wartość 0, wartość A - różna od zera. Przy czy wartość A występuje z zadanym p - prawdopodobieństem, podanym jako parametr. 
 
-\subsubsection{Rezultat}
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{spr_2.png}
+ \vspace{-0.3cm}
+ \caption{Wykres przewidywany dla eksperymentu pierwszego.}
+ \label{rysunek do eksperymentu pierwszego}
+\end{figure}
+
 \newpage
 
-\section{Wnioski}
 
-Wnioski z przeprowadzonych eksperymentów dowodzą, że...
+\subsubsection{Przebieg}
+
+Do wygenerowania wykresu zostały podane poniższe parametry: 
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{par_2.png}
+ \vspace{-0.3cm}
+ \caption{Parametry dla eksperymentu pierwszego.}
+ \label{rysunek do eksperymentu pierwszego}
+\end{figure}
+\
+
+Wygenerowany wykres szumu impulsowego:
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PODROZDZIAŁ PT. ZALACZNIKI
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{wykr_2.png}
+ \vspace{-0.3cm}
+ \caption{Wykres wygenerowanego szumu dla eksperymentu pierwszego.}
+ \label{rysunek do eksperymentu pierwszego}
+\end{figure}
 
-\section{Załączniki*}
 
-Opcjonalnie, w zależności od zadania,
-np. fragment kodu źródłowego.
+
+Histogram dla wygenerowanego szumu:
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{hist_2.png}
+ \vspace{-0.3cm}
+ \caption{Histogram dla wygenerowanego szumu dla eksperymentu pierwszego.}
+ \label{rysunek do eksperymentu pierwszego}
+\end{figure}
+
+
+\newpage
+
+\subsubsection{Rezultat}
+
+Dla wygenerowanego wykresu zostały obliczone jego parametry.  \ref{wyniki eksperymentu pierwszego}.
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{wyniki_1.png}
+ \vspace{-0.3cm}
+ \caption{Obliczone parametry wygenerowanego szumu.}
+ \label{rysunek do eksperymentu pierwszego}
+\end{figure}
+
+
+\subsection{Eksperyment nr 3 - wykonanie operacji na sygnałach}
+
+Eksperyment 3 polegał na dodaniu do siebie wcześniej wygenerowanego sygnału sinusoidalnego i szumu Gaussowsiego. 
+
+\subsubsection{Założenia}
+
+Szum impulsowy przyjmuje dwie wartości: wartość 0, wartość A - różna od zera. Przy czy wartość A występuje z zadanym p - prawdopodobieństem, podanym jako parametr. 
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{spr_2.png}
+ \vspace{-0.3cm}
+ \caption{Wykres przewidywany dla eksperymentu pierwszego.}
+ \label{rysunek do eksperymentu pierwszego}
+\end{figure}
+
+\newpage
+
+
+\subsubsection{Przebieg}
+
+Do wygenerowania wykresu zostały podane poniższe parametry: 
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{par_2.png}
+ \vspace{-0.3cm}
+ \caption{Parametry dla eksperymentu pierwszego.}
+ \label{rysunek do eksperymentu pierwszego}
+\end{figure}
+\
+
+Wygenerowany wykres szumu impulsowego:
+
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{wykr_2.png}
+ \vspace{-0.3cm}
+ \caption{Wykres wygenerowanego szumu dla eksperymentu pierwszego.}
+ \label{rysunek do eksperymentu pierwszego}
+\end{figure}
+
+
+
+Histogram dla wygenerowanego szumu:
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{hist_2.png}
+ \vspace{-0.3cm}
+ \caption{Histogram dla wygenerowanego szumu dla eksperymentu pierwszego.}
+ \label{rysunek do eksperymentu pierwszego}
+\end{figure}
+
+
+\newpage
+
+\subsubsection{Rezultat}
+
+Dla wygenerowanego wykresu zostały obliczone jego parametry.  \ref{wyniki eksperymentu pierwszego}.
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{wyniki_1.png}
+ \vspace{-0.3cm}
+ \caption{Obliczone parametry wygenerowanego szumu.}
+ \label{rysunek do eksperymentu pierwszego}
+\end{figure}
+
 
 
 \end{document}
