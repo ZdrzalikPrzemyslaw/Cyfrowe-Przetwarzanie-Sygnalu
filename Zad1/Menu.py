@@ -52,14 +52,7 @@ def program_loop():
                 if ch not in ['y', 'n']:
                     print("Invalid character")
                 elif ch == 'y':
-                    print("Podaj nazwę pliku")
-                    while True:
-                        inp = input()
-                        if not inp.isspace() or not len(inp) == 0:
-                            signal_data.save_file(inp)
-                            break
-                        else:
-                            print("zly input")
+                    signal_data.save_file()
         elif choice == 2:
             wybor_2()
         elif choice == 3:

@@ -135,10 +135,16 @@ class SignalData:
         # TODO
         pass
 
-    def save_file(self, path: str):
-        # TODO pobierz sciezke
-        with open(path, 'w') as file:
-            file.write(self.__str__())
+    def save_file(self):
+        print("Podaj nazwę pliku")
+        while True:
+            inp = input()
+            if not inp.isspace() or not len(inp) == 0:
+                with open(inp, 'w') as file:
+                    file.write(self.__str__())
+                break
+            else:
+                print("zly input")
 
     def plot_analog(self):
         array_from_list = np.asarray(list(self.time_values_dict.items()))
@@ -180,6 +186,7 @@ class SignalData:
         else:
             new_signal = self.__calculating(signal, self, op)
         new_signal.plot()
+        new_signal.save_file()
 
     @staticmethod
     def __calculating(first_signal, second_signal, op):
@@ -202,7 +209,8 @@ class SignalData:
                     new_signal[time] = op(first_signal.time_values_dict[time], temp)
         new_signal_data = SignalData(start_time=first_signal.start_time, end_time=first_signal.end_time,
                                      is_signal=first_signal.is_signal, delta=first_signal.delta,
-                                     is_new=False, T=first_signal.T, time_values_dict=new_signal, is_real=first_signal.is_real)
+                                     is_new=False, T=first_signal.T, time_values_dict=new_signal,
+                                     is_real=first_signal.is_real)
         return new_signal_data
 
     @staticmethod
