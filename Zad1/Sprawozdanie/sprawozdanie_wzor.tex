@@ -5,6 +5,7 @@
 \newcommand{\BibTeX}{{\sc Bib}\TeX} 
 \usepackage{graphicx}
 \usepackage{amsfonts}
+\usepackage{url}
 
 \setlength{\textheight}{21cm}
 
@@ -43,6 +44,7 @@ Eksperyment 1 polegał na wygenerowaniu sygnału sinusoidalnego wyprosotwanego j
 
 Funkcja opisująca sygnał: \begin{equation}  x(t) = \frac{1}{2}  A\{ \sin [ \frac{2\pi}{T}(t - t_1)] +  | \sin [ \frac{2 \pi}{T}(t - t_1)]  |\}  \end{equation}
 
+Przewidywany wykres sygnału \cite{dane}:
 \begin{figure}[h!]
  \centering
  \includegraphics[width=9.3cm]{spr_sygnal_sinus.png}
@@ -96,7 +98,7 @@ Histogram dla wygenerowanego sygnału:
 
 \subsubsection{Rezultat}
 
-Dla wygenerowanego wykresu zostały obliczone jego parametry.  \ref{wyniki eksperymentu pierwszego}.
+Dla wygenerowanego wykresu zostały obliczone jego parametry. 
 
 \begin{figure}[h!]
  \centering
@@ -105,6 +107,10 @@ Dla wygenerowanego wykresu zostały obliczone jego parametry.  \ref{wyniki ekspe
  \caption{Obliczone parametry wygenerowanego sygnału.}
  \label{rysunek do eksperymentu pierwszego}
 \end{figure}
+
+\subsubsection{Wnioski}
+
+Założenia postawione przed wykonaniem eksperymentu 1 sprawdziły się, ponieważ wykres przewidywany oraz wykres wygenerowany przez program są identyczne. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -116,11 +122,13 @@ Eksperyment 2 polegał na wygenerowaniu szumu impulsowego na podstawie podanych 
 
 Szum impulsowy przyjmuje dwie wartości: wartość 0, wartość A - różna od zera. Przy czy wartość A występuje z zadanym p - prawdopodobieństem, podanym jako parametr. 
 
+Przewidywany wykres szumu \cite{dane}:
+
 \begin{figure}[h!]
  \centering
  \includegraphics[width=9.3cm]{spr_2.png}
  \vspace{-0.3cm}
- \caption{Wykres przewidywany dla eksperymentu pierwszego.}
+ \caption{Wykres przewidywany dla eksperymentu drugiego.}
  \label{rysunek do eksperymentu pierwszego}
 \end{figure}
 
@@ -135,8 +143,8 @@ Do wygenerowania wykresu zostały podane poniższe parametry:
  \centering
  \includegraphics[width=9.3cm]{par_2.png}
  \vspace{-0.3cm}
- \caption{Parametry dla eksperymentu pierwszego.}
- \label{rysunek do eksperymentu pierwszego}
+ \caption{Parametry dla eksperymentu drugiego.}
+ \label{rysunek do eksperymentu drugiego}
 \end{figure}
 \
 
@@ -147,8 +155,8 @@ Wygenerowany wykres szumu impulsowego:
  \centering
  \includegraphics[width=9.3cm]{wykr_2.png}
  \vspace{-0.3cm}
- \caption{Wykres wygenerowanego szumu dla eksperymentu pierwszego.}
- \label{rysunek do eksperymentu pierwszego}
+ \caption{Wykres wygenerowanego szumu dla eksperymentu drugiego.}
+ \label{rysunek do eksperymentu drugiego}
 \end{figure}
 
 
@@ -159,8 +167,8 @@ Histogram dla wygenerowanego szumu:
  \centering
  \includegraphics[width=9.3cm]{hist_2.png}
  \vspace{-0.3cm}
- \caption{Histogram dla wygenerowanego szumu dla eksperymentu pierwszego.}
- \label{rysunek do eksperymentu pierwszego}
+ \caption{Histogram dla wygenerowanego szumu dla eksperymentu drugieog.}
+ \label{rysunek do eksperymentu drugiego}
 \end{figure}
 
 
@@ -168,70 +176,95 @@ Histogram dla wygenerowanego szumu:
 
 \subsubsection{Rezultat}
 
-Dla wygenerowanego wykresu zostały obliczone jego parametry.  \ref{wyniki eksperymentu pierwszego}.
+Dla wygenerowanego wykresu zostały obliczone jego parametry. 
 
 \begin{figure}[h!]
  \centering
  \includegraphics[width=9.3cm]{wyniki_1.png}
  \vspace{-0.3cm}
  \caption{Obliczone parametry wygenerowanego szumu.}
- \label{rysunek do eksperymentu pierwszego}
+ \label{rysunek do eksperymentu durgiego}
 \end{figure}
 
+\subsubsection{Wnioski}
+
+Założenia postawione przed wykonaniem eksperymentu 2 sprawdziły się, ponieważ wykres przewidywany oraz wykres wygenerowany przez program są identyczne. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Eksperyment nr 3 - wykonanie operacji na sygnałach}
 
-Eksperyment 3 polegał na dodaniu do siebie wcześniej wygenerowanego sygnału sinusoidalnego i szumu Gaussowsiego. 
+Eksperyment 3 polegał na dodaniu do siebie wcześniej wygenerowanego sygnału sinusoidalnego i sygnału prostokątnego. 
 
 \subsubsection{Założenia}
 
-Szum impulsowy przyjmuje dwie wartości: wartość 0, wartość A - różna od zera. Przy czy wartość A występuje z zadanym p - prawdopodobieństem, podanym jako parametr. 
-
+Parametry  wejściowe oraz obliczone dla wcześniej wygenerowanego sygnału sinusoidalnego:
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{spr_2.png}
+ \includegraphics[width=9.3cm]{par_3_1.png}
  \vspace{-0.3cm}
- \caption{Wykres przewidywany dla eksperymentu pierwszego.}
- \label{rysunek do eksperymentu pierwszego}
+ \caption{Parametry sygnału dla eksperymentu trzeciego.}
+ \label{rysunek do eksperymentu trzeciego}
 \end{figure}
+\
 
-\newpage
+Wykres dla wcześniej wygenerowanego sygnału sinusoidalnego:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{wykr_3_1.png}
+ \vspace{-0.3cm}
+ \caption{Parametry sygnału dla eksperymentu trzeciego.}
+ \label{rysunek do eksperymentu trzeciego}
+\end{figure}
+\
+
+
+Parametry  wejściowe oraz obliczone dla wcześniej wygenerowanego sygnału prostokątnego:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{par_3_2.png}
+ \vspace{-0.3cm}
+ \caption{Parametry sygnału dla eksperymentu trzeciego.}
+ \label{rysunek do eksperymentu trzeciego}
+\end{figure}
+\
+
+Wykres dla wcześniej wygenerowanego sygnału prostokątnego:
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=9.3cm]{wykr_3_2.png}
+ \vspace{-0.3cm}
+ \caption{Parametry sygnału dla eksperymentu trzeciego.}
+ \label{rysunek do eksperymentu trzeciego}
+\end{figure}
+\
 
 
 \subsubsection{Przebieg}
 
-Do wygenerowania wykresu zostały podane poniższe parametry: 
+Wykres otrzymany po dodaniu powyższych dwóch sygnałów: sygnału sinusoidalnego, sygnału prostokątnego:
 
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{par_2.png}
- \vspace{-0.3cm}
- \caption{Parametry dla eksperymentu pierwszego.}
- \label{rysunek do eksperymentu pierwszego}
-\end{figure}
-\
-
-Wygenerowany wykres szumu impulsowego:
 
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{wykr_2.png}
+ \includegraphics[width=9.3cm]{wykr_3.png}
  \vspace{-0.3cm}
- \caption{Wykres wygenerowanego szumu dla eksperymentu pierwszego.}
- \label{rysunek do eksperymentu pierwszego}
+ \caption{Wykres otrzymanu po dodaniu sygnałów w eksperymencie 3.}
+ \label{rysunek do eksperymentu trzeciego}
 \end{figure}
 
+\newpage
 
-
-Histogram dla wygenerowanego szumu:
+Histogram dla wygenerowanego sygnału:
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{hist_2.png}
+ \includegraphics[width=9.3cm]{hist_3.png}
  \vspace{-0.3cm}
- \caption{Histogram dla wygenerowanego szumu dla eksperymentu pierwszego.}
- \label{rysunek do eksperymentu pierwszego}
+ \caption{Histogram dla wygenerowanego sygnału dla eksperymentu trzeciego.}
+ \label{rysunek do eksperymentu trzeciego}
 \end{figure}
 
 
@@ -239,15 +272,21 @@ Histogram dla wygenerowanego szumu:
 
 \subsubsection{Rezultat}
 
-Dla wygenerowanego wykresu zostały obliczone jego parametry.  \ref{wyniki eksperymentu pierwszego}.
+Dla otrzymanego wykresu zostały obliczone jego parametry.  
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{wyniki_1.png}
+ \includegraphics[width=9.3cm]{wyniki_3.png}
  \vspace{-0.3cm}
- \caption{Obliczone parametry wygenerowanego szumu.}
- \label{rysunek do eksperymentu pierwszego}
+ \caption{Obliczone parametry otrzymanego sygnału.}
+ \label{rysunek do eksperymentu trzeciego}
 \end{figure}
+
+
+\begin{thebibliography}{0}
+\bibitem{dane}  Wikamp, Instrukcja do zadania pierwszego, Dostępny w: \url{https://ftims.edu.p.lodz.pl/mod/url/view.php?id=6495}
+
+\end{thebibliography}
 
 
 
