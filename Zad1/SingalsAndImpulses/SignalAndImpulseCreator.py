@@ -163,8 +163,8 @@ class SignalData:
         plt.plot(array_from_list[:, 0], array_from_list[:, 1])
         self.save_plot()
         plt.show()
-        unique = np.unique(array_from_list[:, 1])
-        plt.hist(array_from_list[:, 1], bins=len(unique))
+        values = array_from_list[:, 1]
+        plt.hist(values.astype('float'))
         plt.show()
 
     def plot_discrete(self):
@@ -172,8 +172,8 @@ class SignalData:
         plt.scatter(array_from_list[:, 0], array_from_list[:, 1])
         self.save_plot()
         plt.show()
-        unique = np.unique(array_from_list[:, 1])
-        plt.hist(array_from_list[:, 1], bins=len(unique))
+        values = array_from_list[:, 1]
+        plt.hist(values.astype('float'))
         plt.show()
 
     def plot(self):
