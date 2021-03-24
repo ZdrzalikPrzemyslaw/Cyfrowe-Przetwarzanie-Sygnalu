@@ -43,12 +43,13 @@ class SignalData:
                                              str(self.time_values_dict))
 
     def __init__(self, signal_and_impulse: SignalAndImpulse = SinusoidalSignal(1, 1), start_time: float = 0,
-                 end_time: float = 10, delta: float = 0.05, is_real: bool = True, is_new: bool = True):
+                 end_time: float = 10, delta: float = 0.05, is_real: bool = True, is_new: bool = True, T: float = None,
+                 is_signal: bool = None, time_values_dict: dict = None):
+        self.is_real = is_real
+        self.start_time = start_time
+        self.end_time = end_time
+        self.delta = delta
         if is_new:
-            self.is_real = is_real
-            self.start_time = start_time
-            self.end_time = end_time
-            self.delta = delta
             self.T = None
             if isinstance(signal_and_impulse, Signal):
                 self.is_signal = True
@@ -59,7 +60,9 @@ class SignalData:
                 self.is_signal = False
             self.time_values_dict = create_signal_and_impulse(signal_and_impulse, start_time, end_time, delta)
         else:
-            pass
+            self.T = T
+            self.time_values_dict = time_values_dict
+            self.is_signal = is_signal
 
     @staticmethod
     def __can_return_none(val):
@@ -79,14 +82,8 @@ class SignalData:
             is_real: bool = bool(file.readline().strip().split()[1])
             file.readline()
             times_values_dict: dict = eval(file.readline().strip())
-            ret_val = SignalData(is_new=False)
-            ret_val.is_signal = is_signal
-            ret_val.start_time = start_time
-            ret_val.end_time = end_time
-            ret_val.delta = delta
-            ret_val.T = T
-            ret_val.is_real = is_real
-            ret_val.time_values_dict = times_values_dict
+            ret_val = SignalData(start_time=start_time, end_time=end_time, is_signal=is_signal, delta=delta,
+                                 is_new=False, T=T, time_values_dict=times_values_dict, is_real=is_real)
             return ret_val
 
     def __get_values_for_calc(self) -> dict:
@@ -178,35 +175,35 @@ class SignalData:
             pass
 
     def __make_operation(self, signal, op):
-        new_signal = []
-        new_signal = self.__calculating(self, signal, new_signal, op)
-        # new_signal = self.__calculating(signal, self, new_signal, op)
-        arr = np.asarray(new_signal)
-        plt.plot(arr[:, 0], arr[:, 1])
-        plt.show()
+        if self.delta < signal.delta:
+            new_signal = self.__calculating(self, signal, op)
+        else:
+            new_signal = self.__calculating(signal, self, op)
+        new_signal.plot()
 
     @staticmethod
-    def __calculating(first_signal, second_signal, new_signal, op):
-        list_self_signal_time = list(second_signal.time_values_dict.keys())
-        list_self_signal_time.sort()
-        list_signal_time = list(first_signal.time_values_dict.keys())
+    def __calculating(first_signal, second_signal, op):
+        list_signal_time = list(second_signal.time_values_dict.keys())
         list_signal_time.sort()
-        col = [new_signal[row][0] for row in range(len(new_signal))]
-        for i in list_self_signal_time:
-            if (i < first_signal.start_time or i > max(list_signal_time)) and i not in col:
-                new_signal.append([i, second_signal.time_values_dict[i]])
-            elif i not in col:
-                if i in list_signal_time:
-                    new_signal.append([i, op(second_signal.time_values_dict[i], first_signal.time_values_dict[i])])
+        new_signal = {}
+        for time in first_signal.time_values_dict:
+            if time < list_signal_time[0] or time > list_signal_time[-1]:
+                new_signal[time] = first_signal.time_values_dict[time]
+            else:
+                if time in list_signal_time:
+                    new_signal[time] = op(first_signal.time_values_dict[time], second_signal.time_values_dict[time])
                 else:
-                    index = next(x for x, val in enumerate(list_signal_time) if val > i)
-                    percentage = (i - list_signal_time[index - 1]) / (
+                    index = next(x for x, val in enumerate(list_signal_time) if val > time)
+                    percentage = (time - list_signal_time[index - 1]) / (
                             list_signal_time[index] - list_signal_time[index - 1])
-                    temp = first_signal.time_values_dict[index - 1] + (
-                            first_signal.time_values_dict[index] - first_signal.time_values_dict[
+                    temp = second_signal.time_values_dict[index - 1] + (
+                            second_signal.time_values_dict[index] - second_signal.time_values_dict[
                         index - 1]) * percentage
-                    new_signal.append([i, op(second_signal.time_values_dict[i], temp)])
-        return new_signal
+                    new_signal[time] = op(first_signal.time_values_dict[time], temp)
+        new_signal_data = SignalData(start_time=first_signal.start_time, end_time=first_signal.end_time,
+                                     is_signal=first_signal.is_signal, delta=first_signal.delta,
+                                     is_new=False, T=first_signal.T, time_values_dict=new_signal, is_real=first_signal.is_real)
+        return new_signal_data
 
     @staticmethod
     def __add_signals(a, b):
