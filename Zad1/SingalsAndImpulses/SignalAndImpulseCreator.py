@@ -2,6 +2,7 @@ from typing import Union
 
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 
 from SingalsAndImpulses.Signal.Signal import Signal
 from SingalsAndImpulses.Signal.SinusoidalSignal import SinusoidalSignal
@@ -122,7 +123,7 @@ class SignalData:
 
     def __root_mean_square(self):
         # TODO: sprawdzic czy to rzeczywiscie jest sqrt
-        return self.__variance() ** (1.0 / 2)
+        return math.sqrt(self.__mean_power())
 
     def print_information(self):
         print("\nWartosc srednia: " + str(self.__mean()))
@@ -203,6 +204,7 @@ class SignalData:
             new_signal = self.__calculating(signal, self, op)
         new_signal.plot()
         new_signal.save_file()
+        new_signal.print_information()
 
     @staticmethod
     def __calculating(first_signal, second_signal, op):
