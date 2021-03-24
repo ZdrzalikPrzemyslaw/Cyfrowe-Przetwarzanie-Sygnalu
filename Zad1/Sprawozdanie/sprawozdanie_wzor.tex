@@ -86,4 +86,111 @@ przedstawiona jest na wykresie Rys. \ref{rysunek do eksperymentu pierwszego} gdz
 
 \noindent Jak widać z wykresu Rys. \ref{rysunek do eksperymentu pierwszego}...\newline
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PODROZDZIAŁ PT. EKSPERYMENT NR 2 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\subsection{Eksperyment nr 2}
+
+Eksperyment nr 2 polegał na...\\
+Sigmoidalna funkcja aktywacji ma postać:
+\begin{equation}
+ \forall\: s \in \mathbb{R}\:\:\:\:\:\: f(s) = \frac{1}{\:\:\:1 + e^{-\beta \cdot s}\:}\:,
+ \:\:\:\:\textnormal{gdzie}\:\:\beta \in \mathbb{R}_{+}
+ \label{równanie funkcji sigmoidalnej}
+\end{equation}
+Jak widać z równania definicyjnego (\ref{równanie funkcji sigmoidalnej}) 
+funkcja\footnote{ang. \textit{sigmoidal function} lub \textit{unipolar function}}
+ta ma wykres przedstawiony 
+na rysunku Rys. \ref{funkcja sigmoidalna}, gdzie paramater $\beta$ ...
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=7.3cm]{funkcja.png}
+ \vspace{-0.1cm}
+ \caption{Wykres funkcji sigmoidalnej}
+ \label{funkcja sigmoidalna}
+\end{figure}
+
+\subsubsection{Założenia}
+
+\subsubsection{Przebieg}
+
+\subsubsection{Rezultat}
+
+Rezultaty badań eksperymentalnych przedstawione są w Tab. \ref{wyniki eksperymentu drugiego}.
+\vspace{-0.5cm}
+\begin{table}[h!]
+ \caption{Rezultaty eksperymentu nr 2}
+ \centering
+ \vspace{0.2cm}
+ \begin{tabular}{c c c }
+  \hline\hline\\[-0.4cm]
+  \textbf{Przypadek} & \textbf{Metoda 1} & \textbf{Metoda 2}\\[0.1cm]
+  \hline
+  \textbf{1} & 50 & 837 \\
+  \textbf{2} & 47 & 877 \\
+  \textbf{3} & 45 & 300 \\ [0.1cm]
+  \hline
+ \end{tabular}
+ \label{wyniki eksperymentu drugiego}
+\end{table}
+
+\noindent Jak widać w Tab. \ref{wyniki eksperymentu drugiego}...\newline
+Wyniki w Tab. \ref{wyniki eksperymentu drugiego} świadczą o tym, że...
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PODROZDZIAŁ PT. EKSPERYMENT NR N 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Eksperyment nr n}
+Eksperyment nr n zakładał, iż...\\
+Dla dowolnej liczby $N \in \mathbb{N}$ funkcję 
+$F_{N}:\mathbb{C}^{\:N}\!\rightarrow\mathbb{C}^{\:N}$
+zdefiniowaną w następujący sposób:
+\vspace{-0.4cm}
+\begin{equation}
+ \forall\:\mathbf{x} \in \mathbb{C}^{\:N}\:\:\:\:\:
+ \forall\:k \in \{\:0,\dots,N - 1\:\!\}\:\:\:\:\:
+ F_{N}\:\!(\:\mathbf{x}\:)_{k}\:\stackrel{\Delta}{=}\:
+ \frac{1}{\sqrt{N}}\:
+ \sum_{n = 0}^{N - 1}\:x_{n}\:\cdot\:
+ e^{-j 2 \pi n k / N}
+ \label{równanie dyskretnej transformaty Fouriera}
+\end{equation}
+nazywamy $N$ -- punktowym prostym jednowymiarowym dyskretnym przekształceniem Fouriera.
+Na Rys. \ref{FFT} przedstawiono szybki algorytm obliczania dyskretnego 
+przekształcenia Fouriera\footnote{ang. \textit{Fast Fourier Transform}}.
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=0.8\linewidth]{transformata.pdf}
+ \vspace{-0.1cm}
+ \caption{Szybkie przekształcenie Fouriera}
+ \label{FFT}
+\end{figure}
+
+\subsubsection{Założenia}
+
+\subsubsection{Przebieg}
+
+\subsubsection{Rezultat}
+\newpage
+
+\section{Wnioski}
+
+Wnioski z przeprowadzonych eksperymentów dowodzą, że...
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PODROZDZIAŁ PT. ZALACZNIKI
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Załączniki*}
+
+Opcjonalnie, w zależności od zadania,
+np. fragment kodu źródłowego.
+
+
 \end{document}

@@ -163,6 +163,7 @@ class SignalData:
         plt.plot(array_from_list[:, 0], array_from_list[:, 1])
         self.save_plot()
         plt.show()
+        array_from_list = np.asarray(list(self.__get_values_for_calc().items()))
         values = array_from_list[:, 1]
         plt.hist(values.astype('float'))
         plt.show()
@@ -172,6 +173,7 @@ class SignalData:
         plt.scatter(array_from_list[:, 0], array_from_list[:, 1])
         self.save_plot()
         plt.show()
+        array_from_list = np.asarray(list(self.__get_values_for_calc().items()))
         values = array_from_list[:, 1]
         plt.hist(values.astype('float'))
         plt.show()
