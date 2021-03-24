@@ -11,4 +11,4 @@ class GaussianNoise(Signal):
         self.A = amplitude
 
     def generate_value(self, x):
-        return random.gauss(0, 1) * 2 * self.A - self.A
+        return (random.gauss(0, 1) * 2 - 1) * self.A
