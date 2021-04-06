@@ -231,7 +231,7 @@ class SignalData:
         new_signal.plot()
         new_signal.save_file()
 
-    def __quantization(self):
+    def __quantization(self, is_obciete=False):
         choice = -1
         print("Liczba poziomów kwantyzacji: ")
         try:
@@ -247,12 +247,12 @@ class SignalData:
         for time in self.time_values_dict:
             i = math.floor((self.time_values_dict[time] - min_value) / delta)
             i = min(i, choice - 1)
-            if i == 0:
-                new_value = min_value
-            elif i == choice - 1:
-                new_value = max_value
-            else:
-                new_value = ((min_value + (i * delta)) * 2 + delta) / 2
+            new_value = ((min_value + (i * delta)) * 2 + delta) / 2
+            if is_obcięte:
+                if i == 0:
+                    new_value = min_value
+                elif i == choice - 1:
+                    new_value = max_value
             new_times_values[time] = new_value
         print(new_times_values)
         new_signal = SignalData(start_time=min(new_times_values.keys()),
