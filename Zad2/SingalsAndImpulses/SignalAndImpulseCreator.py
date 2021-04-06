@@ -199,24 +199,31 @@ class SignalData:
 
     def operation_on_one_signal(self, operation: str):
         if operation == "sampling":
-            self.__sampling()
+            choice = -1
+            print("Ile próbek na sekunde: ")
+            try:
+                choice = float(input())
+            except ValueError:
+                print("zly input")
+                pass
+            self.__sampling(choice)
         elif operation == "quantization":
-            self.__quantization()
+            choice = 'n'
+            print("Czy chcesz obcięcie")
+            try:
+                choice = str(input())
+            except ValueError:
+                print("zly input")
+                pass
+            self.__quantization(True if choice == 'n' else False)
         elif operation == "reconstruction":
             self.__make_operation_on_one_signal(self.__mul_signals)
         else:
             pass
 
-    def __sampling(self):
-        choice = -1
-        print("Ile próbek na sekunde: ")
-        try:
-            choice = float(input())
-        except ValueError:
-            print("zly input")
-            pass
+    def __sampling(self, sample_count=1):
 
-        modulo = (1 / self.delta) / choice
+        modulo = (1 / self.delta) / sample_count
 
         new_times_values = {}
         for idx, time in enumerate(self.time_values_dict):
@@ -225,7 +232,7 @@ class SignalData:
         print(new_times_values)
         new_signal = SignalData(start_time=min(new_times_values.keys()),
                                 end_time=max(new_times_values.keys()),
-                                is_signal=False, delta=1 / choice,
+                                is_signal=False, delta=1 / sample_count,
                                 is_new=False, T=None, time_values_dict=new_times_values,
                                 is_real=self.is_real)
         new_signal.plot()
@@ -248,7 +255,7 @@ class SignalData:
             i = math.floor((self.time_values_dict[time] - min_value) / delta)
             i = min(i, choice - 1)
             new_value = ((min_value + (i * delta)) * 2 + delta) / 2
-            if is_obcięte:
+            if is_obciete:
                 if i == 0:
                     new_value = min_value
                 elif i == choice - 1:
