@@ -209,7 +209,7 @@ class SignalData:
             self.__sampling(choice)
         elif operation == "quantization":
             choice = 'n'
-            print("Czy chcesz obcięcie")
+            print("Kwantyzacja równomierna z obcieciem? [y/n]")
             try:
                 choice = str(input())
             except ValueError:
@@ -245,26 +245,26 @@ class SignalData:
         new_signal.plot()
         new_signal.save_file()
 
-    def __quantization(self, quantizaion_levels_count, is_obciete=False):
+    def __quantization(self, quantization_levels_count, is_obciete=False):
         max_value = max(self.time_values_dict.values())
         min_value = min(self.time_values_dict.values())
-        delta = (max_value - min_value) / quantizaion_levels_count
+        delta = (max_value - min_value) / quantization_levels_count
 
         new_times_values = {}
         for time in self.time_values_dict:
             i = math.floor((self.time_values_dict[time] - min_value) / delta)
-            i = min(i, quantizaion_levels_count - 1)
+            i = min(i, quantization_levels_count - 1)
             new_value = ((min_value + (i * delta)) * 2 + delta) / 2
             if is_obciete:
                 if i == 0:
                     new_value = min_value
-                elif i == quantizaion_levels_count - 1:
+                elif i == quantization_levels_count - 1:
                     new_value = max_value
             new_times_values[time] = new_value
         print(new_times_values)
         new_signal = SignalData(start_time=min(new_times_values.keys()),
                                 end_time=max(new_times_values.keys()),
-                                is_signal=False, delta=1 / quantizaion_levels_count,
+                                is_signal=False, delta=1 / quantization_levels_count,
                                 is_new=False, T=None, time_values_dict=new_times_values,
                                 is_real=self.is_real)
         new_signal.plot()
