@@ -215,7 +215,14 @@ class SignalData:
             except ValueError:
                 print("zly input")
                 pass
-            self.__quantization(True if choice == 'n' else False)
+            choice2 = -1
+            print("Liczba poziomów kwantyzacji: ")
+            try:
+                choice2 = float(input())
+            except ValueError:
+                print("zly input")
+                pass
+            self.__quantization(choice2, True if choice == 'n' else False)
         elif operation == "reconstruction":
             self.__make_operation_on_one_signal(self.__mul_signals)
         else:
@@ -238,33 +245,26 @@ class SignalData:
         new_signal.plot()
         new_signal.save_file()
 
-    def __quantization(self, is_obciete=False):
-        choice = -1
-        print("Liczba poziomów kwantyzacji: ")
-        try:
-            choice = float(input())
-        except ValueError:
-            print("zly input")
-            pass
+    def __quantization(self, quantizaion_levels_count, is_obciete=False):
         max_value = max(self.time_values_dict.values())
         min_value = min(self.time_values_dict.values())
-        delta = (max_value - min_value) / choice
+        delta = (max_value - min_value) / quantizaion_levels_count
 
         new_times_values = {}
         for time in self.time_values_dict:
             i = math.floor((self.time_values_dict[time] - min_value) / delta)
-            i = min(i, choice - 1)
+            i = min(i, quantizaion_levels_count - 1)
             new_value = ((min_value + (i * delta)) * 2 + delta) / 2
             if is_obciete:
                 if i == 0:
                     new_value = min_value
-                elif i == choice - 1:
+                elif i == quantizaion_levels_count - 1:
                     new_value = max_value
             new_times_values[time] = new_value
         print(new_times_values)
         new_signal = SignalData(start_time=min(new_times_values.keys()),
                                 end_time=max(new_times_values.keys()),
-                                is_signal=False, delta=1 / choice,
+                                is_signal=False, delta=1 / quantizaion_levels_count,
                                 is_new=False, T=None, time_values_dict=new_times_values,
                                 is_real=self.is_real)
         new_signal.plot()
