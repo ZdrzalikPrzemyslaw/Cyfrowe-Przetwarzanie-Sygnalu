@@ -27,7 +27,8 @@ def choose_mode():
         print("1. Generacja sygnału/szumu/impulsu \n"
               "2. Odczyt z pliku binarnego \n"
               "3. Operacje na sygnałach \n"
-              "4. Wyswietl sygnały znajdujące się w pamięci progamu \n" +
+              "4. Wyswietl sygnały znajdujące się w pamięci progamu \n" 
+              "5. Probkowanie \n" +
               str(EXIT_PROGRAM) + ". Wylacz program")
         try:
             i = int(input())
@@ -59,6 +60,8 @@ def program_loop():
             wybor_3()
         elif choice == 4:
             wybor_4()
+        elif choice == 5:
+            wybor_5()
 
 
 def wybor_1() -> Union[None, SignalData]:
@@ -300,3 +303,30 @@ def wybor_3():
 
 def wybor_4():
     print(signals)
+
+def wybor_5():
+    while True:
+        print("Podaj sciezke pliku: ")
+        try:
+            inp = input()
+            if os.path.isfile(inp):
+                input_signal = SignalData.load_file(inp)
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+    i = 0
+    while i not in [1, 2, 3, 4]:
+        print("1. Probkowanie \n"
+              "2. Kwantyzacja \n"
+              "3. Rekonstrukcja \n")
+        try:
+            i = int(input())
+        except ValueError:
+            print("zly input")
+            pass
+
+    operations = ["sampling", "quantization", "reconstruction"]
+    input_signal.operation_on_one_signal(operation=operations[i - 1])

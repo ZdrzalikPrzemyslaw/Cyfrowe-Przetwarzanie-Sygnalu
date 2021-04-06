@@ -1,8 +1,8 @@
+import math
 from typing import Union
 
 import matplotlib.pyplot as plt
 import numpy as np
-import math
 
 from SingalsAndImpulses.Signal.Signal import Signal
 from SingalsAndImpulses.Signal.SinusoidalSignal import SinusoidalSignal
@@ -196,6 +196,35 @@ class SignalData:
             self.__make_operation(signal, self.__div_signals)
         else:
             pass
+
+    def operation_on_one_signal(self, operation: str):
+        if operation == "sampling":
+            self.__sampling()
+        elif operation == "quantization":
+            self.__make_operation_on_one_signal(self.__sub_signals)
+        elif operation == "reconstruction":
+            self.__make_operation_on_one_signal(self.__mul_signals)
+        else:
+            pass
+
+    def __sampling(self):
+        choice = -1
+        print("Ile próbek na sekunde: ")
+        try:
+            choice = int(input())
+        except ValueError:
+            print("zly input")
+            pass
+        for time in self.time_values_dict:
+
+
+        pass
+
+    # def __make_operation_on_one_signal(self, op):
+    #     new_signal = self.__calculating(signal, self, op)
+    #     new_signal.plot()
+    #     new_signal.save_file()
+    #     new_signal.print_information()
 
     def __make_operation(self, signal, op):
         if self.delta < signal.delta:
