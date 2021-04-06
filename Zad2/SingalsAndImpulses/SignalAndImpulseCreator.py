@@ -247,7 +247,12 @@ class SignalData:
         for time in self.time_values_dict:
             i = math.floor((self.time_values_dict[time] - min_value) / delta)
             i = min(i, choice - 1)
-            new_value = ((min_value + (i * delta)) * 2 + delta) / 2
+            if i == 0:
+                new_value = min_value
+            elif i == choice - 1:
+                new_value = max_value
+            else:
+                new_value = ((min_value + (i * delta)) * 2 + delta) / 2
             new_times_values[time] = new_value
         print(new_times_values)
         new_signal = SignalData(start_time=min(new_times_values.keys()),
