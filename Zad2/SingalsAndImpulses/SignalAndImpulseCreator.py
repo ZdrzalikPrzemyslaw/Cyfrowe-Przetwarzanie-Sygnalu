@@ -211,14 +211,21 @@ class SignalData:
         choice = -1
         print("Ile próbek na sekunde: ")
         try:
-            choice = int(input())
+            choice = float(input())
         except ValueError:
             print("zly input")
             pass
-        for time in self.time_values_dict:
 
+        # Todo: sprawdzić czy wczytany sygnał po operacji też ma okres pórbkowania
+        modulo = (1 / self.delta) / choice
 
-        pass
+        new_times_values = {}
+        # Todo: lepiej iterować (zarówno po kluczach jak i wartościach)
+        for time, idx in enumerate(self.time_values_dict):
+            if idx % modulo == 0:
+                new_times_values[time] = self.time_values_dict[time]
+        print(new_times_values)
+
 
     # def __make_operation_on_one_signal(self, op):
     #     new_signal = self.__calculating(signal, self, op)
