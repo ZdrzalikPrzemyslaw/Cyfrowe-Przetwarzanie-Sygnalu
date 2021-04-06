@@ -216,7 +216,6 @@ class SignalData:
             print("zly input")
             pass
 
-        # Todo: sprawdzić czy wczytany sygnał po operacji też ma okres pórbkowania
         modulo = (1 / self.delta) / choice
 
         new_times_values = {}
@@ -224,11 +223,13 @@ class SignalData:
             if round(idx % modulo) == 0:
                 new_times_values[time] = self.time_values_dict[time]
         print(new_times_values)
-        new_signal = SignalData(start_time=self.start_time, end_time=self.end_time,
+        new_signal = SignalData(start_time=min(new_times_values.keys()),
+                                end_time=max(new_times_values.keys()),
                                 is_signal=False, delta=1 / choice,
                                 is_new=False, T=None, time_values_dict=new_times_values,
                                 is_real=self.is_real)
         new_signal.plot()
+        new_signal.save_file()
 
     def __quantization(self):
         choice = -1
@@ -238,16 +239,19 @@ class SignalData:
         except ValueError:
             print("zly input")
             pass
-
-        modulo = (1 / self.delta) / choice
+        max_value = max(self.time_values_dict.values())
+        min_value = min(self.time_values_dict.values())
+        delta = (max_value - min_value) / choice
 
         new_times_values = {}
-        # Todo: lepiej iterować (zarówno po kluczach jak i wartościach)
-        for idx, time in enumerate(self.time_values_dict):
-            if round(idx % modulo) == 0:
-                new_times_values[time] = self.time_values_dict[time]
+        for time in self.time_values_dict:
+            i = math.floor((self.time_values_dict[time] - min_value) / delta)
+            i = min(i, choice - 1)
+            new_value = ((min_value + (i * delta)) * 2 + delta) / 2
+            new_times_values[time] = new_value
         print(new_times_values)
-        new_signal = SignalData(start_time=self.start_time, end_time=self.end_time,
+        new_signal = SignalData(start_time=min(new_times_values.keys()),
+                                end_time=max(new_times_values.keys()),
                                 is_signal=False, delta=1 / choice,
                                 is_new=False, T=None, time_values_dict=new_times_values,
                                 is_real=self.is_real)
