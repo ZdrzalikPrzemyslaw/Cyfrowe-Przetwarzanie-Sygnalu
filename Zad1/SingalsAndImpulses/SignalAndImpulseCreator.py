@@ -44,7 +44,7 @@ class SignalData:
                                              str(self.time_values_dict))
 
     def __init__(self, signal_and_impulse: SignalAndImpulse = SinusoidalSignal(1, 1), start_time: float = 0,
-                 end_time: float = 10, delta: float = 0.05, is_real: bool = True, is_new: bool = True, T: float = None,
+                 end_time: float = 10, delta: float = 0.005, is_real: bool = True, is_new: bool = True, T: float = None,
                  is_signal: bool = None, time_values_dict: dict = None):
         self.is_real = is_real
         self.start_time = start_time
