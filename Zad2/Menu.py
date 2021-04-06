@@ -23,11 +23,11 @@ EXIT_PROGRAM = 7
 
 def choose_mode():
     i = -1
-    while i not in [1, 2, 3, 4, EXIT_PROGRAM]:
+    while i not in [1, 2, 3, 4, 5, EXIT_PROGRAM]:
         print("1. Generacja sygnału/szumu/impulsu \n"
               "2. Odczyt z pliku binarnego \n"
               "3. Operacje na sygnałach \n"
-              "4. Wyswietl sygnały znajdujące się w pamięci progamu \n" 
+              "4. Wyswietl sygnały znajdujące się w pamięci progamu \n"
               "5. Probkowanie \n" +
               str(EXIT_PROGRAM) + ". Wylacz program")
         try:
@@ -180,7 +180,8 @@ def wybor_1() -> Union[None, SignalData]:
             pass
         pass
     if 'delta_time' in locals():
-        return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration, delta=delta_time)
+        return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration,
+                          delta=delta_time)
     else:
         return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration)
 
@@ -303,6 +304,7 @@ def wybor_3():
 
 def wybor_4():
     print(signals)
+
 
 def wybor_5():
     while True:

@@ -201,7 +201,7 @@ class SignalData:
         if operation == "sampling":
             self.__sampling()
         elif operation == "quantization":
-            self.__make_operation_on_one_signal(self.__sub_signals)
+            self.__quantization()
         elif operation == "reconstruction":
             self.__make_operation_on_one_signal(self.__mul_signals)
         else:
@@ -220,12 +220,38 @@ class SignalData:
         modulo = (1 / self.delta) / choice
 
         new_times_values = {}
-        # Todo: lepiej iterować (zarówno po kluczach jak i wartościach)
-        for time, idx in enumerate(self.time_values_dict):
-            if idx % modulo == 0:
+        for idx, time in enumerate(self.time_values_dict):
+            if round(idx % modulo) == 0:
                 new_times_values[time] = self.time_values_dict[time]
         print(new_times_values)
+        new_signal = SignalData(start_time=self.start_time, end_time=self.end_time,
+                                is_signal=False, delta=1 / choice,
+                                is_new=False, T=None, time_values_dict=new_times_values,
+                                is_real=self.is_real)
+        new_signal.plot()
 
+    def __quantization(self):
+        choice = -1
+        print("Liczba poziomów kwantyzacji: ")
+        try:
+            choice = float(input())
+        except ValueError:
+            print("zly input")
+            pass
+
+        modulo = (1 / self.delta) / choice
+
+        new_times_values = {}
+        # Todo: lepiej iterować (zarówno po kluczach jak i wartościach)
+        for idx, time in enumerate(self.time_values_dict):
+            if round(idx % modulo) == 0:
+                new_times_values[time] = self.time_values_dict[time]
+        print(new_times_values)
+        new_signal = SignalData(start_time=self.start_time, end_time=self.end_time,
+                                is_signal=False, delta=1 / choice,
+                                is_new=False, T=None, time_values_dict=new_times_values,
+                                is_real=self.is_real)
+        new_signal.plot()
 
     # def __make_operation_on_one_signal(self, op):
     #     new_signal = self.__calculating(signal, self, op)
