@@ -350,4 +350,8 @@ class SignalData:
             # TODO: DELTA, times_values_dict
             return SignalData(start_time=self.start_time, end_time=self.end_time, is_signal=True, delta=1,
                               is_new=False, T=self.T, time_values_dict={}, is_real=self.is_real)
+        elif choice == 2:
+            raise NotImplementedError
+        elif choice == 3:
+            raise NotImplementedError
         pass
