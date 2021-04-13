@@ -351,10 +351,7 @@ class SignalData:
             new_signal.plot()
             new_signal.save_file()
         elif choice == 2:
-            array_from_list = np.asarray(list(self.time_values_dict.items()))
-            plt.plot(array_from_list[:, 0], array_from_list[:, 1], linestyle="solid")
-            self.save_plot()
-            plt.show()
+            self.plot()
         elif choice == 3:
             new_values = {}
             keys = sorted(list(self.time_values_dict.keys()))
@@ -364,7 +361,7 @@ class SignalData:
                 calc_val = 0
                 for idx, i in enumerate(keys):
                     org_val = self.time_values_dict[i]
-                    new_val = org_val * T * np.sinc(np.pi / T * (j - idx * T))
+                    new_val = self.time_values_dict[idx * T] * np.sinc(j/T - idx)
                     calc_val += new_val
                     pass
                 new_values[j] = calc_val
@@ -372,5 +369,4 @@ class SignalData:
                                     is_new=False, T=self.T, time_values_dict=new_values, is_real=self.is_real)
             new_signal.plot()
             new_signal.save_file()
-
         pass
