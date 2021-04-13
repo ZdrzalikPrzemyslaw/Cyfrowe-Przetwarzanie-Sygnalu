@@ -224,7 +224,18 @@ class SignalData:
                 pass
             self.__quantization(choice2, True if choice == 'n' else False)
         elif operation == "reconstruction":
-            self.__make_operation_on_one_signal(self.__mul_signals)
+            choice = -1
+            print("1. Ekstrapolacja zerowego rzędu")
+            print("2. Interpolacja pierwszego rzędu")
+            print("3. Rekonstrukcja w oparciu o funkcję sinc")
+            try:
+                choice = int(input())
+            except ValueError:
+                print("zly input")
+                pass
+            if choice not in [1, 2, 3]:
+                choice = 1
+            self.__reconstruction(choice)
         else:
             pass
 
@@ -326,3 +337,17 @@ class SignalData:
         if b == 0:
             return 0
         return a / b
+
+    def __reconstruction(self, choice):
+        if choice == 1:
+            # TODO: Posortować klucze aktualnego sygnału
+            #  Zrobić loopa po kluczach, pomijajac ostatni
+            #  W tym loopie zrobić loopa po range od rozpatrywanego sygnału do następnego,
+            #  z odstępami równymi chcianej delcie
+            #  Wypełnić nowy sygnał wartościami aktgualnego sygnału
+
+
+            # TODO: DELTA, times_values_dict
+            return SignalData(start_time=self.start_time, end_time=self.end_time, is_signal=True, delta=1,
+                              is_new=False, T=self.T, time_values_dict={}, is_real=self.is_real)
+        pass
