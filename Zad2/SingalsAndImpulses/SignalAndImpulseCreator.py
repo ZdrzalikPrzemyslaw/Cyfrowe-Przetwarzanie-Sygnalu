@@ -351,7 +351,10 @@ class SignalData:
             new_signal.plot()
             new_signal.save_file()
         elif choice == 2:
-            raise NotImplementedError
+            array_from_list = np.asarray(list(self.time_values_dict.items()))
+            plt.plot(array_from_list[:, 0], array_from_list[:, 1], linestyle="solid")
+            self.save_plot()
+            plt.show()
         elif choice == 3:
             raise NotImplementedError
         pass
