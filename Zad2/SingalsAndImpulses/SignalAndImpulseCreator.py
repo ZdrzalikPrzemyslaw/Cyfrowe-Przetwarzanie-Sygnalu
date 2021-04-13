@@ -279,6 +279,7 @@ class SignalData:
                                 is_new=False, T=None, time_values_dict=new_times_values,
                                 is_real=self.is_real)
         new_signal.plot()
+        new_signal.save_file()
 
     # def __make_operation_on_one_signal(self, op):
     #     new_signal = self.__calculating(signal, self, op)
@@ -297,8 +298,7 @@ class SignalData:
 
     @staticmethod
     def __calculating(first_signal, second_signal, op):
-        list_signal_time = list(second_signal.time_values_dict.keys())
-        list_signal_time.sort()
+        list_signal_time = sorted(list(second_signal.time_values_dict.keys()))
         new_signal = {}
         for time in first_signal.time_values_dict:
             if time < list_signal_time[0] or time > list_signal_time[-1]:
@@ -340,16 +340,16 @@ class SignalData:
 
     def __reconstruction(self, choice):
         if choice == 1:
-            # TODO: Posortować klucze aktualnego sygnału
-            #  Zrobić loopa po kluczach, pomijajac ostatni
-            #  W tym loopie zrobić loopa po range od rozpatrywanego sygnału do następnego,
-            #  z odstępami równymi chcianej delcie
-            #  Wypełnić nowy sygnał wartościami aktgualnego sygnału
-
-
-            # TODO: DELTA, times_values_dict
-            return SignalData(start_time=self.start_time, end_time=self.end_time, is_signal=True, delta=1,
-                              is_new=False, T=self.T, time_values_dict={}, is_real=self.is_real)
+            delta = 0.05
+            new_values = {}
+            keys = sorted(list(self.time_values_dict.keys()))
+            for i in range(len(keys) - 1):
+                for j in np.arange(keys[i], keys[i + 1], delta):
+                    new_values[j] = self.time_values_dict[i]
+            new_signal = SignalData(start_time=self.start_time, end_time=self.end_time, is_signal=True, delta=delta,
+                              is_new=False, T=self.T, time_values_dict=new_values, is_real=self.is_real)
+            new_signal.plot()
+            new_signal.save_file()
         elif choice == 2:
             raise NotImplementedError
         elif choice == 3:
