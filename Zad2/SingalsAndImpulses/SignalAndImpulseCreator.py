@@ -369,4 +369,3 @@ class SignalData:
                                     is_new=False, T=self.T, time_values_dict=new_values, is_real=self.is_real)
             new_signal.plot()
             new_signal.save_file()
-        pass
