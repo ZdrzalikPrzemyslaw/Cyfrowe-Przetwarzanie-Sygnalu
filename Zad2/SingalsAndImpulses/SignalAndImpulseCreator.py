@@ -339,15 +339,15 @@ class SignalData:
         return a / b
 
     def __reconstruction(self, choice):
+        delta = 0.05
         if choice == 1:
-            delta = 0.05
             new_values = {}
             keys = sorted(list(self.time_values_dict.keys()))
             for i in range(len(keys) - 1):
                 for j in np.arange(keys[i], keys[i + 1], delta):
                     new_values[j] = self.time_values_dict[i]
             new_signal = SignalData(start_time=self.start_time, end_time=self.end_time, is_signal=True, delta=delta,
-                              is_new=False, T=self.T, time_values_dict=new_values, is_real=self.is_real)
+                                    is_new=False, T=self.T, time_values_dict=new_values, is_real=self.is_real)
             new_signal.plot()
             new_signal.save_file()
         elif choice == 2:
@@ -356,5 +356,21 @@ class SignalData:
             self.save_plot()
             plt.show()
         elif choice == 3:
-            raise NotImplementedError
+            new_values = {}
+            keys = sorted(list(self.time_values_dict.keys()))
+            # TODO: wywali się jak będzie 1 punktowy xD
+            T = keys[1] - keys[0]
+            for j in np.arange(keys[0], keys[-1], delta):
+                calc_val = 0
+                for idx, i in enumerate(keys):
+                    org_val = self.time_values_dict[i]
+                    new_val = org_val * T * np.sinc(np.pi / T * (j - idx * T))
+                    calc_val += new_val
+                    pass
+                new_values[j] = calc_val
+            new_signal = SignalData(start_time=self.start_time, end_time=self.end_time, is_signal=True, delta=delta,
+                                    is_new=False, T=self.T, time_values_dict=new_values, is_real=self.is_real)
+            new_signal.plot()
+            new_signal.save_file()
+
         pass
