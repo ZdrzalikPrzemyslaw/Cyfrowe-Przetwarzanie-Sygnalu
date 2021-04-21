@@ -6,6 +6,8 @@
 \usepackage{graphicx}
 \usepackage{amsfonts}
 \usepackage{url}
+\usepackage{babel,blindtext}
+
 
 \setlength{\textheight}{21cm}
 
@@ -66,250 +68,97 @@ W programie konwersje oraz miary do porównania sygnałów są obliczane na pods
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Eksperyment nr 1 - generowanie sygnału}
+\subsection{Eksperyment nr 1 - Funkcja Sinus}
 
-Eksperyment 1 polegał na wygenerowaniu sygnału sinusoidalnego wyprosotwanego jednopołówkowo na podstawie podanych parametrów oraz wyświetleniu wykresu i histogramu dla sygnału. 
+W pierwszym eksperymencie analizujemy Funkcję sinus. Wykonalismy próbkowanie na wygenerowanej funkcji a następnie dokonaliśmy rekonstrukcji sygnału każdą z metod.
 
-\subsubsection{Założenia}
-
-Funkcja opisująca sygnał: \begin{equation}  x(t) = \frac{1}{2}  A\{ \sin [ \frac{2\pi}{T}(t - t_1)] +  | \sin [ \frac{2 \pi}{T}(t - t_1)]  |\}  \end{equation}
-\newline
-\newline
-Przewidywany wykres sygnału \cite{dane}:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{spr_sygnal_sinus.png}
- \vspace{-0.3cm}
- \caption{Wykres przewidywany dla eksperymentu pierwszego.}
- \label{rysunek do eksperymentu pierwszego}
-\end{figure}
-
+\begin{table}[h!]
+\caption{Parametry wejściowe dla pierwszej wstępnej klasyfikacji. }
+\centering
+\vspace{0.1cm}
+ \begin{tabular}{c c c c c}
+    \textbf{Czas Początkowy} & \textbf{Czas Trwania}   & \textbf{Amplituda}  & \textbf{Okres} & \textbf{Częstotliwość Próbkowania}   \\
+\hline
+0 & 10 & 1 & 5 & 5 \\
+\end {tabular}
+\label {Parametry wejściowe dla pierwszej wstępnej klasyfikacji. }
+\end{table}
 \newpage
 
 
-\subsubsection{Przebieg}
-
-Do wygenerowania wykresu zostały podane poniższe parametry: 
-
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{par_1.png}
+ \includegraphics[width=14cm]{exp_1_sin_org.png}
  \vspace{-0.3cm}
- \caption{Parametry dla eksperymentu pierwszego.}
- \label{rysunek do eksperymentu pierwszego}
-\end{figure}
-
-\newpage
-
-Wygenerowany wykres sygnały sinusoidalnego wyprostowanego jednopołówkowo:
-
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{wykr_sygnal_sinus.png}
- \vspace{-0.3cm}
- \caption{Wykres wygenerowanego sygnału dla eksperymentu pierwszego.}
- \label{rysunek do eksperymentu pierwszego}
-\end{figure}
-
-
-
-Histogram dla wygenerowanego sygnału:
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{hist_1.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wygenerowanego wykresu dla eksperymentu pierwszego.}
- \label{rysunek do eksperymentu pierwszego}
-\end{figure}
-
-
-\newpage
-
-\subsubsection{Rezultat}
-
-Dla wygenerowanego wykresu zostały obliczone jego parametry. 
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{wyniki_1.png}
- \vspace{-0.3cm}
- \caption{Obliczone parametry wygenerowanego sygnału.}
- \label{rysunek do eksperymentu pierwszego}
-\end{figure}
-
-\subsubsection{Wnioski}
-
-Założenia postawione przed wykonaniem eksperymentu 1 sprawdziły się, ponieważ wykres przewidywany oraz wykres wygenerowany przez program są identyczne. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Eksperyment nr 2 - generowanie impulsu}
-
-Eksperyment 2 polegał na wygenerowaniu szumu impulsowego na podstawie podanych parametrów oraz wyświetleniu wykresu i histogramu dla szumu. 
-
-\subsubsection{Założenia}
-
-Szum impulsowy przyjmuje dwie wartości: wartość 0, wartość A - różna od zera. Przy czy wartość A występuje z zadanym p - prawdopodobieństem, podanym jako parametr. 
-
-Przewidywany wykres szumu \cite{dane}:
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{spr_2.png}
- \vspace{-0.3cm}
- \caption{Wykres przewidywany dla eksperymentu drugiego.}
- \label{rysunek do eksperymentu pierwszego}
-\end{figure}
-
-\newpage
-
-
-\subsubsection{Przebieg}
-
-Do wygenerowania wykresu zostały podane poniższe parametry: 
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{par_2.png}
- \vspace{-0.3cm}
- \caption{Parametry dla eksperymentu drugiego.}
- \label{rysunek do eksperymentu drugiego}
-\end{figure}
-\
-
-Wygenerowany wykres szumu impulsowego:
-
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{wykr_2.png}
- \vspace{-0.3cm}
- \caption{Wykres wygenerowanego szumu dla eksperymentu drugiego.}
- \label{rysunek do eksperymentu drugiego}
-\end{figure}
-
-
-
-Histogram dla wygenerowanego szumu:
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{hist_2.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wygenerowanego szumu dla eksperymentu drugieog.}
- \label{rysunek do eksperymentu drugiego}
-\end{figure}
-
-
-\newpage
-
-\subsubsection{Rezultat}
-
-Dla wygenerowanego wykresu zostały obliczone jego parametry. 
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{wyniki_2.png}
- \vspace{-0.3cm}
- \caption{Obliczone parametry wygenerowanego szumu.}
- \label{rysunek do eksperymentu durgiego}
-\end{figure}
-
-\subsubsection{Wnioski}
-
-Założenia postawione przed wykonaniem eksperymentu 2 sprawdziły się, ponieważ wykres przewidywany oraz wykres wygenerowany przez program są identyczne. 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Eksperyment nr 3 - wykonanie operacji na sygnałach}
-
-Eksperyment 3 polegał na dodaniu do siebie wcześniej wygenerowanego sygnału sinusoidalnego i sygnału prostokątnego. 
-
-\subsubsection{Założenia}
-
-Parametry  wejściowe oraz obliczone dla wcześniej wygenerowanego sygnału sinusoidalnego:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{par_3_1.png}
- \vspace{-0.3cm}
- \caption{Parametry sygnału dla eksperymentu trzeciego.}
- \label{rysunek do eksperymentu trzeciego}
-\end{figure}
-\
-
-Wykres dla wcześniej wygenerowanego sygnału sinusoidalnego:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{wykr_3_1.png}
- \vspace{-0.3cm}
- \caption{Parametry sygnału dla eksperymentu trzeciego.}
- \label{rysunek do eksperymentu trzeciego}
-\end{figure}
-\
-
-
-Parametry  wejściowe oraz obliczone dla wcześniej wygenerowanego sygnału prostokątnego:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{par_3_2.png}
- \vspace{-0.3cm}
- \caption{Parametry sygnału dla eksperymentu trzeciego.}
- \label{rysunek do eksperymentu trzeciego}
-\end{figure}
-\
-
-Wykres dla wcześniej wygenerowanego sygnału prostokątnego:
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{wykr_3_2.png}
- \vspace{-0.3cm}
- \caption{Parametry sygnału dla eksperymentu trzeciego.}
- \label{rysunek do eksperymentu trzeciego}
-\end{figure}
-\
-
-
-\subsubsection{Przebieg}
-
-Wykres otrzymany po dodaniu powyższych dwóch sygnałów: sygnału sinusoidalnego, sygnału prostokątnego:
-
-
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{wykr_3.png}
- \vspace{-0.3cm}
- \caption{Wykres otrzymanu po dodaniu sygnałów w eksperymencie 3.}
- \label{rysunek do eksperymentu trzeciego}
-\end{figure}
-
-\newpage
-
-Histogram dla wygenerowanego sygnału:
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=9.3cm]{hist_3.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wygenerowanego sygnału dla eksperymentu trzeciego.}
- \label{rysunek do eksperymentu trzeciego}
+ \caption{Oryginalny wygenerowany sygnał }
+ \label{rysunek do eksperymentu 1 wariantu 1}
 \end{figure}
 \newpage
 
-\subsubsection{Rezultat}
-
-Dla otrzymanego wykresu zostały obliczone jego parametry.  
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=9.3cm]{wyniki_3.png}
+ \includegraphics[width=14cm]{exp_1_sin_prob.png}
  \vspace{-0.3cm}
- \caption{Obliczone parametry otrzymanego sygnału.}
- \label{rysunek do eksperymentu trzeciego}
+ \caption{Wykres sygnału po wykonaniu próbkowania }
+ \label{rysunek do eksperymentu 1 wariantu 2}
 \end{figure}
+\newpage
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_1_sin_rek_1.png}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału funkcji sinusoidalenj po próbkowaniu i następnym zrekonstruowaniu metodą ekstrapolacji zerowego rzędu.}
+ \label{rysunek do eksperymentu 1 wariantu 3}
+\end{figure}
+\newpage
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_1_sin_rek_2.png}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału funkcji sinusoidalenj po próbkowaniu i następnym zrekonstruowaniu metodą interpolacją pierwszego rzędu.}
+ \label{rysunek do eksperymentu 1 wariantu 4}
+\end{figure}
+\newpage
+
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_1_sin_rek_3.png}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału funkcji sinusoidalenj po próbkowaniu i następnym zrekonstruowaniu metodą Rekonstrukcji w oparciu o funkcję sinc.}
+ \label{rysunek do eksperymentu 1 wariantu 5}
+\end{figure}
+\newpage
+
+
+
+
+
+
+
+
+\begin{table}[h!]
+\caption{Wyniki obliczonych miar podobieństwa sygnałów dla rekonstrukcji zpróbkowanego sygnału funkcji sinusoidalnej}
+\centering
+\vspace{0.1cm}
+ \begin{tabular}{c c c c c c}
+
+    \textbf{Metoda Rekonstrukcji} & \textbf{MSE}   & \textbf{SNR}  & \textbf{PSNR}  & \textbf{MD} & \textbf{ENOB}  \\
+
+\hline
+Ekstrapolacja zerowego rzędu 		 & 0,009 & 17,506 & 20,517 & 0,203 & 2,616 \\
+Interpolacja pierwszego rzędu		 & 0,000 & 44,178 & 47,189 & 0,008 & 7,047 \\
+Rekonstrukcja w oparciu o funkcję sinc	 & 0,000 & 42,840 & 45,851 & 0,023 & 6,824 \\
+
+\end {tabular}
+\label {Wyniki 1}
+\end{table}
+
+
+
 
 
 \section{Wnioski}
