@@ -299,12 +299,13 @@ class SignalData:
 
     def compare_signals(self, signal):
         mse = self.calculateMSE(signal)
+        print(mse)
 
 
 
     def calculateMSE(self, signal):
         sum = 0
-        for i in self.time_values_dict.keys():
+        for i in signal.time_values_dict.keys():
             sum += (self.time_values_dict[i] - signal.time_values_dict[i]) ** 2
         return sum / len(self.time_values_dict)
 
