@@ -296,6 +296,12 @@ class SignalData:
         new_signal.save_file()
         new_signal.print_information()
 
+
+    def compare_signals(self, signal):
+        # TODO: MUSZE COS MAMIE ZROBIC JULKA ROBISZ
+        pass
+
+
     @staticmethod
     def __calculating(first_signal, second_signal, op):
         list_signal_time = sorted(list(second_signal.time_values_dict.keys()))

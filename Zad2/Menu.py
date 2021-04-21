@@ -23,12 +23,13 @@ EXIT_PROGRAM = 7
 
 def choose_mode():
     i = -1
-    while i not in [1, 2, 3, 4, 5, EXIT_PROGRAM]:
+    while i not in [1, 2, 3, 4, 5, 6, EXIT_PROGRAM]:
         print("1. Generacja sygnału/szumu/impulsu \n"
               "2. Odczyt z pliku binarnego \n"
               "3. Operacje na sygnałach \n"
               "4. Wyswietl sygnały znajdujące się w pamięci progamu \n"
-              "5. Probkowanie \n" +
+              "5. Probkowanie, Kwantyzacja, Rekonstrukcja \n" +
+              "6. Porównanie \n" +
               str(EXIT_PROGRAM) + ". Wylacz program")
         try:
             i = int(input())
@@ -36,6 +37,8 @@ def choose_mode():
             print("zly input")
             pass
     return i
+
+
 
 
 def program_loop():
@@ -62,6 +65,8 @@ def program_loop():
             wybor_4()
         elif choice == 5:
             wybor_5()
+        elif choice == 6:
+            wybor_6()
 
 
 def wybor_1() -> Union[None, SignalData]:
@@ -332,3 +337,33 @@ def wybor_5():
 
     operations = ["sampling", "quantization", "reconstruction"]
     input_signal.operation_on_one_signal(operation=operations[i - 1])
+
+
+def wybor_6():
+    while True:
+        print("Podaj sciezke pliku 1: ")
+        try:
+            inp = input()
+            if os.path.isfile(inp):
+                input_signal_1 = SignalData.load_file(inp)
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+    i = 0
+    while True:
+        print("Podaj sciezke pliku 2: ")
+        try:
+            inp = input()
+            if os.path.isfile(inp):
+                input_signal_2 = SignalData.load_file(inp)
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+    i = 0
+    input_signal_1.compare_signals(input_signal_2)
