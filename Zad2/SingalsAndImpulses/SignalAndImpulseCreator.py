@@ -297,41 +297,51 @@ class SignalData:
         new_signal.print_information()
 
     def compare_signals(self, signal):
-        mse = self.calculateMSE(signal)
+        mse = self.calculate_MSE(signal)
         print("MSE: ", mse)
-        snr = self.calculateSNR(signal)
+        snr = self.calculateSNR(mse)
         print("SNR: ", snr)
         psnr = self.calculatePSNR(mse)
         print("PSNR: ", psnr)
         md = self.calculateMD(signal)
         print("MD: ", md)
 
-    def calculateMSE(self, signal):
+    def calculate_MSE(self, signal):
         sum_for_mse = 0
-        for i, j in zip(self.time_values_dict.keys(), signal.time_values_dict.keys()):
-            sum_for_mse += (self.time_values_dict[i] - signal.time_values_dict[j]) ** 2
+        keys = sorted(list(self.time_values_dict.keys()))
+        keys2 = sorted(list(signal.time_values_dict.keys()))
+        for i in keys:
+            for idx, j in enumerate(keys2):
+                if (idx != 0):
+                    if (j >= i) and (keys2[idx - 1] <= i):
+                        sum_for_mse += (self.time_values_dict[i] - (signal.time_values_dict[j] + signal.time_values_dict[keys2[idx - 1]]) / 2) ** 2
         return sum_for_mse / len(self.time_values_dict)
 
-    def calculateSNR(self, signal):
+    def calculateSNR(self, mse):
+        sum2 = mse * len(self.time_values_dict)
         sum1 = 0
-        sum2 = 0
-        for i, j in zip(self.time_values_dict.keys(), signal.time_values_dict.keys()):
+        for i in self.time_values_dict.keys():
             sum1 += (self.time_values_dict[i]) ** 2
-            sum2 += (self.time_values_dict[i] - signal.time_values_dict[j]) ** 2
         return 10 * math.log10(sum1 / sum2)
 
     def calculatePSNR(self, mse):
         max = self.time_values_dict[0]
-        for i in self.time_values_dict.keys():
-            if self.time_values_dict[i] > max:
-                max = self.time_values_dict[i]
-        return math.log10(max / mse)
+        for i in self.time_values_dict.values():
+            if i > max:
+                max = i
+        return 10 * math.log10(max / mse)
 
     def calculateMD(self, signal):
         max_diff = abs(self.time_values_dict[0] - signal.time_values_dict[0])
-        for i, j in zip(self.time_values_dict.keys(), signal.time_values_dict.keys()):
-            if abs(self.time_values_dict[i] - signal.time_values_dict[j]) > max_diff:
-                max_diff =  abs(self.time_values_dict[i] - signal.time_values_dict[j])
+        keys = sorted(list(self.time_values_dict.keys()))
+        keys2 = sorted(list(signal.time_values_dict.keys()))
+        for i in keys:
+            for idx, j in enumerate(keys2):
+                if idx != 0:
+                    if (j >= i) and (keys2[idx - 1] <= i):
+                        var = abs(self.time_values_dict[i] - signal.time_values_dict[j])
+                        if var > max_diff:
+                            max_diff = var
         return max_diff
 
     @staticmethod
