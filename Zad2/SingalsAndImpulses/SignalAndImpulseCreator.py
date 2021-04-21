@@ -345,13 +345,23 @@ class SignalData:
             keys = sorted(list(self.time_values_dict.keys()))
             for i in range(len(keys) - 1):
                 for j in np.arange(keys[i], keys[i + 1], delta):
-                    new_values[j] = self.time_values_dict[i]
+                    new_values[j] = self.time_values_dict[keys[i]]
             new_signal = SignalData(start_time=self.start_time, end_time=self.end_time, is_signal=True, delta=delta,
                                     is_new=False, T=self.T, time_values_dict=new_values, is_real=self.is_real)
             new_signal.plot()
             new_signal.save_file()
         elif choice == 2:
-            self.plot()
+            new_values = {}
+            keys = sorted(list(self.time_values_dict.keys()))
+            for i in range(len(keys) - 1):
+                for j in np.arange(keys[i], keys[i + 1], delta):
+                    new_values[j] = (self.time_values_dict[i] - self.time_values_dict[i + 1]) / (keys[i] - keys[i + 1]) * j \
+                                    + (self.time_values_dict[i] - (self.time_values_dict[i] - self.time_values_dict[i + 1])
+                                       / (keys[i] - keys[i + 1]) * keys[i])
+            new_signal = SignalData(start_time=self.start_time, end_time=self.end_time, is_signal=True, delta=delta,
+                                    is_new=False, T=self.T, time_values_dict=new_values, is_real=self.is_real)
+            new_signal.plot()
+            new_signal.save_file()
         elif choice == 3:
             new_values = {}
             keys = sorted(list(self.time_values_dict.keys()))
@@ -360,7 +370,6 @@ class SignalData:
             for j in np.arange(keys[0], keys[-1], delta):
                 calc_val = 0
                 for idx, i in enumerate(keys):
-                    org_val = self.time_values_dict[i]
                     new_val = self.time_values_dict[idx * T] * np.sinc(j/T - idx)
                     calc_val += new_val
                     pass
