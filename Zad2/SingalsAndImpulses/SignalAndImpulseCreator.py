@@ -340,30 +340,21 @@ class SignalData:
 
     def __reconstruction(self, choice):
         delta = 0.05
+        new_values = {}
         if choice == 1:
-            new_values = {}
             keys = sorted(list(self.time_values_dict.keys()))
             for i in range(len(keys) - 1):
                 for j in np.arange(keys[i], keys[i + 1], delta):
                     new_values[j] = self.time_values_dict[keys[i]]
-            new_signal = SignalData(start_time=self.start_time, end_time=self.end_time, is_signal=True, delta=delta,
-                                    is_new=False, T=self.T, time_values_dict=new_values, is_real=self.is_real)
-            new_signal.plot()
-            new_signal.save_file()
+
         elif choice == 2:
-            new_values = {}
             keys = sorted(list(self.time_values_dict.keys()))
             for i in range(len(keys) - 1):
                 for j in np.arange(keys[i], keys[i + 1], delta):
                     new_values[j] = (self.time_values_dict[i] - self.time_values_dict[i + 1]) / (keys[i] - keys[i + 1]) * j \
                                     + (self.time_values_dict[i] - (self.time_values_dict[i] - self.time_values_dict[i + 1])
                                        / (keys[i] - keys[i + 1]) * keys[i])
-            new_signal = SignalData(start_time=self.start_time, end_time=self.end_time, is_signal=True, delta=delta,
-                                    is_new=False, T=self.T, time_values_dict=new_values, is_real=self.is_real)
-            new_signal.plot()
-            new_signal.save_file()
         elif choice == 3:
-            new_values = {}
             keys = sorted(list(self.time_values_dict.keys()))
             # TODO: wywali się jak będzie 1 punktowy xD
             T = keys[1] - keys[0]
@@ -374,7 +365,7 @@ class SignalData:
                     calc_val += new_val
                     pass
                 new_values[j] = calc_val
-            new_signal = SignalData(start_time=self.start_time, end_time=self.end_time, is_signal=True, delta=delta,
-                                    is_new=False, T=self.T, time_values_dict=new_values, is_real=self.is_real)
-            new_signal.plot()
-            new_signal.save_file()
+        new_signal = SignalData(start_time=self.start_time, end_time=self.end_time, is_signal=True, delta=delta,
+                                is_new=False, T=self.T, time_values_dict=new_values, is_real=self.is_real)
+        new_signal.plot()
+        new_signal.save_file()
