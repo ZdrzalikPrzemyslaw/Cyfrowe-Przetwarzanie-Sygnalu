@@ -305,6 +305,8 @@ class SignalData:
         print("PSNR: ", psnr)
         md = self.calculateMD(signal)
         print("MD: ", md)
+        enob = self.calculate_enob(snr)
+        print("ENOB: ", enob)
 
     def calculate_MSE(self, signal):
         sum_for_mse = 0
@@ -387,7 +389,7 @@ class SignalData:
         return a / b
 
     def __reconstruction(self, choice):
-        delta = self.delta * 10 # TODO: Sprawdzic
+        delta = self.delta * 100 # TODO: Sprawdzic
         new_values = {}
         if choice == 1:
             keys = sorted(list(self.time_values_dict.keys()))
@@ -419,3 +421,6 @@ class SignalData:
                                 is_new=False, T=self.T, time_values_dict=new_values, is_real=self.is_real)
         new_signal.plot()
         new_signal.save_file()
+
+    def calculate_enob(self, snr):
+        return ((snr - 1.76 )/ 6.02)
