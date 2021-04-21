@@ -68,9 +68,10 @@ W programie konwersje oraz miary do porównania sygnałów są obliczane na pods
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Eksperyment nr 1 - Funkcja Sinus}
+\subsection{Eksperyment nr 1 - Sygnał sinusoidalny Probkowanie}
 
-W pierwszym eksperymencie analizujemy Funkcję sinus. Wykonalismy próbkowanie na wygenerowanej funkcji a następnie dokonaliśmy rekonstrukcji sygnału każdą z metod.
+
+W pierwszym eksperymencie analizujemy sygnał sinusoidalny. Wykonaliśmy próbkowanie na wygenerowanym sygnale, a następnie dokonaliśmy rekonstrukcji sygnału każdą z metod.
 
 \begin{table}[h!]
 \caption{Parametry wejściowe dla pierwszej wstępnej klasyfikacji. }
@@ -81,7 +82,7 @@ W pierwszym eksperymencie analizujemy Funkcję sinus. Wykonalismy próbkowanie n
 \hline
 0 & 10 & 1 & 5 & 5 \\
 \end {tabular}
-\label {Parametry wejściowe dla pierwszej wstępnej klasyfikacji. }
+\label {Parametry wejściowe dla pierwszego eksperymetnu. }
 \end{table}
 \newpage
 
@@ -94,6 +95,8 @@ W pierwszym eksperymencie analizujemy Funkcję sinus. Wykonalismy próbkowanie n
  \label{rysunek do eksperymentu 1 wariantu 1}
 \end{figure}
 \newpage
+
+\subsubsection{Probkowanie}
 
 
 \begin{figure}[h!]
@@ -135,31 +138,44 @@ W pierwszym eksperymencie analizujemy Funkcję sinus. Wykonalismy próbkowanie n
 
 
 
+\subsubsection{Kwantowanie}
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_1_sin_prob.png}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału po wykonaniu próbkowania }
+ \label{rysunek do eksperymentu 1 wariantu 2}
+\end{figure}
+\newpage
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Eksperyment nr 2 - Sygnał sinusoidalny Kwantyzacja}
+
+W drugim eksperymencie analizujemy sygnał sinusoidalny. Wykonaliśmy kwantyzację na wygenerowanym sygnale, a następnie dokonaliśmy rekonstrukcji sygnału każdą z metod.
 
 \begin{table}[h!]
-\caption{Wyniki obliczonych miar podobieństwa sygnałów dla rekonstrukcji zpróbkowanego sygnału funkcji sinusoidalnej}
+\caption{Parametry wejściowe dla drugiej wstępnej klasyfikacji. }
 \centering
 \vspace{0.1cm}
- \begin{tabular}{c c c c c c}
-
-    \textbf{Metoda Rekonstrukcji} & \textbf{MSE}   & \textbf{SNR}  & \textbf{PSNR}  & \textbf{MD} & \textbf{ENOB}  \\
-
+ \begin{tabular}{c c c c c}
+    \textbf{Czas Początkowy} & \textbf{Czas Trwania}   & \textbf{Amplituda}  & \textbf{Okres} & \textbf{Częstotliwość Próbkowania}   \\
 \hline
-Ekstrapolacja zerowego rzędu 		 & 0,009 & 17,506 & 20,517 & 0,203 & 2,616 \\
-Interpolacja pierwszego rzędu		 & 0,000 & 44,178 & 47,189 & 0,008 & 7,047 \\
-Rekonstrukcja w oparciu o funkcję sinc	 & 0,000 & 42,840 & 45,851 & 0,023 & 6,824 \\
-
+0 & 10 & 1 & 5 & 5 \\
 \end {tabular}
-\label {Wyniki 1}
+\label {Parametry wejściowe dla drugiego eksperymentu. }
 \end{table}
+\newpage
 
 
 
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Wnioski}
 
