@@ -341,7 +341,7 @@ def wybor_5():
 
 def wybor_6():
     while True:
-        print("Podaj sciezke pliku 1: ")
+        print("Podaj sciezke pliku z wygenerowanym sygnalem: ")
         try:
             inp = input()
             if os.path.isfile(inp):
@@ -354,7 +354,7 @@ def wybor_6():
             pass
     i = 0
     while True:
-        print("Podaj sciezke pliku 2: ")
+        print("Podaj sciezke pliku z zrekonstruowanym sygnalem: ")
         try:
             inp = input()
             if os.path.isfile(inp):

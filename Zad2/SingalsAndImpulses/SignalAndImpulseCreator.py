@@ -298,8 +298,15 @@ class SignalData:
 
 
     def compare_signals(self, signal):
-        # TODO: MUSZE COS MAMIE ZROBIC JULKA ROBISZ
-        pass
+        mse = self.calculateMSE(signal)
+
+
+
+    def calculateMSE(self, signal):
+        sum = 0
+        for i in self.time_values_dict.keys():
+            sum += (self.time_values_dict[i] - signal.time_values_dict[i]) ** 2
+        return sum / len(self.time_values_dict)
 
 
     @staticmethod

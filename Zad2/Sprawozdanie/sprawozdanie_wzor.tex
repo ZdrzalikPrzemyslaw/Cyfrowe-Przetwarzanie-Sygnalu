@@ -9,10 +9,10 @@
 
 \setlength{\textheight}{21cm}
 
-\title{{\bf Zadanie nr 1 - Generacja sygnału i szumu}\linebreak
+\title{{\bf Zadanie nr 2 - Próbkowanie i kwantyzacja}\linebreak
 Cyfrowe Przetwarzanie Sygnałów}
 \author{Julia Szymańska, 224441\and Przemysław Zdrzalik, 224466}
-\date{26.03.2021r.}
+\date{21.04.2021r.}
 
 \begin{document}
 \clearpage\maketitle
@@ -20,32 +20,51 @@ Cyfrowe Przetwarzanie Sygnałów}
 \newpage
 \setcounter{page}{1}
 
-\section{Cel zadania}
 
-Celem ćwiczenia jest budowa programu umożliwiającego generację wybranych sygnałów, wyświetlenie ich parametrów, wykresów, a także histogramów, zapis/odczyt ich do/z plików, a także wykonanie operacji na dwóch zapisanych do plików sygnałach. W programie możliwa jest generacja następujących sygnałów:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Cel zadania}
+Celem ćwiczenia jest budowa programu umożliwiającego wykonanie procesu konwersji analogowo-cyfrowej (A/C) i cyfrowo-analogowej (C/A) sygnałów. W programie dostępna jest:
+
 \begin{itemize}
-\item szum o rozkładzie jednostajnym;
-\item szum gaussowski;
-\item sygnał sinusoidalny;
-\item sygnał sinusoidalny wyprostowany jednopołówkowo;
-\item sygnał sinusoidalny wyprostowany dwupołówkowo;
-\item sygnał prostokątny;
-\item sygnał prostokątny symetryczny;
-\item sygnał trójkątny;
-\item skok jednostkowy;
-\item impuls jednostkowy;
-\item szum impulsowy;
+\item Konwersja A/C - próbkowanie równomierne
+\item Konwersja A/C - kwantyzacja:
+
+\begin{itemize}
+\item Kwantyzacja równomierna z obcięciem
+\item Kwantyzacja równomierna z zaokrąglaniem
+\end{itemize}
+
+\item Konwersja C/A - rekonstrukcja sygnału:
+\begin{itemize}
+\item Ekstrapolacja zerowego rzędu
+\item Interpolacja pierwszego rzędu
+\item Rekonstrukcja w oparciu o funkcję sinc
+\end{itemize}
+\ 
+
+W programie możliwe jest również porównanie sygnału zrekonstruowanego z sygnałem orginalnym, w tym celu obliczane są cztery miary: 
+\begin{itemize}
+\item Błąd średniokwadratowy - MSE
+\item Stosunek sygnał - szum - SNR
+\item  Szczytowy stosunek sygnał - szum - PSNR
+\item Maksymalna różnica - MD
+\end{itemize}
 
 \end{itemize}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Wstęp teoretyczny}
 
-W programie sygnały generowane są na podstawie ogólnie znanych wzorów. Parametry po wygenerowaniu sygnałów są obliczane na podstawie wzorów znajdujących sie w instrukcji do zadania pierwszego na platformie Wikamp \cite{dane}. Obliczane parametry to: wartość średnia, warotść średnia bezwzględna, warotść skuteczna, wariancja oraz moc średnia. Generowane wykresy pokazują zależność amplitudy od czasu. 
+W programie konwersje oraz miary do porównania sygnałów są obliczane na podstawie wzorów znajdujących sie w instrukcji do zadania drugeigo na platformie Wikamp \cite{dane}. 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Eksperymenty i wyniki}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Eksperyment nr 1 - generowanie sygnału}
 
@@ -124,7 +143,7 @@ Dla wygenerowanego wykresu zostały obliczone jego parametry.
 
 Założenia postawione przed wykonaniem eksperymentu 1 sprawdziły się, ponieważ wykres przewidywany oraz wykres wygenerowany przez program są identyczne. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Eksperyment nr 2 - generowanie impulsu}
 
@@ -278,8 +297,6 @@ Histogram dla wygenerowanego sygnału:
  \caption{Histogram dla wygenerowanego sygnału dla eksperymentu trzeciego.}
  \label{rysunek do eksperymentu trzeciego}
 \end{figure}
-
-
 \newpage
 
 \subsubsection{Rezultat}
@@ -301,7 +318,7 @@ Zbudowany program umożliwia generację wybranych sygnałów, wyświetlenie ich 
 
 
 \begin{thebibliography}{0}
-\bibitem{dane}  Wikamp, Instrukcja do zadania pierwszego, Dostępny w: \url{https://ftims.edu.p.lodz.pl/mod/url/view.php?id=6495}
+\bibitem{dane}  Wikamp, Instrukcja do zadania pierwszego, Dostępny w: \url{https://ftims.edu.p.lodz.pl/pluginfile.php/13449/mod_resource/content/0/zadanie2.pdf}
 
 \end{thebibliography}
 
