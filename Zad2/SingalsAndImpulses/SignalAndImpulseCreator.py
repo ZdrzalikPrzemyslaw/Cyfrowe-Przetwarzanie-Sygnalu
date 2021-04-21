@@ -364,8 +364,8 @@ class SignalData:
             keys = sorted(list(self.time_values_dict.keys()))
             for i in range(len(keys) - 1):
                 for j in np.arange(keys[i], keys[i + 1], delta):
-                    new_values[j] = (self.time_values_dict[i] - self.time_values_dict[i + 1]) / (keys[i] - keys[i + 1]) * j \
-                                    + (self.time_values_dict[i] - (self.time_values_dict[i] - self.time_values_dict[i + 1])
+                    new_values[j] = (self.time_values_dict[keys[i]] - self.time_values_dict[keys[i + 1]]) / (keys[i] - keys[i + 1]) * j \
+                                    + (self.time_values_dict[keys[i]] - (self.time_values_dict[keys[i]] - self.time_values_dict[keys[i + 1]])
                                        / (keys[i] - keys[i + 1]) * keys[i])
         elif choice == 3:
             keys = sorted(list(self.time_values_dict.keys()))
