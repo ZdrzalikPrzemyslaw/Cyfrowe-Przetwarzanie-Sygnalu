@@ -387,7 +387,7 @@ class SignalData:
         return a / b
 
     def __reconstruction(self, choice):
-        delta = 0.05
+        delta = self.delta * 10 # TODO: Sprawdzic
         new_values = {}
         if choice == 1:
             keys = sorted(list(self.time_values_dict.keys()))
