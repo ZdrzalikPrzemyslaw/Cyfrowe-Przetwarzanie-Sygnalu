@@ -414,7 +414,7 @@ class SignalData:
             for j in np.arange(keys[0], keys[-1], delta):
                 calc_val = 0
                 for idx, i in enumerate(keys):
-                    new_val = self.time_values_dict[idx * T] * np.sinc(j / T - idx)
+                    new_val = self.time_values_dict[i] * np.sinc(j / T - idx)
                     calc_val += new_val
                     pass
                 new_values[j] = calc_val
