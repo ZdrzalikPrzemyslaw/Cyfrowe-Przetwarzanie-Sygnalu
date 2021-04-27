@@ -80,7 +80,7 @@ W pierwszym eksperymencie analizujemy sygnał sinusoidalny. Wykonaliśmy próbko
  \begin{tabular}{c c c c c}
     \textbf{Czas Początkowy} & \textbf{Czas Trwania}   & \textbf{Amplituda}  & \textbf{Okres} & \textbf{Częstotliwość Próbkowania}   \\
 \hline
-0 & 10 & 1 & 5 & 20 \\
+0 & 10 & 1 & 5 & 5 \\
 \end {tabular}
 \label {Parametry wejściowe dla pierwszego eksperymentu. }
 \end{table}
@@ -115,6 +115,20 @@ W pierwszym eksperymencie analizujemy sygnał sinusoidalny. Wykonaliśmy próbko
  \caption{Wykres sygnału funkcji sinusoidalenj po próbkowaniu i następnym zrekonstruowaniu metodą ekstrapolacji zerowego rzędu.}
  \label{rysunek do eksperymentu 1 wariantu 3}
 \end{figure}
+
+\begin{table}[h!]
+\caption{Miary podobieństwa sygnału sinusoidalnego i rekonstrukcji metodą ekstrapolacji zerowego rzędu }
+\centering
+\vspace{0.1cm}
+ \begin{tabular}{c c c c c}
+    \textbf{MSE} & \textbf{SNR}   & \textbf{PSNR}  & \textbf{MD} & \textbf{ENOB} \\
+\hline
+0,009 & 17,506 & 20,517 & 0,203 & 2,616\\
+\end {tabular}
+\label {Miary podobieństwa pierwszego sygnału pierwszej rekonstrukcji }
+\end{table}
+
+
 \newpage
 
 \begin{figure}[h!]
@@ -164,7 +178,7 @@ W drugim eksperymencie analizujemy sygnał prostokątny. Wykonaliśmy kwantyzacj
  \begin{tabular}{c c c c c c}
     \textbf{Czas Początkowy} & \textbf{Czas Trwania}   & \textbf{Amplituda}  & \textbf{Okres} & \textbf{Częstotliwość Próbkowania} & \textbf {wsp. wyp.} \\
 \hline
-0 & 10 & 1 & 5 & 20 & 0.5 \\
+0 & 10 & 1 & 5 & 2 & 0.5 \\
 \end {tabular}
 \label {Parametry wejściowe dla drugiego eksperymentu. }
 \end{table}
@@ -177,6 +191,63 @@ W drugim eksperymencie analizujemy sygnał prostokątny. Wykonaliśmy kwantyzacj
  \vspace{-0.3cm}
  \caption{Oryginalny wygenerowany sygnał }
  \label{rysunek do eksperymentu 2 wariantu 1}
+\end{figure}
+\newpage
+
+\subsubsection{Probkowanie}
+
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_1_prost_prob.png}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału po wykonaniu próbkowania }
+ \label{rysunek do eksperymentu 2 wariantu 2}
+\end{figure}
+\newpage
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_2_prost_rek_1.png}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału funkcji prostokątnej po próbkowaniu i następnym zrekonstruowaniu metodą ekstrapolacji zerowego rzędu.}
+ \label{rysunek do eksperymentu 1 wariantu 3}
+\end{figure}
+
+\begin{table}[h!]
+\caption{Miary podobieństwa sygnału prostokątnego i rekonstrukcji metodą ekstrapolacji zerowego rzędu }
+\centering
+\vspace{0.1cm}
+ \begin{tabular}{c c c c c}
+    \textbf{MSE} & \textbf{SNR}   & \textbf{PSNR}  & \textbf{MD} & \textbf{ENOB} \\
+\hline
+0,004 & 21,249 & 24,260 & 0,0 & 3,237\\
+\end {tabular}
+\label {Miary podobieństwa drugiego sygnału pierwszej rekonstrukcji }
+\end{table}
+
+
+
+
+
+\newpage
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_1_sin_rek_2.png}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału funkcji sinusoidalenj po próbkowaniu i następnym zrekonstruowaniu metodą interpolacją pierwszego rzędu.}
+ \label{rysunek do eksperymentu 1 wariantu 4}
+\end{figure}
+\newpage
+
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_1_sin_rek_3.png}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału funkcji sinusoidalenj po próbkowaniu i następnym zrekonstruowaniu metodą Rekonstrukcji w oparciu o funkcję sinc.}
+ \label{rysunek do eksperymentu 1 wariantu 5}
 \end{figure}
 \newpage
 

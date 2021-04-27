@@ -307,6 +307,7 @@ class SignalData:
         print("MD: ", md)
         enob = self.calculate_enob(snr)
         print("ENOB: ", enob)
+        print("{:.3f} & {:.3f} & {:.3f} & {:.3f} & {:.3f}".format(mse, snr, psnr, md, enob))
 
     def calculate_MSE(self, signal):
         sum_for_mse = 0
