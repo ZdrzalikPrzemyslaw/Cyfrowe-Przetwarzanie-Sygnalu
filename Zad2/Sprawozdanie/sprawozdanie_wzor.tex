@@ -135,9 +135,21 @@ W pierwszym eksperymencie analizujemy sygnał sinusoidalny. Wykonaliśmy próbko
  \centering
  \includegraphics[width=14cm]{exp_1_sin_rek_2.png}
  \vspace{-0.3cm}
- \caption{Wykres sygnału funkcji sinusoidalenj po próbkowaniu i następnym zrekonstruowaniu metodą interpolacją pierwszego rzędu.}
+ \caption{Wykres sygnału funkcji sinusoidalenj po próbkowaniu i następnym zrekonstruowaniu metodą interpolacji pierwszego rzędu.}
  \label{rysunek do eksperymentu 1 wariantu 4}
 \end{figure}
+
+\begin{table}[h!]
+\caption{Miary podobieństwa sygnału sinusoidalnego i rekonstrukcji metodą interpolacji pierwszego rzędu. }
+\centering
+\vspace{0.1cm}
+ \begin{tabular}{c c c c c}
+    \textbf{MSE} & \textbf{SNR}   & \textbf{PSNR}  & \textbf{MD} & \textbf{ENOB} \\
+\hline
+0.000 & 44.178 & 47.189 & 0.008 & 7.046\\
+\end {tabular}
+\label {Miary podobieństwa pierwszego sygnału drugiej rekonstrukcji }
+\end{table}
 \newpage
 
 
@@ -145,14 +157,25 @@ W pierwszym eksperymencie analizujemy sygnał sinusoidalny. Wykonaliśmy próbko
  \centering
  \includegraphics[width=14cm]{exp_1_sin_rek_3.png}
  \vspace{-0.3cm}
- \caption{Wykres sygnału funkcji sinusoidalenj po próbkowaniu i następnym zrekonstruowaniu metodą Rekonstrukcji w oparciu o funkcję sinc.}
+ \caption{Wykres sygnału funkcji sinusoidalenj po próbkowaniu i następnym zrekonstruowaniu metodą rekonstrukcji w oparciu o funkcję sinc.}
  \label{rysunek do eksperymentu 1 wariantu 5}
 \end{figure}
+
+\begin{table}[h!]
+\caption{Miary podobieństwa sygnału sinusoidalnego i rekonstrukcji w oparciu o funkcję sinc. }
+\centering
+\vspace{0.1cm}
+ \begin{tabular}{c c c c c}
+    \textbf{MSE} & \textbf{SNR}   & \textbf{PSNR}  & \textbf{MD} & \textbf{ENOB} \\
+\hline
+0.000 & 42.841 & 45.851 & 0.023 & 6.824\\
+\end {tabular}
+\label {Miary podobieństwa pierwszego sygnału trzeciej rekonstrukcji }
+\end{table}
 \newpage
 
 
-
-\subsubsection{Kwantowanie}
+\subsection{Eksperyment nr 2 - Sygnał sinusoidalny kwantyzacja}
 
 \begin{figure}[h!]
  \centering
@@ -167,7 +190,7 @@ W pierwszym eksperymencie analizujemy sygnał sinusoidalny. Wykonaliśmy próbko
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Eksperyment nr 2 - Sygnał sinusoidalny Kwantyzacja}
+\subsection{Eksperyment nr 3 - Sygnał prostokątny próbkowanie}
 
 W drugim eksperymencie analizujemy sygnał prostokątny. Wykonaliśmy kwantyzację na wygenerowanym sygnale, a następnie dokonaliśmy rekonstrukcji sygnału każdą z metod.
 
