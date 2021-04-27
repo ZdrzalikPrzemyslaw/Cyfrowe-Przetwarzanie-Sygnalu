@@ -2,7 +2,8 @@
 
 ### 1. Cel i podstawowe zastosowania przetwarzania sygnałów. Podać przykłady
 
-Celem przetwarzania sygnału jest przetworzenie sygnału w inną postać, będacą bardziej pożądaną od pierwotnej postaci.
+Celem przetwarzania sygnału jest przetworzenie sygnału w inną postać, będącą bardziej pożądaną od pierwotnej postaci, 
+celem także jest uwydatnienie którejś składowej lub oszacowanie parametrów sygnału. 
 
 Na przykład można stosować przekształcenia w celu: rozdzielania dwóch sygnałów nałożonych w
 jakiś sposób na siebie (tłumienie szumu).
@@ -15,23 +16,26 @@ Zastosowania:
 - Systemy Sterowania
 - Telewizja Cyfrowa.
 - Grafika Komputerowa.
-- Radary sonary
 
 ### 2. Definicja sygnału. Ciągłe analogowe i cyfrowe układy przetwarzania sygnałów.
 
-- Sygnał jest funkcją przynajmniej jednej zmiennej, gdzie wszystkie zmienne są od siebie niezależne. Sygnał przenosi informacje o stanie lub zachowaniu pewnego układu fizycznego lub zjawiska.
- Informacja ta jest zawarta w postaci jakichś zmian w czasie lub przestrzeni.
+- Sygnał jest funkcją jednej/dwóch zmiennej/zmiennych, gdzie wszystkie zmienne są od siebie niezależne. Sygnał przenosi informacje o stanie lub 
+  zachowaniu pewnego układu fizycznego lub zjawiska. Informacja ta jest zawarta w postaci jakichś zmian w czasie lub przestrzeni.
 
-- Sygnał analogowy opisywany jest funkcją ciągłą x<sub>a</sub>(t). Przy czym zmienna t jest ograniczona przedziałem trwania sygnału.
-- Sygnał dyskretny jest ciągiem liczb rzeczywistych lub zespolonych. x(nT), n = 0,+-1,+-2,... . n może przyjmować tylko wartości dyskretne. Poszczególne wartości funkcji nazywamy próbkami sygnału dyskretnego. Wartość T jest to okres próbkowania, przy przejściu z sygnału analogowego do dyskretnego.
-- Sygnał cyfrowy = jest otrzymywany poprzez kwantyzację sygnału dyskretnego. Kwantowanie polega na przydzielaniu wartości kolejnych próbek do jednego z 2<sup>m</sup> przedziałów kwantowania.
+- Sygnał analogowy opisywany jest funkcją ciągłą x<sub>a</sub>(t). Przy czym zmienna t jest ograniczona przedziałem trwania sygnału - 
+  ale podobno nie musi
+- Sygnał dyskretny jest ciągiem (wektor) liczb rzeczywistych lub zespolonych. x(nT), n = 0,+-1,+-2,... . 
+  n może przyjmować tylko wartości dyskretne. Poszczególne wartości funkcji nazywamy próbkami sygnału dyskretnego. 
+  Wartość T jest to okres próbkowania, przy przejściu z sygnału analogowego do dyskretnego.
+- Sygnał cyfrowy jest otrzymywany poprzez kwantyzację sygnału dyskretnego. Kwantowanie polega na przydzielaniu wartości kolejnych próbek 
+  do jednego z 2<sup>m</sup> przedziałów kwantowania.
 
 ### 3. Elementarne sygnały (ciąg impulsowy i skokowy, rzeczywisty ciąg wykładniczy, ciąg sinusoidalny).
-- Sygnał elementarny jest to sygnał całkowicie opisywany małą liczbą parametrów - 1,2. 
+- Sygnał elementarny jest to sygnał całkowicie opisywany małą liczbą parametrów - 1, 2, 3. 
 - Ciąg impulsowy delta(n), inaczej impuls przyjmuje wartość 1 dla n = 0 lub wartość 0 dla n != 0. Sygnał przyjmuje jeden parametr, którym jest n.
 - Ciąg skokowy u(n) przyjmuje wartość 1 dla n >= 0 lub wartość 0 dla n < 0. Sygnał przyjmuje jeden parametr, którym jest n.
 - Rzeczywisty sygnał wykładniczy x(n) = a<sup>n</sup>, przyjmuje jeden parametr a, który jest liczbą rzeczywistą. 
-- Ciąg sinusoidalny x(n) = A*cos(omega<sub>0</sub>n + fi) * e<sup>(a + j omega)n</sup>. Sygnał pobiera 3 parametry A - amplituda, 
+- Ciąg sinusoidalny x(n) = A*cos(omega<sub>0</sub>n + fi) =  e<sup>(a + j omega)n</sup>. Sygnał pobiera 3 parametry A - amplituda, 
   omega<sub>0</sub> - częstotliwość, fi - faza.
 
 ### 4. Okresowe sygnały. Zespolony ciąg wykładniczy.
@@ -39,11 +43,8 @@ Zastosowania:
 - Sygnał x(t) jest okresowym sygnałem o okresie T, gdy dla każdego t zachodzi równość x(t) = x(t + T),
 to znaczy wartości sygnału powtarzają się co czas równy okresowi T. 
 
-- x(n) = e<sup>(a + j * (omega, czytaj w)) * n</sup>
-- - Gdzie j = sqrt(-1), n = ... -2,-1,0,1,2 ... Zespolony ciąg wykładniczy zawiera dwa rzeczywiste parametry a i omega.
-
-# Sprawdzić zespolony ciąg wykładniczy w nagraniu!
-
+- Zespolony ciąg wykładniczy x(n) = e<sup>(a + j * (omega, czytaj w)) * n</sup>
+  Gdzie j = sqrt(-1), n = ... -2,-1,0,1,2 ... Zespolony ciąg wykładniczy zawiera dwa rzeczywiste parametry a i omega.
 
 ### 5. Wartość chwilowa, wartość bezwzględna, energia sygnału.
 
@@ -78,8 +79,13 @@ Wtedy operacje arytmetyczne wykonane są na sygnałach analogicznie do operacji 
 
 ### 7. Układy liniowe. Układ liniowy niezmienny względem przesunięcia. Podać przykład.
 
-- Układ liniowy jest układem należący do klasy układów, które są określane zasadą superpozycji. 
-  # wideło
+- Układ liniowy jest układem należący do klasy układów, które są określane zasadą superpozycji. Jeśli
+  y1(n) i y2(n) są odpowiedziami układu odpowiednio na pobudzenia
+  x1(n) i x2(n), to układ jest liniowy wtedy i tylko wtedy, gdy
+  T [a x1 (n) + b x2 (n)] = aT[x1(n)] + bT[x2(n)] = a y1(n) + b y2(n)
+  dla dowolnych stałych a i b.
+
+  Odpowiednią układu na warzoną sumę sygnału jest warzona suma odpowiedzi na poszczególne sygnały.
 
 - Układ liniowy niezmienny względem przesunięcia jest układem charakteryzującym się poprzez własność, że jeśli y(n) jest odpowiedzą 
   na pobudzenie x(n), to y(n - k)jest odpowiedzą na pobudzenie x(n - k), gdzie k jest dodatnią lub ujemną liczbą całkowitą.
@@ -90,7 +96,8 @@ Wtedy operacje arytmetyczne wykonane są na sygnałach analogicznie do operacji 
 
 ### 8. Odpowiedź impulsowa układu.
 - Odpowiedź impulsowa układu jest to sposób wyrażenia sygnału poprzez sumę opóźnionych i pomnożonych ciągów impulsowych. Odpowiedź impulsowa 
-  w połączeniu z właściwością stacjonarności pozwala w pełni scharakteryzować sygnał.  
+  w połączeniu z właściwością stacjonarności pozwala w pełni scharakteryzować sygnał. Jeśli opóźnimy sygnał wejściowy o k to sygnał wyjściowy 
+  też będzie opóźniony o k.
   # nie jestem pewna :(
 
 ### 9. Równanie splotu
@@ -121,6 +128,21 @@ Wtedy operacje arytmetyczne wykonane są na sygnałach analogicznie do operacji 
 
 
 
+# Ćwiczenia
+### 1.1 
+### 1.2 Oblicz okres sumy/różnicy/ iloczynu dwóch sygnałów okresowych
+Np. Jakim będzie okres sygnału x(t) = sin(2*pi*t) + cos(3/2*pi*t)?
+Np. Jakim będzie okres sygnału x(t) = cos(t) * cos(sqrt(2)*t)?
+
+Gdy T1/T2 nie daje liczby racjonalnej to sygnał będzie nieokresowy
+
+- x(t) = sin(2*pi*t) + cos(3/2*pi*t): znajdujemy takie x1 i x2, że: T1 * x1 = T2 * x2
+  2 * pi * t * x1 = 3/2 * pi * t * x2
+  2 * pi * t * 3 = 3/2 * pi * t * 4
+  6 * pi * t = 6 * pi * t
+  A więc mamy dwie liczby 3 i 4 - wiec z jakiegos powodu okres bedzie 4, ale generalnie można narysować wykres :
+  https://www.wolframalpha.com/widgets/view.jsp?id=aa677d660eefd1fe0d323c1dc9bfa869 i sobie sprawdzic na wykresie dla pewnosci.
+  Dla kazdej operacji wynik jest taki sam
 
 
 

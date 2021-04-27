@@ -278,7 +278,7 @@ W pierwszym eksperymencie analizujemy sygnał sinusoidalny. Wykonaliśmy próbko
 
 
 \begin{table}[h!]
-\caption{Wyniki obliczonych miar podobieństwa sygnałów dla rekonstrukcji spróbkowanego sygnału funkcji sinusoidalnej}
+\caption{Wyniki obliczonych miar podobieństwa sygnałów dla rekonstrukcji spróbkowanego sygnału funkcji prostokątnej}
 \centering
 \vspace{0.1cm}
  \begin{tabular}{c c c c c c}
@@ -292,6 +292,146 @@ Rekonstrukcja w oparciu o funkcję sinc     	& 0.086 & 7.667 & 10.677 & 0.937 & 
 \end{table}
 
 !!!! kwantyzację pomijam bo to jest prostokątny to co to za róznica x D !!!!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsection{Eksperyment nr 3 - Sygnał Trójkątny}
+
+
+W trzecim eksperymencie analizujemy sygnał trójkątny. Wykonaliśmy próbkowanie na wygenerowanym sygnale, a następnie dokonaliśmy rekonstrukcji sygnału każdą z metod.
+
+\begin{table}[h!]
+\caption{Parametry wejściowe dla sygnału trójkątnego.  }
+\centering
+\vspace{0.1cm}
+ \begin{tabular}{c c c c c}
+    \textbf{Czas Początkowy} & \textbf{Czas Trwania}   & \textbf{Amplituda}  & \textbf{Okres} & \textbf{Częstotliwość Próbkowania}   \\
+\hline
+0 & 10 & 1 & 5 & 1 \\
+\end {tabular}
+\label {Parametry wejściowe dla trzeciego eksperymetnu. }
+\end{table}
+
+
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_3_trojkat.png}
+ \vspace{-0.3cm}
+ \caption{Oryginalny wygenerowany sygnał }
+ \label{rysunek do eksperymentu 1 wariantu 1}
+\end{figure}
+
+\newpage
+
+\subsubsection{Probkowanie}
+
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_3_trojkat_prob}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału po wykonaniu próbkowania }
+ \label{rysunek do eksperymentu 3 wariantu 2}
+\end{figure}
+\newpage
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_3_trojkat_rek_1}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału trójkątnego po próbkowaniu i następnym zrekonstruowaniu metodą ekstrapolacji zerowego rzędu.}
+ \label{rysunek do eksperymentu 3 wariantu 3}
+\end{figure}
+\newpage
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_3_trojkat_rek_2.png}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału trójkątnego po próbkowaniu i następnym zrekonstruowaniu metodą interpolacją pierwszego rzędu.}
+ \label{rysunek do eksperymentu 3 wariantu 4}
+\end{figure}
+\newpage
+
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_3_trojkat_rek_3.png}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału trójkątnego po próbkowaniu i następnym zrekonstruowaniu metodą Rekonstrukcji w oparciu o funkcję sinc.}
+ \label{rysunek do eksperymentu 3 wariantu 5}
+\end{figure}
+
+
+\begin{table}[h!]
+\caption{Wyniki obliczonych miar podobieństwa sygnałów dla rekonstrukcji spróbkowanego sygnału funkcji trójkątnej}
+\centering
+\vspace{0.1cm}
+ \begin{tabular}{c c c c c c}
+\textbf{Metoda Rekonstrukcji} & \textbf{MSE}   & \textbf{SNR}  & \textbf{PSNR}  & \textbf{MD} & \textbf{ENOB}  \\
+\hline
+Ekstrapolacja zerowego rzędu          		& 0.043 & 8.945 & 13.716 & 0.380 & 1.194 \\
+Interpolacja pierwszego rzędu        		& 0.003 & 20.943 & 25.713 & 0.200 & 3.187 \\
+Rekonstrukcja w oparciu o funkcję sinc     	& 0.005 & 18.112 & 22.882 & 0.158 & 2.716  \\
+\end {tabular}
+\label {Wyniki 4}
+\end{table}
+
+\newpage
+\subsubsection{Kwantowanie}
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_3_trojkat_kwant.png}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału po wykonaniu kwantyzacja równomierna z obcięciem. }
+ \label{rysunek do eksperymentu 1 wariantu 6}
+\end{figure}
+\newpage
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_3_trojkat_kwant_row_rek_1.png}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału funkcji sinusoidalenj po kwantyzacji równomiernej z obcięciem i następnym zrekonstruowaniu metodą ekstrapolacji zerowego rzędu.}
+ \label{rysunek do eksperymentu 1 wariantu 7}
+\end{figure}
+\newpage
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_3_trojkat_kwant_row_rek_2.png}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału funkcji sinusoidalenj po kwantyzacji równomiernej z obcięciem i następnym zrekonstruowaniu metodą interpolacją pierwszego rzędu.}
+ \label{rysunek do eksperymentu 1 wariantu 8}
+\end{figure}
+\newpage
+
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_3_trojkat_kwant_row_rek_3.png}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału funkcji sinusoidalenj po kwantyzacji równomiernej z obcięciem i następnym zrekonstruowaniu metodą Rekonstrukcji w oparciu o funkcję sinc.}
+ \label{rysunek do eksperymentu 1 wariantu 9}
+\end{figure}
+
+\begin{table}[h!]
+\caption{Wyniki obliczonych miar podobieństwa sygnałów dla rekonstrukcji skwantyzowanego sygnału funkcji trójkątnej}
+\centering
+\vspace{0.1cm}
+ \begin{tabular}{c c c c c c}
+\textbf{Metoda Rekonstrukcji} & \textbf{MSE}   & \textbf{SNR}  & \textbf{PSNR}  & \textbf{MD} & \textbf{ENOB}  \\
+\hline
+Ekstrapolacja zerowego rzędu          		& 0.026 & 11.046 & 15.816 & 0.300 & 1.543 \\
+Interpolacja pierwszego rzędu        		& 0.015 & 13.513 & 18.283 & 0.300 & 1.952 \\
+Rekonstrukcja w oparciu o funkcję sinc    	& 0.021 & 12.088 & 16.858 & 0.275 & 1.716 \\
+\end {tabular}
+\label {Wyniki 2}
+\end{table}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
