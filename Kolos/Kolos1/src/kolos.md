@@ -101,7 +101,8 @@ Wtedy operacje arytmetyczne wykonane są na sygnałach analogicznie do operacji 
   # nie jestem pewna :(
 
 ### 9. Równanie splotu
-- Równanie splotu ciągów x(n) i h(n): y(n) = x(n) kropka h(n) = h(n) kropka x(n) gdzie n przyjmuje wartości całkowite. Kolejność ciągów w zbiorze nie ma znaczenia. 
+- Równanie splotu ciągów x(n) i h(n): y(n) = x(n) kropka h(n) = h(n) kropka x(n) gdzie n przyjmuje wartości całkowite. 
+  Kolejność ciągów w zbiorze nie ma znaczenia. 
 
 
 ### 10. Stabilność i przyczynowość układu.
@@ -112,19 +113,64 @@ Wtedy operacje arytmetyczne wykonane są na sygnałach analogicznie do operacji 
   n < n<sub>0</sub>, to y<sub>1</sub>(n) = y<sub>2</sub>(n), n < n<sub>0</sub>.\
 - Dokladne wzory koniec wykladu 1-2.
 
-### 11. 
+### 11. Filtracja sygnałów. Równanie filtracji. NOI i SOI filtry
+- filtracja sygnałów - proces przetwarzania sygnałów mający na celu wydzielenie z mieszaniny sygnałów tylko sygnałów o pożądanych właściwościach;
 
+- równanie filtracji:
+  Jeśli niezmienny względem przesunięcia układ liniowy jest przyczynowy
+  (tzn. odpowiedź impulsowa h(n) jest równa jest dla n < 0 ), to równanie
+  różnicowe opisuje związek pomiędzy pobudzeniem x(n) i odpowiedzią
+  y(n)
+
+  y(n) = suma od k = 1 do K (a<sub>k</sub>*y(n - k)) + suma od m = 1 do M (b<sub>m</sub>*x(n - m)), n = 1, 2
+
+  Zatem n-ty wyraz odpowiedzi może być obliczony z n-tego wyrazu
+  pobudzenia oraz K i M poprzednich wyrazów pobudzenia i odpowiedzi.
+
+- NOI
+  y(n) = suma od k = 1 do K (a<sub>k</sub>*y(n - k)) + suma od m = 1 do M (b<sub>m</sub>*x(n - m)), n = 1, 2
+  Jeśli K > 0, to otrzymujemy układ liniowy NWP (niezmienny
+  względem przesunięcia) o nieskończonej odpowiedzi impulsowej (NOI)
+  (ang. IIR - infinite inpulse response).
+  
+- SOI
+  y(n) = suma od k = 1 do K (a<sub>k</sub>*y(n - k)) + suma od m = 1 do M (b<sub>m</sub>*x(n - m)), n = 1, 2
+  Jeśli K=0, to otrzymujemy układ liniowy NWP o skończonej
+  odpowiedzi impulsowej (SOI) (ang. FIR - finite inpulse response).
 
 
 ### 12. Filtracja sygnałów za pomocą splotu (liniowa i okresowa)
 
+Cps_2019_kol_1_opracowane.pdf punkt 12
 
+### 13. Korelacja sygnałów w dziedzinie czasu (liniowa i okresowa)
 
+Cps_2019_kol_1_opracowane.pdf punkt 13
 
+### 14. 
 
+# Sprawdzić nagranie
 
+### 15. Transformacje (transformaty) Fouriera. Definicja funkcji ortogonalnych.
 
+- Podstawowe rodzaje TF:
+- - Szereg Fouriera (dla sygnałów okresowych)
+- - Transformata Fouriera dla sygnałów nieokresowych
+- - Dyskretna transformata Fouriera
+- Definicja funkcji ortogonalnej wykład 4/5 strona 2
 
+### 16. Zastosowania szeregów Fouriera. Analiza i synteza sygnałów.
+- Aproksymacja funkcji (sygnałów), w tym kompresja danych za
+  pomocą sumy elementarnych sygnałów.
+- Opis liniowych (i nieliniowych) układów oraz sygnałów w dziedzinie częstotliwości.
+- Rozwiązywanie równań różniczkowych.
+- Analiza szeregów czasowych (pierwsze komputery)
+
+### 17. Współczynniki szeregu Fouriera. Analiza i synteza sygnałów.
+
+### 18. Widmo amplitudowe i widmo fazowe sygnału.
+
+- Wzory na stronie 6, 
 
 
 
