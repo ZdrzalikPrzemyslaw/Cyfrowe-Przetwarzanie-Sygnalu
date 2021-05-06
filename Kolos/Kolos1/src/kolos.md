@@ -35,7 +35,7 @@ Zastosowania:
 - Ciąg impulsowy delta(n), inaczej impuls przyjmuje wartość 1 dla n = 0 lub wartość 0 dla n != 0. Sygnał przyjmuje jeden parametr, którym jest n.
 - Ciąg skokowy u(n) przyjmuje wartość 1 dla n >= 0 lub wartość 0 dla n < 0. Sygnał przyjmuje jeden parametr, którym jest n.
 - Rzeczywisty sygnał wykładniczy x(n) = a<sup>n</sup>, przyjmuje jeden parametr a, który jest liczbą rzeczywistą. 
-- Ciąg sinusoidalny x(n) = A*cos(omega<sub>0</sub>n + fi) =  e<sup>(a + j omega)n</sup>. Sygnał pobiera 3 parametry A - amplituda, 
+- Ciąg sinusoidalny x(n) = A*cos(omega<sub>0</sub>n + fi) = e<sup>(a + j omega)n</sup>. Sygnał pobiera 3 parametry A - amplituda, 
   omega<sub>0</sub> - częstotliwość, fi - faza.
 
 ### 4. Okresowe sygnały. Zespolony ciąg wykładniczy.
