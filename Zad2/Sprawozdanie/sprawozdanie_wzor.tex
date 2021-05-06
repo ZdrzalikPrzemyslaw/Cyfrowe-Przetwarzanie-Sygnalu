@@ -151,6 +151,10 @@ Rekonstrukcja w oparciu o funkcję sinc     & 0,000 & 42,840 & 45,851 & 0,023 & 
 \label {Wyniki 1}
 \end{table}
 
+
+Po analizie wykresów oraz tabeli z obliczonymi miarami podobieństwa stwierdziliśmy, że dla rekonstrukcji spróbkowanego sygnału sinusoidalnego najlepiej wypadającą rekonstrukcją jest interpolacja pierwszego rzędu oraz rekonstrukcja w oparciu o funkcję sinc.  Według naszych przewidywań najlepszą metodą rekonstrukcji funkcji sinusoidalnej powinna być rekonstrukcja w oparciu o funkcję sinc, która w tym eksperymencie mogła nie zdobyć znaczącej przewagi ze względu na dużą liczbę punktów podczas próbkowania. 
+
+
 \newpage
 \subsubsection{Kwantowanie}
 
@@ -205,8 +209,10 @@ Rekonstrukcja w oparciu o funkcję sinc    	& 0,013 & 15,750 & 18,760 & 0,185 & 
 \end{table}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Po analizie wykresów oraz tabeli z obliczonymi miarami podobieństwa stwierdziliśmy, że dla rekonstrukcji skwantyzowanego sygnału sinusoidalnego najlepiej wypadającą rekonstrukcją jest interpolacja pierwszego rzędu oraz rekonstrukcja w oparciu o funkcję sinc.  Według naszych przewidywań najlepszą metodą rekonstrukcji funkcji sinusoidalnej powinna być rekonstrukcja w oparciu o funkcję sinc, która w tym eksperymencie mogła nie zdobyć znaczącej przewagi ze względu na dużą liczbę punktów podczas próbkowania. Zgodnie z przewydywaniami rekonstrukcja sygnału skwantyzowanego w porównaniu do rekonstrukcji sygnału spróbkowanego wypadła gorzej, ze względu na mała ilość poziomów kwantyzacji, które spowodowały zmniejszenie dokładności odwzorowania orginalnego sygnału. 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 
 \subsection{Eksperyment nr 2 - Sygnał Prostokątny}
@@ -291,7 +297,7 @@ Rekonstrukcja w oparciu o funkcję sinc     	& 0.086 & 7.667 & 10.677 & 0.937 & 
 \label {Wyniki 3}
 \end{table}
 
-!!!! kwantyzację pomijam bo to jest prostokątny to co to za róznica x D !!!!
+Po analizie wykresów oraz tabeli z obliczonymi miarami podobieństwa stwierdziliśmy, że dla rekonstrukcji spróbkowanego sygnału prostokątnego najlepiej wypadającą rekonstrukcją jest ekstrapolacja zerowego rzędu. Jest to zgodne z naszymi przewidywaniami, ponieważ wynikiem ekstrapolacj zerowego rzędu jest zawsze wykres o kształcie prostokątnym. Sygnał prostokątny przyjmuje tylko dwie wartości, więc dopóki poziomów kwantyzacji jest więcej niż 1, to wyniki rekonstrukcji skwantyzowanego sygnału prostokątnego dają identyczne wyniki jak wyniki rekonstrukcji spróbkowanego sygnału prostokątnego, z tego powodu w tym eksperymencie nie została przeprowadzona rekonstrukcja sygnału prostokątnego. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -378,6 +384,9 @@ Rekonstrukcja w oparciu o funkcję sinc     	& 0.005 & 18.112 & 22.882 & 0.158 &
 \label {Wyniki 4}
 \end{table}
 
+
+Po analizie wykresów oraz tabeli z obliczonymi miarami podobieństwa stwierdziliśmy, że dla rekonstrukcji spróbkowanego sygnału trójkątnego najlepiej wypadającą rekonstrukcją jest interpolacja pierwszego rzędu. Jest to zgodne z naszymi przewidywaniami, ponieważ interpolacja pierwszego rzędu łączy koeljne punkty linią prostą, co dla sygnału trójkątnego zazwyczja sie pokryje. 
+
 \newpage
 \subsubsection{Kwantowanie}
 
@@ -432,12 +441,169 @@ Rekonstrukcja w oparciu o funkcję sinc    	& 0.021 & 12.088 & 16.858 & 0.275 & 
 \end{table}
 
 
+Po analizie wykresów oraz tabeli z obliczonymi miarami podobieństwa stwierdziliśmy, że dla rekonstrukcji skwantyzowanego sygnału trójkątnego najlepiej wypadającą rekonstrukcją jest interpolacja pierwszego rzędu. Jest to zgodne z naszymi przewidywaniami, ponieważ interpolacja pierwszego rzędu łączy koeljne punkty linią prostą, co dla sygnału trójkątnego zazwyczja sie pokryje. Zgodnie z przewydywaniami rekonstrukcja sygnału skwantyzowanego w porównaniu do rekonstrukcji sygnału spróbkowanego wypadła gorzej, ze względu na mała ilość poziomów kwantyzacji, które spowodowały zmniejszenie dokładności odwzorowania orginalnego sygnału. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsection{Eksperyment nr 4 - Sygnał sinusoidalny wyprostowany jednopołówkowo}
+
+
+W czwartym eksperymencie analizujemy sygnał sinusoidalny wyprostowany jednopołówkowo. Wykonaliśmy próbkowanie na wygenerowanym sygnale, a następnie dokonaliśmy rekonstrukcji sygnału każdą z metod.
+
+\begin{table}[h!]
+\caption{Parametry wejściowe dla sygnału sinusoidalny wyprostowany jednopołówkowo.  }
+\centering
+\vspace{0.1cm}
+ \begin{tabular}{c c c c c}
+    \textbf{Czas Początkowy} & \textbf{Czas Trwania}   & \textbf{Amplituda}  & \textbf{Okres} & \textbf{Częstotliwość Próbkowania}   \\
+\hline
+0 & 10 & 1 & 1 & 1.3 \\
+\end {tabular}
+\label {Parametry wejściowe dla czwartego eksperymetnu. }
+\end{table}
+
+
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_4_sin.png}
+ \vspace{-0.3cm}
+ \caption{Oryginalny wygenerowany sygnał sinusoidalny wyprostowany jednopołówkowo}
+ \label{rysunek do eksperymentu 4 wariantu 1}
+\end{figure}
+
+\newpage
+
+\subsubsection{Probkowanie}
+
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_4_sin_prob}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego wyprostowanego jednopołówkowo po wykonaniu próbkowania }
+ \label{rysunek do eksperymentu 4 wariantu 2}
+\end{figure}
+\newpage
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_4_sin_rek_1}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego wyprostowanego jednopołówkowo po próbkowaniu i następnym zrekonstruowaniu metodą ekstrapolacji zerowego rzędu.}
+ \label{rysunek do eksperymentu 4 wariantu 3}
+\end{figure}
+\newpage
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_4_sin_rek_2}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego wyprostowanego jednopołówkowo po próbkowaniu i następnym zrekonstruowaniu metodą interpolacją pierwszego rzędu.}
+ \label{rysunek do eksperymentu 4 wariantu 4}
+\end{figure}
+\newpage
+
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_4_sin_rek_3}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego wyprostowanego jednopołówkowo po próbkowaniu i następnym zrekonstruowaniu metodą Rekonstrukcji w oparciu o funkcję sinc.}
+ \label{rysunek do eksperymentu 4 wariantu 5}
+\end{figure}
+
+
+\begin{table}[h!]
+\caption{Wyniki obliczonych miar podobieństwa sygnałów dla rekonstrukcji spróbkowanego sygnału sinusoidalnego wyprostowanego jednopołówkowo}
+\centering
+\vspace{0.1cm}
+ \begin{tabular}{c c c c c c}
+\textbf{Metoda Rekonstrukcji} & \textbf{MSE}   & \textbf{SNR}  & \textbf{PSNR}  & \textbf{MD} & \textbf{ENOB}  \\
+\hline
+Ekstrapolacja zerowego rzędu          		& 0.229 & 0.380 & 6.401 & 1.000 & -0.229 \\
+Interpolacja pierwszego rzędu        		& 0.190 & 1.200 & 7.221 & 1.000 & -0.093 \\
+Rekonstrukcja w oparciu o funkcję sinc     	& 0.257 & -0.127 & 5.893 & 1.156 & -0.314  \\
+\end {tabular}
+\label {Wyniki 5}
+\end{table}
+
+Po analizie wykresów oraz tabeli z obliczonymi miarami podobieństwa stwierdziliśmy, że dla rekonstrukcji spróbkowanego sygnału  sinusoidalnego wyprostowanego jednopołówkowo najlepiej wypadającą rekonstrukcją jest interpolacja pierwszego rzędu. Jednakże różnice pomiędzy wynikami miar podobieństwa sygnałów dla wszystkich rekonstrukcji wyszły zbliżone. Każdy z wykresów rekonstrukcji dla badanego sygnału przypomina inny sygnał. Rysunek 26. pjest podobny do sygnału prostokątnego, Rysunek 27 jest podobny do sygnału trójkątnego, natomaist Rysunek 28 jest podobny do sygnały sinusoidalnego. 
+
+\newpage
+\subsubsection{Kwantowanie}
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_4_sin_kw}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału po wykonaniu kwantyzacja równomierna z obcięciem. }
+ \label{rysunek do eksperymentu 4 wariantu 6}
+\end{figure}
+\newpage
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_4_sin_rek_1}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego wyprostowanego jednopołówkowo po kwantyzacji równomiernej z obcięciem i następnym zrekonstruowaniu metodą ekstrapolacji zerowego rzędu.}
+ \label{rysunek do eksperymentu 4 wariantu 7}
+\end{figure}
+\newpage
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_4_sin_rek_2}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego wyprostowanego jednopołówkowo po kwantyzacji równomiernej z obcięciem i następnym zrekonstruowaniu metodą interpolacją pierwszego rzędu.}
+ \label{rysunek do eksperymentu 4 wariantu 8}
+\end{figure}
+\newpage
+
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=14cm]{exp_4_sin_rek_3}
+ \vspace{-0.3cm}
+ \caption{Wykres sygnału sinusoidalnego wyprostowanego jednopołówkowo po kwantyzacji równomiernej z obcięciem i następnym zrekonstruowaniu metodą Rekonstrukcji w oparciu o funkcję sinc.}
+ \label{rysunek do eksperymentu 4 wariantu 9}
+\end{figure}
+
+\begin{table}[h!]
+\caption{Wyniki obliczonych miar podobieństwa sygnałów dla rekonstrukcji skwantyzowanego sygnału sinusoidalnego wyprostowanego jednopołówkowo}
+\centering
+\vspace{0.1cm}
+ \begin{tabular}{c c c c c c}
+\textbf{Metoda Rekonstrukcji} & \textbf{MSE}   & \textbf{SNR}  & \textbf{PSNR}  & \textbf{MD} & \textbf{ENOB}  \\
+\hline
+Ekstrapolacja zerowego rzędu          		& 0.229 & 0.380 & 6.401 & 1.000 & -0.229 \\
+Interpolacja pierwszego rzędu        		& 0.190 & 1.200 & 7.221 & 1.000 & -0.093 \\
+Rekonstrukcja w oparciu o funkcję sinc     	& 0.257 & -0.127 & 5.893 & 1.156 & -0.314  \\
+\end {tabular}
+\label {Wyniki 5}
+\end{table}
+
+Wyniki kwantyzacji oraz rekonstrukcji skwantyzowanego sygnału dają identyczne wyniki jak wyniki rekonstrukcji spróbkowanego sygnału, z tego powodu wnioski do rekonstrukcji sygnału skwantyzowanego pokrywają się z wnioskami sygnału spróbkowanego. Inne niż w pozsotałych eksperymentach wyniki mogą być spowodowane zbyt małą częstotliwością próbkowania. 
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Wnioski}
 
-Zbudowany program umożliwia wykonanie procesu konwersji analogowo-cyfrowej (A/C) i cyfrowo-analogowej (C/A) sygnałów oraz porównanie dwóch sygnałów z wyliczeniem miar jakości rekonstrukcji. Konwersja sygnałów zgadza się z przewidywanymi wynikami.  Program działa poprawnie, cel zadania został osiągnięty. 
+Zbudowany program umożliwia wykonanie procesu konwersji analogowo-cyfrowej (A/C) i cyfrowo-analogowej (C/A) sygnałów oraz porównanie dwóch sygnałów z wyliczeniem miar jakości rekonstrukcji. Konwersja sygnałów zgadza się z przewidywanymi wynikami. 
+
+\begin{itemize}
+\item Do rekonstrukcji sygnału sinusoidalnego najlepiej sprawdziła się interpolacja pierwszego rzędu oraz rekonstrukcja w operaciu o funkcję sinc. 
+\item Do rekonstrukcji sygnału prostokątnego najlepiej sprawdziła się ekstrapolacja zerowego rzędu.
+\item Do rekonstrukcji sygnału trójkątnego najlepiej sprawdziła się interpolacja pierwszego rzędu. 
+\item Lepsze wyniki rekonstrukcji zostały uzyskane dla spróbkowanych sygnałów. 
+\item W celu porównania jakości rekonstrukcji należy wziąć pod uwagę wszystkie miary podobieństwa sygnałów. 
+\item Im większa liczba poziomów kwantyzacji tym lepsze wyniki jakości rekonstrukcji sygnału.
+\item Im większa częstotliwość próbkowania tym lepsze wyniki jakości rekonstrukcji sygnału. 
+\end{itemize} 
+
+Program działa poprawnie, cel zadania został osiągnięty.
 
 
 \begin{thebibliography}{0}
