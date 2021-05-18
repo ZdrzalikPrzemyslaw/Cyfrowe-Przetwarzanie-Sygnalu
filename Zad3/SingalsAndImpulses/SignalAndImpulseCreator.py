@@ -426,5 +426,10 @@ class SignalData:
     def calculate_enob(self, snr):
         return ((snr - 1.76 )/ 6.02)
 
-    def convolution(self, x):
-        
+    def convolution(self, second_signal):
+        matrix = np.zeros((len(second_signal.time_values_dict), len(self.time_values_dict)
+                           + len(second_signal.time_values_dict) - 1))
+        for i in range(len(matrix[0])):
+            for j in range(len(matrix)):
+                matrix[i][j + i] = self.time_values_dict.values()[j]
+        print()
