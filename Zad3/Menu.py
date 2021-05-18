@@ -18,7 +18,7 @@ from SingalsAndImpulses.SignalAndImpulse import SignalAndImpulse
 from SingalsAndImpulses.SignalAndImpulseCreator import SignalData
 from global_vars import signals
 
-EXIT_PROGRAM = 7
+EXIT_PROGRAM = 10
 
 
 def choose_mode():
@@ -395,4 +395,4 @@ def wybor_7():
         except ValueError:
             print("zly input")
             pass
-    h.compare_signals(x)
+    h.convolution(x)

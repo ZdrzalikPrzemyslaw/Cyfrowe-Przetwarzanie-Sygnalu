@@ -73,7 +73,7 @@ class SignalData:
             return float(val)
 
     @staticmethod
-    def load_file(path: str):
+    def load_file(path: str) -> "SignalData":
         with open(path, 'r') as file:
             is_signal: bool = bool(file.readline().strip().split()[1])
             start_time: float = float(file.readline().strip().split()[1])
@@ -426,10 +426,24 @@ class SignalData:
     def calculate_enob(self, snr):
         return ((snr - 1.76 )/ 6.02)
 
-    def convolution(self, second_signal):
-        matrix = np.zeros((len(second_signal.time_values_dict), len(self.time_values_dict)
-                           + len(second_signal.time_values_dict) - 1))
-        for i in range(len(matrix[0])):
-            for j in range(len(matrix)):
-                matrix[i][j + i] = self.time_values_dict.values()[j]
-        print()
+    def convolution(self, second_signal: "SignalData"):
+        first_matrix = np.zeros((len(self.time_values_dict)
+                           + len(second_signal.time_values_dict) - 1, len(second_signal.time_values_dict)))
+        lista = list(self.time_values_dict.values())
+        for i in range(len(first_matrix[0])):
+            for j in range(len(first_matrix[0])):
+                first_matrix[j + i][i] = lista[j]
+        second_matrix = np.asarray(list(second_signal.time_values_dict.values()))
+
+        times_1 = self.end_time - self.start_time
+        times_2 = second_signal.end_time - second_signal.start_time
+        time_duration = times_1 + times_2
+        start_time = self.start_time
+        result = np.dot(first_matrix, second_matrix)
+        new_dict = {}
+        current_time = start_time
+        for i in result:
+            new_dict[current_time] = i
+            current_time += (start_time  + time_duration) / len(result)
+        new_signal = SignalData(start_time=start_time, end_time=start_time + time_duration, is_signal=False, delta=(start_time  + time_duration) / len(result), is_new = False, T=self.T, is_real = self.is_real, time_values_dict =new_dict)
+        new_signal.plot()
