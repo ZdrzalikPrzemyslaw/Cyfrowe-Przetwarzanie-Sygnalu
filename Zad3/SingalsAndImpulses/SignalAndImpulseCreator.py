@@ -317,7 +317,8 @@ class SignalData:
             for idx, j in enumerate(keys2):
                 if (idx != 0):
                     if (j >= i) and (keys2[idx - 1] <= i):
-                        sum_for_mse += (self.time_values_dict[i] - (signal.time_values_dict[j] + signal.time_values_dict[keys2[idx - 1]]) / 2) ** 2
+                        sum_for_mse += (self.time_values_dict[i] - (
+                                    signal.time_values_dict[j] + signal.time_values_dict[keys2[idx - 1]]) / 2) ** 2
         return sum_for_mse / len(self.time_values_dict)
 
     def calculateSNR(self, mse):
@@ -390,7 +391,7 @@ class SignalData:
         return a / b
 
     def __reconstruction(self, choice):
-        delta = self.delta / 100.0 # TODO: Sprawdzic
+        delta = self.delta / 100.0  # TODO: Sprawdzic
         new_values = {}
         if choice == 1:
             keys = sorted(list(self.time_values_dict.keys()))
@@ -403,9 +404,9 @@ class SignalData:
             for i in range(len(keys) - 1):
                 for j in np.arange(keys[i], keys[i + 1], delta):
                     new_values[j] = (self.time_values_dict[keys[i]] - self.time_values_dict[keys[i + 1]]) / (
-                                keys[i] - keys[i + 1]) * j \
+                            keys[i] - keys[i + 1]) * j \
                                     + (self.time_values_dict[keys[i]] - (
-                                self.time_values_dict[keys[i]] - self.time_values_dict[keys[i + 1]])
+                            self.time_values_dict[keys[i]] - self.time_values_dict[keys[i + 1]])
                                        / (keys[i] - keys[i + 1]) * keys[i])
         elif choice == 3:
             keys = sorted(list(self.time_values_dict.keys()))
@@ -424,14 +425,15 @@ class SignalData:
         new_signal.save_file()
 
     def calculate_enob(self, snr):
-        return ((snr - 1.76 )/ 6.02)
+        return ((snr - 1.76) / 6.02)
 
-    def convolution(self, second_signal: "SignalData"):
+    def convolution(self, second_signal: "SignalData") -> "SignalData":
         first_matrix = np.zeros((len(self.time_values_dict)
-                           + len(second_signal.time_values_dict) - 1, len(second_signal.time_values_dict)))
+                                 + len(second_signal.time_values_dict) - 1, len(second_signal.time_values_dict)))
         lista = list(self.time_values_dict.values())
         for i in range(len(first_matrix[0])):
             for j in range(len(first_matrix[0])):
+                print(lista[j])
                 first_matrix[j + i][i] = lista[j]
         second_matrix = np.asarray(list(second_signal.time_values_dict.values()))
 
@@ -444,6 +446,42 @@ class SignalData:
         current_time = start_time
         for i in result:
             new_dict[current_time] = i
-            current_time += (start_time  + time_duration) / len(result)
-        new_signal = SignalData(start_time=start_time, end_time=start_time + time_duration, is_signal=False, delta=(start_time  + time_duration) / len(result), is_new = False, T=self.T, is_real = self.is_real, time_values_dict =new_dict)
-        new_signal.plot()
+            current_time += (start_time + time_duration) / len(result)
+        return SignalData(start_time=start_time, end_time=start_time + time_duration, is_signal=False,
+                          delta=(start_time + time_duration) / len(result), is_new=False, T=self.T,
+                          is_real=self.is_real, time_values_dict=new_dict)
+
+    def correlation_normalna(self, second_signal: "SignalData") -> "SignalData":
+        first_matrix = np.zeros((len(self.time_values_dict)
+                                 + len(second_signal.time_values_dict) - 1, len(second_signal.time_values_dict)))
+        lista = list(self.time_values_dict.values())
+        for i in range(len(first_matrix[0])):
+            for j in range(len(first_matrix[0])):
+                first_matrix[j + i][i] = lista[j]
+        first_matrix = np.flip(first_matrix, 0)
+        second_matrix = np.asarray(list(second_signal.time_values_dict.values()))
+
+        times_1 = self.end_time - self.start_time
+        times_2 = second_signal.end_time - second_signal.start_time
+        time_duration = times_1 + times_2
+        start_time = self.start_time
+        result = np.dot(first_matrix, second_matrix)
+        new_dict = {}
+        current_time = start_time
+        for i in result:
+            new_dict[current_time] = i
+            current_time += (start_time + time_duration) / len(result)
+        return SignalData(start_time=start_time, end_time=start_time + time_duration, is_signal=False,
+                          delta=(start_time + time_duration) / len(result), is_new=False, T=self.T,
+                          is_real=self.is_real, time_values_dict=new_dict)
+
+    def correlation_convolution(self, second_signal: "SignalData"):
+        x = self.convolution(second_signal)
+        values = list(x.time_values_dict.values())
+        new_dict = {}
+        current_time = x.start_time
+        for i in values:
+            new_dict[current_time] = i
+            current_time += x.delta
+        return SignalData(start_time=x.start_time, end_time=x.end_time, is_signal=x.is_signal, delta=x.delta,
+                          is_new=False, T=x.T, is_real=x.is_real, time_values_dict=new_dict)

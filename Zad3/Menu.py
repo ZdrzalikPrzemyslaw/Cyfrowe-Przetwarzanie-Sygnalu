@@ -23,7 +23,7 @@ EXIT_PROGRAM = 10
 
 def choose_mode():
     i = -1
-    while i not in [1, 2, 3, 4, 5, 6, 7, EXIT_PROGRAM]:
+    while i not in [1, 2, 3, 4, 5, 6, 7, 8, EXIT_PROGRAM]:
         print("1. Generacja sygnału/szumu/impulsu \n"
               "2. Odczyt z pliku binarnego \n"
               "3. Operacje na sygnałach \n"
@@ -31,6 +31,7 @@ def choose_mode():
               "5. Probkowanie, Kwantyzacja, Rekonstrukcja \n" +
               "6. Porównanie \n" +
               "7. Splot \n" +
+              "8. Korelacja \n" +
               str(EXIT_PROGRAM) + ". Wylacz program")
         try:
             i = int(input())
@@ -68,6 +69,8 @@ def program_loop():
             wybor_6()
         elif choice == 7:
             wybor_7()
+        elif choice == 8:
+            wybor_8()
 
 
 def wybor_1() -> Union[None, SignalData]:
@@ -396,3 +399,45 @@ def wybor_7():
             print("zly input")
             pass
     h.convolution(x)
+
+
+def wybor_8():
+    while True:
+        print("Podaj sciezke pliku sygnalu h: ")
+        try:
+            inp = input()
+            if os.path.isfile(inp):
+                h = SignalData.load_file(inp)
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+    while True:
+        print("Podaj sciezke pliku sygnalu x: ")
+        try:
+            inp = input()
+            if os.path.isfile(inp):
+                x = SignalData.load_file(inp)
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+    while True:
+        print("\n1. Korelacja bezposrednia\n2. Korelacja z uzyciem splotu\n")
+        try:
+            inp = int(input())
+            if inp == 1 or inp == 2:
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+    if inp == 1:
+        h.correlation_normalna(x)
+    else:
+        h.correlation(x)
