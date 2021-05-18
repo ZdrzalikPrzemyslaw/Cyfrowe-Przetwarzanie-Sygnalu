@@ -2,6 +2,8 @@ import datetime
 import os
 from typing import Union
 
+from SingalsAndImpulses.Filter.HammingWindow import HammingWindow
+from SingalsAndImpulses.Filter.RectangularWindow import RectangularWindow
 from SingalsAndImpulses.Impulse.ImpulseNoise import ImpulseNoise
 from SingalsAndImpulses.Impulse.SingularImpulse import SingularImpulse
 from SingalsAndImpulses.Signal.GaussianNoise import GaussianNoise
@@ -87,13 +89,15 @@ def wybor_1() -> Union[None, SignalData]:
           "9.  Skok jednostkowy\n"
           "10. Impuls jednostkowy\n"
           "11. Szum impulsowy\n"
+          "12. Filtracja dolnoprzepustowa\n"
+          "13. Filtracja środkowoprzepustowa\n"
           )
     try:
         choice = int(input())
     except ValueError:
         print("zly input")
         pass
-    if choice not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]:
+    if choice not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]:
         # fixme:
         print("Zły wybór : (")
         return
@@ -188,6 +192,30 @@ def wybor_1() -> Union[None, SignalData]:
             print("zly input")
             pass
         pass
+
+    window = 0
+    if choice == 12 or choice == 13:
+        print("1. Okno Prostokatne\n 2. Okno Hamminga")
+        try:
+            inp = int(input())
+            if inp == 1 or inp == 2:
+                window = 1
+                raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+        if window == 1:
+            new_window = RectangularWindow(0)
+        elif window == 2:
+            new_window = HammingWindow()
+
+
+    if choice == 12:
+
+        return
+
+
+
     if 'delta_time' in locals():
         return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration,
                           delta=delta_time)
