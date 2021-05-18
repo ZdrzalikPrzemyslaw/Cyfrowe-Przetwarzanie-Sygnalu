@@ -440,4 +440,4 @@ def wybor_8():
     if inp == 1:
         h.correlation_normalna(x)
     else:
-        h.correlation(x)
+        h.correlation_convolution(x)
