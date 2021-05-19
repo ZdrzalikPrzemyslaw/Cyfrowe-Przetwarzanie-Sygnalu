@@ -8,5 +8,5 @@ class MiddleFilter(DownFilter):
     def __init__(self, window: Window, M: int, fp: float, fo: float):
         super().__init__(window, M, fp, fo)
 
-    def value(self, n):
-        return super().value(n) * 2 * math.sin(math.pi * n / 2) * self.window.value(n)
+    def generate_value(self, n):
+        return super().generate_value(n) * 2 * math.sin(math.pi * (n * 1 / self.fp) / 2) * self.window.value(n * 1 / self.fp)

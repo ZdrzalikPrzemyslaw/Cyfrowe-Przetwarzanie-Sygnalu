@@ -2,7 +2,9 @@ import datetime
 import os
 from typing import Union
 
+from SingalsAndImpulses.Filter.DownFilter import DownFilter
 from SingalsAndImpulses.Filter.HammingWindow import HammingWindow
+from SingalsAndImpulses.Filter.MiddleFilter import MiddleFilter
 from SingalsAndImpulses.Filter.RectangularWindow import RectangularWindow
 from SingalsAndImpulses.Impulse.ImpulseNoise import ImpulseNoise
 from SingalsAndImpulses.Impulse.SingularImpulse import SingularImpulse
@@ -172,9 +174,9 @@ def wybor_1() -> Union[None, SignalData]:
         try:
             inp = float(input())
             if inp == 0:
-                delta_time = 1
+                sample_rate = 1
                 raise ValueError
-            delta_time = 1 / inp
+            sample_rate = 1 / inp
         except ValueError:
             print("zly input")
             pass
@@ -185,40 +187,79 @@ def wybor_1() -> Union[None, SignalData]:
         try:
             inp = float(input())
             if inp == 0:
-                delta_time = 1
+                sample_rate = 1
                 raise ValueError
-            delta_time = 1 / inp
+            sample_rate = 1 / inp
         except ValueError:
             print("zly input")
             pass
         pass
 
-    window = 0
-    if choice == 12 or choice == 13:
+    chosen_window = 0
+    if choice in [12, 13]:
         print("1. Okno Prostokatne\n 2. Okno Hamminga")
         try:
             inp = int(input())
-            if inp == 1 or inp == 2:
-                window = 1
+            if inp != 1 and inp != 2:
+                chosen_window = 1
                 raise ValueError
+            else:
+                chosen_window = inp
         except ValueError:
             print("zly input")
             pass
-        if window == 1:
-            new_window = RectangularWindow(0)
-        elif window == 2:
-            new_window = HammingWindow()
+        print("Podaj częstotliwość próbkowania")
+        try:
+            inp = float(input())
+            if inp == 0:
+                sample_rate = 1
+                raise ValueError
+            sample_rate = 1 / inp
+        except ValueError:
+            print("zly input")
+            pass
+        pass
+        print("Podaj Liczbę Próbek")
+        try:
+            inp = int(input())
+            if inp <= 0:
+                sample_count = 1
+                raise ValueError
+            sample_count = inp
+        except ValueError:
+            print("zly input")
+            pass
+        pass
+        print("Podaj Częstoliwość Odcięcia")
+        try:
+            inp = float(input())
+            if inp <= 0:
+                frequency_odciecia = 1
+                raise ValueError
+            frequency_odciecia = inp
+        except ValueError:
+            print("zly input")
+            pass
+        pass
+        print()
+        if chosen_window == 1:
+            if choice == 12:
+                signal_impulse = DownFilter(RectangularWindow(sample_count), sample_count, sample_rate, frequency_odciecia)
+                pass
+            if choice == 13:
+                signal_impulse = MiddleFilter(RectangularWindow(sample_count), sample_count, sample_rate, frequency_odciecia)
+        else:
+            if choice == 12:
+                signal_impulse = DownFilter(HammingWindow(sample_count), sample_count, sample_rate, frequency_odciecia)
+                pass
+            if choice == 13:
+                signal_impulse = MiddleFilter(HammingWindow(sample_count), sample_count, sample_rate, frequency_odciecia)
 
+        return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time= beg_time + (sample_count * sample_rate), delta = sample_rate)
 
-    if choice == 12:
-
-        return
-
-
-
-    if 'delta_time' in locals():
+    if 'sample_rate' in locals():
         return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration,
-                          delta=delta_time)
+                          delta=sample_rate)
     else:
         return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration)
 
