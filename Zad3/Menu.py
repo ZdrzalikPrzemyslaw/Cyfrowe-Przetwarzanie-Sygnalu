@@ -493,7 +493,8 @@ def wybor_7():
         except ValueError:
             print("zly input")
             pass
-    h.convolution(x)
+    z = h.convolution(x)
+    z.plot()
 
 
 def wybor_8():
@@ -533,6 +534,8 @@ def wybor_8():
             print("zly input")
             pass
     if inp == 1:
-        h.correlation_normalna(x)
+         z = h.correlation_normalna(x)
+         z.plot()
     else:
-        h.correlation_convolution(x)
+        z = h.correlation_convolution(x)
+        # z.8plot()

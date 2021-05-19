@@ -433,7 +433,6 @@ class SignalData:
         lista = list(self.time_values_dict.values())
         for i in range(len(first_matrix[0])):
             for j in range(len(first_matrix[0])):
-                print(lista[j])
                 first_matrix[j + i][i] = lista[j]
         second_matrix = np.asarray(list(second_signal.time_values_dict.values()))
 
@@ -458,9 +457,8 @@ class SignalData:
         for i in range(len(first_matrix[0])):
             for j in range(len(first_matrix[0])):
                 first_matrix[j + i][i] = lista[j]
-        first_matrix = np.flip(first_matrix, 0)
+        first_matrix = np.flip(first_matrix, 1)
         second_matrix = np.asarray(list(second_signal.time_values_dict.values()))
-
         times_1 = self.end_time - self.start_time
         times_2 = second_signal.end_time - second_signal.start_time
         time_duration = times_1 + times_2
@@ -476,7 +474,32 @@ class SignalData:
                           is_real=self.is_real, time_values_dict=new_dict)
 
     def correlation_convolution(self, second_signal: "SignalData"):
-        x = self.convolution(second_signal)
+        # second_signal.time_values_dict = second_signal.time_values_dict[::-1]
+        # x = self.convolution(second_signal)
+        first_matrix = np.zeros((len(self.time_values_dict)
+                                 + len(second_signal.time_values_dict) - 1, len(second_signal.time_values_dict)))
+        lista = list(self.time_values_dict.values())
+        for i in range(len(first_matrix[0])):
+            for j in range(len(first_matrix[0])):
+                first_matrix[j + i][i] = lista[j]
+        second_matrix = np.asarray(list(second_signal.time_values_dict.values())[::-1])
+
+        times_1 = self.end_time - self.start_time
+        times_2 = second_signal.end_time - second_signal.start_time
+        time_duration = times_1 + times_2
+        start_time = self.start_time
+        result = np.dot(first_matrix, second_matrix)
+        new_dict = {}
+        current_time = start_time
+        for i in result:
+            new_dict[current_time] = i
+            current_time += (start_time + time_duration) / len(result)
+        x = SignalData(start_time=start_time, end_time=start_time + time_duration, is_signal=False,
+                          delta=(start_time + time_duration) / len(result), is_new=False, T=self.T,
+                          is_real=self.is_real, time_values_dict=new_dict)
+
+        x.plot()
+
         values = list(x.time_values_dict.values())
         new_dict = {}
         current_time = x.start_time
