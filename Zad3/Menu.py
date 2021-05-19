@@ -241,6 +241,17 @@ def wybor_1() -> Union[None, SignalData]:
             print("zly input")
             pass
         pass
+        print("Czy podstawić do splotu?\n1. Tak\n2. Nie")
+        splot = 0
+        try:
+            inp = int(input())
+            if inp == 1 or inp == 2:
+                splot = inp
+            raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+        pass
         print()
         if chosen_window == 1:
             if choice == 12:
@@ -254,7 +265,22 @@ def wybor_1() -> Union[None, SignalData]:
                 pass
             if choice == 13:
                 signal_impulse = MiddleFilter(HammingWindow(sample_count), sample_count, sample_rate, frequency_odciecia)
-
+        if splot == 1:
+            while True:
+                print("Podaj sciezke pliku sygnalu: ")
+                try:
+                    inp = input()
+                    if os.path.isfile(inp):
+                        x = SignalData.load_file(inp)
+                        break
+                    else:
+                        raise ValueError
+                except ValueError:
+                    print("zly input")
+                    pass
+            signal = SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time= beg_time + (sample_count * sample_rate), delta = sample_rate)
+            # signal.convolution(x)
+            x.convolution(signal)
         return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time= beg_time + (sample_count * sample_rate), delta = sample_rate)
 
     if 'sample_rate' in locals():
