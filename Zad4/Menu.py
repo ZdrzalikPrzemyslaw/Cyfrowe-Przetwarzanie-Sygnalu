@@ -27,7 +27,7 @@ EXIT_PROGRAM = 10
 
 def choose_mode():
     i = -1
-    while i not in [1, 2, 3, 4, 5, 6, 7, 8, EXIT_PROGRAM]:
+    while i not in [1, 2, 3, 4, 5, 6, 7, 8, 9, EXIT_PROGRAM]:
         print("1. Generacja sygnału/szumu/impulsu \n"
               "2. Odczyt z pliku binarnego \n"
               "3. Operacje na sygnałach \n"
@@ -36,6 +36,7 @@ def choose_mode():
               "6. Porównanie \n" +
               "7. Splot \n" +
               "8. Korelacja \n" +
+              "9. FFT2f \n" +
               str(EXIT_PROGRAM) + ". Wylacz program")
         try:
             i = int(input())
@@ -75,6 +76,8 @@ def program_loop():
             wybor_7()
         elif choice == 8:
             wybor_8()
+        elif choice == 9:
+            wybor_9()
 
 
 def wybor_1() -> Union[None, SignalData]:
@@ -539,3 +542,20 @@ def wybor_8():
     else:
         z = h.correlation_convolution(x)
         # z.8plot()
+
+
+def wybor_9():
+    while True:
+        print("Podaj sciezke pliku sygnalu h: ")
+        try:
+            inp = input()
+            if os.path.isfile(inp):
+                h = SignalData.load_file(inp)
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+    z = h.fft2f()
+    # z.plot()

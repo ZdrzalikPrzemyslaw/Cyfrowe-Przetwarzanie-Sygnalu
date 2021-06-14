@@ -318,7 +318,7 @@ class SignalData:
                 if (idx != 0):
                     if (j >= i) and (keys2[idx - 1] <= i):
                         sum_for_mse += (self.time_values_dict[i] - (
-                                    signal.time_values_dict[j] + signal.time_values_dict[keys2[idx - 1]]) / 2) ** 2
+                                signal.time_values_dict[j] + signal.time_values_dict[keys2[idx - 1]]) / 2) ** 2
         return sum_for_mse / len(self.time_values_dict)
 
     def calculateSNR(self, mse):
@@ -495,8 +495,8 @@ class SignalData:
             new_dict[current_time] = i
             current_time += (start_time + time_duration) / len(result)
         x = SignalData(start_time=start_time, end_time=start_time + time_duration, is_signal=False,
-                          delta=(start_time + time_duration) / len(result), is_new=False, T=self.T,
-                          is_real=self.is_real, time_values_dict=new_dict)
+                       delta=(start_time + time_duration) / len(result), is_new=False, T=self.T,
+                       is_real=self.is_real, time_values_dict=new_dict)
 
         x.plot()
 
@@ -508,3 +508,9 @@ class SignalData:
             current_time += x.delta
         return SignalData(start_time=x.start_time, end_time=x.end_time, is_signal=x.is_signal, delta=x.delta,
                           is_new=False, T=x.T, is_real=x.is_real, time_values_dict=new_dict)
+
+    def fft2f(self):
+        # a = np.mgrid[:5, :5][0]
+        # np.fft.fft2(a)
+        a = np.fft.fft2(a=list(self.time_values_dict.values()), axes=[-1])
+        print(a)
