@@ -34,7 +34,7 @@ EXIT_PROGRAM = 20
 
 def choose_mode():
     i = -1
-    while i not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, EXIT_PROGRAM]:
+    while i not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, EXIT_PROGRAM]:
         print("1. Generacja sygnału/szumu/impulsu \n"
               "2. Odczyt z pliku binarnego \n"
               "3. Operacje na sygnałach \n"
@@ -45,6 +45,9 @@ def choose_mode():
               "8. Korelacja \n" +
               "9. DFT \n" +
               "10. FFT2f \n" +
+              "11. Prosta Transformacja DWT \n" +
+              "12. Dyskretna Transformacja COS \n" +
+              "13. Odwrotna Dyskretna Transformacja COS \n" +
               str(EXIT_PROGRAM) + ". Wylacz program")
         try:
             i = int(input())
@@ -88,6 +91,12 @@ def program_loop():
             wybor_9()
         elif choice == 10:
             wybor_10()
+        elif choice == 11:
+            wybor_11()
+        elif choice == 12:
+            wybor_12()
+        elif choice == 13:
+            wybor_13()
 
 
 def wybor_1() -> Union[None, SignalData]:
@@ -597,6 +606,55 @@ def wybor_10():
     k = z.fft2t()
     print("--- %s seconds ---" % (time.time() - start_time))
     plot(k)
+
+
+def wybor_11():
+    while True:
+        print("Podaj sciezke pliku sygnalu h: ")
+        try:
+            inp = input()
+            if os.path.isfile(inp):
+                z = SignalData.load_file(inp)
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+    plt.plot(z.d4_transform_nasz())
+    plt.show()
+
+
+def wybor_12():
+    while True:
+        print("Podaj sciezke pliku sygnalu h: ")
+        try:
+            inp = input()
+            if os.path.isfile(inp):
+                z = SignalData.load_file(inp)
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+    z.discrete_cos()
+
+def wybor_13():
+    while True:
+        print("Podaj sciezke pliku sygnalu h: ")
+        try:
+            inp = input()
+            if os.path.isfile(inp):
+                z = SignalData.load_file(inp)
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+    z.reverse_discrete_cos()
+
 
 
 def plot(k):

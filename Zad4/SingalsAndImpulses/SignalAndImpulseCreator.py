@@ -1,5 +1,6 @@
 import math
 import sys
+import pywt
 from typing import Union
 
 import matplotlib.pyplot as plt
@@ -582,3 +583,92 @@ class SignalData:
             X.append(suma / N)
         return np.array(X)
 
+    def d4_transform(self):
+        cA, cD = pywt.dwt(list(self.time_values_dict.values()), 'db4')
+        org = pywt.idwt(cA, cD, 'db4')
+        print(cA)
+        print(cD)
+        print(org)
+        plt.plot(cA)
+        plt.show()
+        plt.plot(cD)
+        plt.show()
+        plt.plot(org)
+        plt.show()
+
+    def d4_transform_nasz(self):
+        length = len(self.time_values_dict)
+        x = list(self.time_values_dict.values())
+        new_x = []
+        for i in range(length):
+            suma = 0.0
+            begin = i if i % 2 == 0 else i - 1
+            for j in range(begin, begin + len(DB4)):
+                factor = 0.0
+                if (i % 2 == 0):
+                    factor = DB4[j - begin]
+                else:
+                    factor = DB4[len(DB4) - (j - begin) - 1]
+                    if ((j - begin) % 2 == 1):
+                        factor *= -1
+                suma += (factor * x[j % length])
+            new_x.append(suma)
+        mixed_x = []
+
+        for i in range(0, length, 2):
+            mixed_x.append(new_x[i])
+        for i in range(1, length, 2):
+            mixed_x.append(new_x[i])
+        return mixed_x
+
+    @staticmethod
+    def c(m, N):
+        if (m == 0):
+            return math.sqrt(1.0 / N)
+        else:
+            return math.sqrt(2.0 / N)
+
+    def discrete_cos(self):
+        N = len(self.time_values_dict.values())
+        X = []
+        for i in range(N):
+            suma = 0.0
+            for j in range(N):
+                suma += list(self.time_values_dict.values())[j] * math.cos(math.pi * (2.0 * j + 1) * i / (2 * N))
+            X.append(SignalData.c(i, N) * suma)
+        new_dict = {}
+        counter = 0
+        for i in np.arange(self.start_time, self.end_time + self.delta / 2, self.delta):
+            new_dict[i] = X[counter]
+            counter += 1
+        new_signal = SignalData(start_time=self.start_time, end_time=self.end_time, is_signal=True, delta=self.delta,
+                                is_new=False, T=self.T, time_values_dict=new_dict, is_real=self.is_real)
+        new_signal.plot()
+        new_signal.save_file()
+
+    def reverse_discrete_cos(self):
+        N = len(self.time_values_dict.values())
+        X = []
+        for i in range(N):
+            suma = 0.0
+            for j in range(N):
+                suma += self.c(i, N) * list(self.time_values_dict.values())[j] * math.cos(
+                    math.pi * (2.0 * j + 1) * i / (2 * N))
+            X.append(suma)
+        new_dict = {}
+        counter = 0
+        for i in np.arange(self.start_time, self.end_time + self.delta / 2, self.delta):
+            new_dict[i] = X[counter]
+            counter += 1
+        new_signal = SignalData(start_time=self.start_time, end_time=self.end_time, is_signal=True, delta=self.delta,
+                                is_new=False, T=self.T, time_values_dict=new_dict, is_real=self.is_real)
+        new_signal.plot()
+        new_signal.save_file()
+
+
+DB4 = [(1.0 + math.sqrt(3.0)) / (4.0 * math.sqrt(2)),
+       (3.0 + math.sqrt(3.0)) / (4.0 * math.sqrt(2)),
+       (3.0 - math.sqrt(3.0)) / (4.0 * math.sqrt(2)),
+       (1.0 - math.sqrt(3.0)) / (4.0 * math.sqrt(2))]
+
+DB6 = [0.47046721, 1.14111692, 0.650365, -0.19093442, -0.12083221, 0.0498175]
