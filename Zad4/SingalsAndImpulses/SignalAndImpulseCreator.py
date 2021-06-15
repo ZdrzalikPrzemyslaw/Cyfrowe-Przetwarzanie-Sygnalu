@@ -1,4 +1,5 @@
 import math
+import sys
 from typing import Union
 
 import matplotlib.pyplot as plt
@@ -537,6 +538,40 @@ class SignalData:
         #         else:
         #             last = i
 
+    @staticmethod
+    def is_power_of_two(x: int):
+        return ((x & (x - 1)) == 0) and (x != 0)
+
+    def fft2t(self):
+        powers = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192]
+        x = list(self.time_values_dict.values())
+        len_x = len(x)
+
+        if self.is_power_of_two(len_x):
+            return self.fft2t_recursive(x)
+        else:
+            last = 0
+            for i in powers:
+                if len_x > i:
+                    return self.fft2t_recursive(x[:last])
+                else:
+                    last = i
+
+    def fft2t_recursive(self, x):
+        sys.setrecursionlimit(10 ** 6)
+
+        x = np.asarray(x, dtype=complex)
+        N = x.shape[0]
+
+        if N <= 32:
+            return self.dft()
+        else:
+            x_even_number = self.fft2t_recursive(x[::2])
+            x_odd_number = self.fft2t_recursive(x[1::2])
+            coef = np.exp(-2j * np.pi * np.arange(N) / N)
+            return np.concatenate([x_even_number + coef[:N // 2] * x_odd_number,
+                                   x_even_number + coef[N // 2:] * x_odd_number])
+
     def dft(self):
         X = []
         N = len(self.time_values_dict.values())
@@ -545,19 +580,5 @@ class SignalData:
             for y, x in enumerate(self.time_values_dict.values()):
                 suma += x * math.e ** (-1j * (2 * math.pi * w) / N * y)
             X.append(suma / N)
-        real = []
-        imaginary = []
-        mod = []
-        for i in X:
-            real.append(i.real)
-            imaginary.append(i.imag)
-            mod.append(math.sqrt(i.real ** 2 + i.imag ** 2))
-        plt.plot(real)
-        plt.title("Część rzeczywista")
-        plt.show()
-        plt.plot(imaginary)
-        plt.title("Część urojona")
-        plt.show()
-        plt.plot(mod)
-        plt.title("Moduł")
-        plt.show()
+        return np.array(X)
+

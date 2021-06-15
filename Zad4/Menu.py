@@ -1,7 +1,10 @@
 import datetime
 import math
 import os
+import time
 from typing import Union
+
+from matplotlib import pyplot as plt
 
 from SingalsAndImpulses.Filter.DownFilter import DownFilter
 from SingalsAndImpulses.Filter.HammingWindow import HammingWindow
@@ -23,12 +26,12 @@ from SingalsAndImpulses.SignalAndImpulse import SignalAndImpulse
 from SingalsAndImpulses.SignalAndImpulseCreator import SignalData
 from global_vars import signals
 
-EXIT_PROGRAM = 10
+EXIT_PROGRAM = 20
 
 
 def choose_mode():
     i = -1
-    while i not in [1, 2, 3, 4, 5, 6, 7, 8, 9, EXIT_PROGRAM]:
+    while i not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, EXIT_PROGRAM]:
         print("1. Generacja sygnału/szumu/impulsu \n"
               "2. Odczyt z pliku binarnego \n"
               "3. Operacje na sygnałach \n"
@@ -37,7 +40,8 @@ def choose_mode():
               "6. Porównanie \n" +
               "7. Splot \n" +
               "8. Korelacja \n" +
-              "9. FFT2f \n" +
+              "9. DFT \n" +
+              "10. FFT2f \n" +
               str(EXIT_PROGRAM) + ". Wylacz program")
         try:
             i = int(input())
@@ -79,6 +83,8 @@ def program_loop():
             wybor_8()
         elif choice == 9:
             wybor_9()
+        elif choice == 10:
+            wybor_10()
 
 
 def wybor_1() -> Union[None, SignalData]:
@@ -144,7 +150,7 @@ def wybor_1() -> Union[None, SignalData]:
 
     if choice == 3:
         # TODO: usunąć to ładnie
-        signal_impulse = SinusoidalSignal(amplitude, get_term(), math.pi/2)
+        signal_impulse = SinusoidalSignal(amplitude, get_term(), math.pi / 2)
         pass
 
     if choice == 4:
@@ -297,7 +303,8 @@ def wybor_1() -> Union[None, SignalData]:
         return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration,
                           delta=sample_rate)
     else:
-        return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration, delta=0.001)
+        return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration,
+                          delta=0.001)
 
 
 def get_kw():
@@ -564,6 +571,45 @@ def wybor_9():
         except ValueError:
             print("zly input")
             pass
-    h.dft()
-    # z = h.dft()
-    # z.plot()
+    start_time = time.time()
+    k = h.dft()
+    print("--- %s seconds ---" % (time.time() - start_time))
+    plot(k)
+
+
+def wybor_10():
+    while True:
+        print("Podaj sciezke pliku sygnalu h: ")
+        try:
+            inp = input()
+            if os.path.isfile(inp):
+                z = SignalData.load_file(inp)
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+    start_time = time.time()
+    k = z.fft2t()
+    print("--- %s seconds ---" % (time.time() - start_time))
+    plot(k)
+
+
+def plot(k):
+    real = []
+    imaginary = []
+    mod = []
+    for i in k:
+        real.append(i.real)
+        imaginary.append(i.imag)
+        mod.append(math.sqrt(i.real ** 2 + i.imag ** 2))
+    plt.plot(real)
+    plt.title("Część rzeczywista")
+    plt.show()
+    plt.plot(imaginary)
+    plt.title("Część urojona")
+    plt.show()
+    plt.plot(mod)
+    plt.title("Moduł")
+    plt.show()
