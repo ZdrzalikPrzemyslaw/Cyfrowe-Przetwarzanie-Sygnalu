@@ -1,4 +1,5 @@
 import datetime
+import math
 import os
 from typing import Union
 
@@ -142,7 +143,8 @@ def wybor_1() -> Union[None, SignalData]:
         pass
 
     if choice == 3:
-        signal_impulse = SinusoidalSignal(amplitude, get_term())
+        # TODO: usunąć to ładnie
+        signal_impulse = SinusoidalSignal(amplitude, get_term(), math.pi/2)
         pass
 
     if choice == 4:
@@ -258,16 +260,19 @@ def wybor_1() -> Union[None, SignalData]:
         print()
         if chosen_window == 1:
             if choice == 12:
-                signal_impulse = DownFilter(RectangularWindow(sample_count), sample_count, sample_rate, frequency_odciecia)
+                signal_impulse = DownFilter(RectangularWindow(sample_count), sample_count, sample_rate,
+                                            frequency_odciecia)
                 pass
             if choice == 13:
-                signal_impulse = MiddleFilter(RectangularWindow(sample_count), sample_count, sample_rate, frequency_odciecia)
+                signal_impulse = MiddleFilter(RectangularWindow(sample_count), sample_count, sample_rate,
+                                              frequency_odciecia)
         else:
             if choice == 12:
                 signal_impulse = DownFilter(HammingWindow(sample_count), sample_count, sample_rate, frequency_odciecia)
                 pass
             if choice == 13:
-                signal_impulse = MiddleFilter(HammingWindow(sample_count), sample_count, sample_rate, frequency_odciecia)
+                signal_impulse = MiddleFilter(HammingWindow(sample_count), sample_count, sample_rate,
+                                              frequency_odciecia)
         if splot == 1:
             while True:
                 print("Podaj sciezke pliku sygnalu: ")
@@ -281,16 +286,18 @@ def wybor_1() -> Union[None, SignalData]:
                 except ValueError:
                     print("zly input")
                     pass
-            signal = SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time= beg_time + (sample_count * sample_rate), delta = sample_rate)
+            signal = SignalData(signal_and_impulse=signal_impulse, start_time=beg_time,
+                                end_time=beg_time + (sample_count * sample_rate), delta=sample_rate)
             # signal.convolution(x)
             x.convolution(signal)
-        return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time= beg_time + (sample_count * sample_rate), delta = sample_rate)
+        return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time,
+                          end_time=beg_time + (sample_count * sample_rate), delta=sample_rate)
 
     if 'sample_rate' in locals():
         return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration,
                           delta=sample_rate)
     else:
-        return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration)
+        return SignalData(signal_and_impulse=signal_impulse, start_time=beg_time, end_time=beg_time + duration, delta=0.001)
 
 
 def get_kw():
@@ -537,8 +544,8 @@ def wybor_8():
             print("zly input")
             pass
     if inp == 1:
-         z = h.correlation_normalna(x)
-         z.plot()
+        z = h.correlation_normalna(x)
+        z.plot()
     else:
         z = h.correlation_convolution(x)
         # z.8plot()
@@ -557,5 +564,6 @@ def wybor_9():
         except ValueError:
             print("zly input")
             pass
-    z = h.fft2f()
+    h.dft()
+    # z = h.dft()
     # z.plot()

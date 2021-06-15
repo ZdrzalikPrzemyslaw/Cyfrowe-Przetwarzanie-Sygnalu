@@ -11,7 +11,7 @@ from SingalsAndImpulses.SignalAndImpulse import SignalAndImpulse
 
 def create_signal_and_impulse(signal: SignalAndImpulse, start_time: float, end_time: float, delta: float):
     data = {}
-    for i in np.arange(start_time, end_time, delta):
+    for i in np.arange(start_time, end_time + delta / 2, delta):
         data[i] = signal.generate_value(i)
     return data
 
@@ -510,7 +510,54 @@ class SignalData:
                           is_new=False, T=x.T, is_real=x.is_real, time_values_dict=new_dict)
 
     def fft2f(self):
-        # a = np.mgrid[:5, :5][0]
+        a = np.mgrid[:5, :5][0]
         # np.fft.fft2(a)
-        a = np.fft.fft2(a=list(self.time_values_dict.values()), axes=[-1])
-        print(a)
+        # a = np.fft.fft2(a=list(self.time_values_dict.values()), axes=[-1])
+        # real = []
+        # imaginary = []
+        # for i in a:
+        #     real.append(i.real)
+        #     imaginary.append(i.imag)
+        # plt.plot(real)
+        # plt.show()
+        # plt.plot(imaginary)
+        # plt.show()
+        # print(a)
+
+        # two_powers = [np.power(2, i) for i in range(14)]
+        # len_x = len(x)
+        #
+        # if len_x in two_powers:
+        #     return fft2t_recursive(x)
+        # else:
+        #     last = 0
+        #     for i in two_powers:
+        #         if len_x > i:
+        #             return fft2t_recursive(x[:last])
+        #         else:
+        #             last = i
+
+    def dft(self):
+        X = []
+        N = len(self.time_values_dict.values())
+        for w in range(N):
+            suma = 0
+            for y, x in enumerate(self.time_values_dict.values()):
+                suma += x * math.e ** (-1j * (2 * math.pi * w) / N * y)
+            X.append(suma / N)
+        real = []
+        imaginary = []
+        mod = []
+        for i in X:
+            real.append(i.real)
+            imaginary.append(i.imag)
+            mod.append(math.sqrt(i.real ** 2 + i.imag ** 2))
+        plt.plot(real)
+        plt.title("Część rzeczywista")
+        plt.show()
+        plt.plot(imaginary)
+        plt.title("Część urojona")
+        plt.show()
+        plt.plot(mod)
+        plt.title("Moduł")
+        plt.show()
