@@ -12,10 +12,10 @@
 
 \setlength{\textheight}{21cm}
 
-\title{{\bf Zadanie nr 3 - Splot, filtracja i korelacja sygnałów}\linebreak
+\title{{\bf Zadanie nr 4 - Przekształcenie Fouriera, Walsha-Hadamarda, kosinusowe i falkowe, szybkie algorytmy.}\linebreak
 Cyfrowe Przetwarzanie Sygnałów}
 \author{Julia Szymańska, 224441\and Przemysław Zdrzalik, 224466}
-\date{19.05.2021r.}
+\date{17.06.2021r.}
 
 \begin{document}
 \clearpage\maketitle
@@ -27,88 +27,153 @@ Cyfrowe Przetwarzanie Sygnałów}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Cel zadania}
-Celem ćwiczenia jest budowa programu umożliwiającego wykonanie operacji splotu, korelacji bezpośredniej oraz korelacji na podstawie splotu. W programie możliwa jest również filtracja dolnoprzepustowa oraz środkowoprzepustowa z możliwośćią wyboru okna prostokątnego bądź Hamminga. 
+Celem ćwiczenia jest budowa programu umożliwiającego wykonanie operacji transformacji sygnałów dyskretnych przy użyciu wybranych metod.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Wstęp teoretyczny}
 
- Do operacji splotu, korelacji oraz filtracji w programie zostały wykorzystane wzory znajdujące się w instrukcji do zadania trzeciego na platformie Wikamp \cite{dane}. 
+ Do operacji transformacji w programie zostały wykorzystane wzory znajdujące się w instrukcji do zadania czwartego na platformie Wikamp \cite{dane}. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
+
 \section{Eksperymenty i wyniki}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Eksperyment nr 1 - Operacja splotu}
-
-
-W pierwszym eksperymencie analizujemy dwa sygnały sinusoidalne poddane operacji splotu. 
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla pierwszego sygnału sinusoidalnego.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c}
-    \textbf{} & \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda}  & \textbf{Okres}  \\
-\hline
-0 & 10 & 1 & 0.5 \\
-\end {tabular}
-\label {Parametry wejściowe dla pierwszego eksperymetnu. }
-\end{table}
+Do wykonania transformacji zostały użyte sygnały określone wzorem:
 
 \begin{figure}[h!]
  \centering
- \includegraphics[width=14cm]{sinus.png}
+ \includegraphics[width=12cm]{wzory.png}
  \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany sygnał sinusoidalny. }
+ \caption{Wzory sygnałów S1, S2, S3, użytych w poniższych eksperymentach. }
+ \label{rysunek do eksperymentu 1 wariantu 1}
+\end{figure}
+
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=8cm]{s1.png}
+ \vspace{-0.3cm}
+ \caption{Wykresy sygnału S1.}
+ \label{rysunek do eksperymentu 1 wariantu 1}
+\end{figure}
+\newpage
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=8cm]{s2.png}
+ \vspace{-0.3cm}
+ \caption{Wykresy sygnału S2.}
+ \label{rysunek do eksperymentu 1 wariantu 1}
+\end{figure}
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=8cm]{s3.png}
+ \vspace{-0.3cm}
+ \caption{Wykresy sygnału S3.}
+ \label{rysunek do eksperymentu 1 wariantu 1}
+\end{figure}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Eksperyment nr 1 - Porównanie DTF oraz FFT2 (przerzedzenie w częstotliwości)}
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=10cm]{E1_S1_dft.png}
+ \vspace{-0.3cm}
+ \caption{Wykresy części rzeczywistej i urojonej dla liczb zespolonych będących wynikiem transformacji DTF oraz FFT2 dla S1.}
+ \label{rysunek do eksperymentu 1 wariantu 1}
+\end{figure}
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=10cm]{E1_S1_dft2.png}
+ \vspace{-0.3cm}
+ \caption{Wykresy modułu i arguemntu w dziedzinie częstotliwości dla liczb zespolonych będących wynikiem transformacji DTF oraz FFT2 dla S1.}
  \label{rysunek do eksperymentu 1 wariantu 1}
 \end{figure}
 \newpage
 
 \begin{table}[h!]
-\caption{Parametry wejściowe dla drugiego sygnału sinusoidalnego.  }
+\caption{Porównanie czasu wykonywania transformacji DFT i FFT2 w milisekundach dla S1.}
 \centering
 \vspace{0.1cm}
- \begin{tabular}{c c c c c}
-    \textbf{} & \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda}  & \textbf{Okres}  \\
+ \begin{tabular}{c c}
+    \textbf{DFT} & \textbf{FFT2}  \\
 \hline
-0 & 10 & 4 & 5 \\
+3,997 & 4,038 \\
+\end {tabular}
+\label {Parametry wejściowe dla trzeciego eksperymetnu. }
+\end{table}
+
+%%%%
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=10cm]{E1_S2_dft.png}
+ \vspace{-0.3cm}
+ \caption{Wykresy części rzeczywistej i urojonej dla liczb zespolonych będących wynikiem transformacji DTF oraz FFT2 dla S2.}
+ \label{rysunek do eksperymentu 1 wariantu 1}
+\end{figure}
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=10cm]{E1_S2_dft2.png}
+ \vspace{-0.3cm}
+ \caption{Wykresy modułu i arguemntu w dziedzinie częstotliwości dla liczb zespolonych będących wynikiem transformacji DTF oraz FFT2 dla S2.}
+ \label{rysunek do eksperymentu 1 wariantu 1}
+\end{figure}
+\newpage
+
+\begin{table}[h!]
+\caption{Porównanie czasu wykonywania transformacji DFT i FFT2 w milisekundach dla S2.}
+\centering
+\vspace{0.1cm}
+ \begin{tabular}{c c}
+    \textbf{DFT} & \textbf{FFT2}  \\
+\hline
+4,037 & 3,999 \\
 \end {tabular}
 \label {Parametry wejściowe dla trzeciego eksperymetnu. }
 \end{table}
 \newpage
 
+%%%%
 \begin{figure}[h!]
  \centering
- \includegraphics[width=14cm]{sinus_2.png}
+ \includegraphics[width=10cm]{E1_S3_dft.png}
  \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany drugi sygnał sinusoidalny. }
+ \caption{Wykresy części rzeczywistej i urojonej dla liczb zespolonych będących wynikiem transformacji DTF oraz FFT2 dla S3.}
+ \label{rysunek do eksperymentu 1 wariantu 1}
+\end{figure}
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width=10cm]{E1_S3_dft2.png}
+ \vspace{-0.3cm}
+ \caption{Wykresy modułu i arguemntu w dziedzinie częstotliwości dla liczb zespolonych będących wynikiem transformacji DTF oraz FFT2 dla S3.}
  \label{rysunek do eksperymentu 1 wariantu 1}
 \end{figure}
 \newpage
 
-Wygenerowany wykres operacji splotu dla sygnału sinusoidalnego. 
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{sinus_splot.png}
- \vspace{-0.3cm}
- \caption{Wynik operacji splotu dwóch sygnałów sinusoidalnych. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
+\begin{table}[h!]
+\caption{Porównanie czasu wykonywania transformacji DFT i FFT2 w milisekundach dla S3.}
+\centering
+\vspace{0.1cm}
+ \begin{tabular}{c c}
+    \textbf{DFT} & \textbf{FFT2}  \\
+\hline
+4,001 & 7,037 \\
+\end {tabular}
+\label {Parametry wejściowe dla trzeciego eksperymetnu. }
+\end{table}
 \newpage
 
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{sinus_splot_hist.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wyniku operacji splotu dwóch sygnałów sinusoidalnych. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -117,757 +182,20 @@ Wygenerowany wykres operacji splotu dla sygnału sinusoidalnego.
 
 W drugim eksperymencie analizujemy dwa sygnały, sygnał prostokątny oraz szum gaussowski poddane operacji splotu. 
 
-\begin{table}[h!]
-\caption{Parametry wejściowe dla sygnału prostokątnego.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c}
-    \textbf{} & \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda}  & \textbf{Okres}  \\
-\hline
-0 & 10 & 1 & 1 \\
-\end {tabular}
-\label {Parametry wejściowe dla durgiego eksperymetnu. }
-\end{table}
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{prostok.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany sygnał prostokątny. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla szumu gaussowskiego.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c}
-    \textbf{} & \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda}   \\
-\hline
-0 & 10 & 3 \\
-\end {tabular}
-\label {Parametry wejściowe dla trzeciego eksperymetnu. }
-\end{table}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{gauss.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany sygnał gaussowski. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-Wygenerowany wykres operacji splotu dla sygnału prostokątnego i szumu gaussowskiego. 
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{gauss_splot.png}
- \vspace{-0.3cm}
- \caption{Wynik operacji splotu sygnału prostokątnego i szumu gaussowskiego. 
- }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{gauss_splot_hist.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wyniku operacji splotu sygnału prostokątnego i szumu gaussowskiego. 
- }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \subsection{Eksperyment nr 3 - Operacja splotu dal różnych typów sygnałów}
 
 W trzecim eksperymencie analizujemy dwa sygnały, sygnał trójkątny oraz sygnał sinusoidalny wyprostowany jednopołówkowo poddane operacji splotu. 
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla sygnału trójkątnego.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c}
-     \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda}  & \textbf{Okres} & \textbf{Współczynik wypełnienia}  \\
-\hline
-0 & 10 & 6 & 2 & 0.5 \\
-\end {tabular}
-\label {Parametry wejściowe dla trzeciego eksperymetnu. }
-\end{table}
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{trojkat.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany sygnał trójkątny. }
- \label{rysunek do eksperymentu 1 wariantu 51}
-\end{figure}
-\newpage
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla szumu sinusoidalnego wyprostowanego jednopołówkowo.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c }
-    \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda} &   & \textbf{Okres} \\
-\hline
-0 & 10 & 1 & 0.4 \\
-\end {tabular}
-\label {Parametry wejściowe dla trzeciego eksperymetnu. }
-\end{table}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{jedno.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany sygnał sinusoidalny wyprostowany jednopołówkowo. }
- \label{rysunek do eksperymentu 1 wariantu 4}
-\end{figure}
-\newpage
-
-Wygenerowany wykres operacji splotu dla sygnału trójkątnego oraz sygnału sinusoidalnego wyprostowanego jednopołówkowo.
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{jedno_splot.png}
- \vspace{-0.3cm}
- \caption{Wynik operacji splotu sygnału trójkątnego oraz sygnału sinusoidalnego wyprostowanego jednopołówkowo.}
- \label{rysunek do eksperymentu 1 wariantu 5}
-\end{figure}
-\newpage
-
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{jedno_splot_hist.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wyniku operacji splotu sygnału trójkątnego oraz sygnału sinusoidalnego wyprostowanego jednopołówkowo.}
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Eksperyment nr 4 - Koleracja bezpośredniej dla dwóch sygnałów sinusoidalnych}
-
-W czwartym eksperymencie analizujemy dwa sygnały sinusoidalne poddane operacji korelacji bezpośredniej. 
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla pierwszego sygnału sinusoidalnego.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c}
-    \textbf{} & \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda}  & \textbf{Okres}  \\
-\hline
-0 & 10 & 1 & 0.5 \\
-\end {tabular}
-\label {Parametry wejściowe dla pierwszego eksperymetnu. }
-\end{table}
-
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{sinus.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany sygnał sinusoidalny. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla drugiego sygnału sinusoidalnego.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c}
-    \textbf{} & \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda}  & \textbf{Okres}  \\
-\hline
-0 & 10 & 4 & 5 \\
-\end {tabular}
-\label {Parametry wejściowe dla trzeciego eksperymetnu. }
-\end{table}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{sinus_2.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany drugi sygnał sinusoidalny. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-Wygenerowany wykres operacji korelacji bezpośredniej dla sygnału sinusoidalnego. 
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{sinus_kor_bez.png}
- \vspace{-0.3cm}
- \caption{Wynik operacji korelacji bezpośredniej dwóch sygnałów sinusoidalnych. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{sinus_kor_bez-hist.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wyniku operacji korelacji bezpośredniej dwóch sygnałów sinusoidalnych. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Eksperyment nr 5 - Koleracja dla dwóch sygnałów sinusoidalnych}
-
-W piątym eksperymencie analizujemy dwa sygnały sinusoidalne poddane operacji korelacji z użyciem splotu. 
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla pierwszego sygnału sinusoidalnego.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c}
-    \textbf{} & \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda}  & \textbf{Okres}  \\
-\hline
-0 & 10 & 1 & 0.5 \\
-\end {tabular}
-\label {Parametry wejściowe dla pierwszego eksperymetnu. }
-\end{table}
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{sinus.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany sygnał sinusoidalny. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla drugiego sygnału sinusoidalnego.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c}
-    \textbf{} & \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda}  & \textbf{Okres}  \\
-\hline
-0 & 10 & 4 & 5 \\
-\end {tabular}
-\label {Parametry wejściowe dla trzeciego eksperymetnu. }
-\end{table}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{sinus_2.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany drugi sygnał sinusoidalny. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-Wygenerowany wykres operacji z użyciem splotu korelacji dla sygnału sinusoidalnego. 
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{sinus_kor_bez.png}
- \vspace{-0.3cm}
- \caption{Wynik operacji korelacji z użyciem splotu dwóch sygnałów sinusoidalnych. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{sinus_kor_bez-hist.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wyniku operacji korelacji z użyciem splotu dwóch sygnałów sinusoidalnych. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Eksperyment nr 6 - Operacja korelacji bezpośredniej dla różnych typów sygnałów}
-
-
-W szóstym eksperymencie analizujemy dwa sygnały, sygnał prostokątny oraz szum gaussowski poddane operacji korelacji bezpośredniej . 
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla sygnału prostokątnego.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c}
-    \textbf{} & \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda}  & \textbf{Okres}  \\
-\hline
-0 & 10 & 1 & 1 \\
-\end {tabular}
-\label {Parametry wejściowe dla durgiego eksperymetnu. }
-\end{table}
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{prostok.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany sygnał prostokątny. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla szumu gaussowskiego.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c}
-    \textbf{} & \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda}   \\
-\hline
-0 & 10 & 3 \\
-\end {tabular}
-\label {Parametry wejściowe dla trzeciego eksperymetnu. }
-\end{table}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{gauss.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany sygnał gaussowski. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-Wygenerowany wykres operacji korelacji bezpośredniej  dla sygnału prostokątnego i szumu gaussowskiego. 
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{gauss_kor_2.png}
- \vspace{-0.3cm}
- \caption{Wynik operacji korelacji bezpośredniej sygnału prostokątnego i szumu gaussowskiego. 
- }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{gauss_kor_hist_2.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wyniku operacji korelacji bezpośredniej sygnału prostokątnego i szumu gaussowskiego. 
- }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Eksperyment nr 7 - Operacja korelacji z użyciem splotu dla różnych typów sygnałów}
-
-
-W siódmym eksperymencie analizujemy dwa sygnały, sygnał prostokątny oraz szum gaussowski poddane operacji korelacji z użyciem splotu . 
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla sygnału prostokątnego.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c}
-    \textbf{} & \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda}  & \textbf{Okres}  \\
-\hline
-0 & 10 & 1 & 1 \\
-\end {tabular}
-\label {Parametry wejściowe dla durgiego eksperymetnu. }
-\end{table}
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{prostok.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany sygnał prostokątny. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla szumu gaussowskiego.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c}
-    \textbf{} & \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda}   \\
-\hline
-0 & 10 & 3 \\
-\end {tabular}
-\label {Parametry wejściowe dla trzeciego eksperymetnu. }
-\end{table}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{gauss.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany sygnał gaussowski. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-Wygenerowany wykres operacji korelacji z użyciem splotu  dla sygnału prostokątnego i szumu gaussowskiego. 
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{gauss_kor_2.png}
- \vspace{-0.3cm}
- \caption{Wynik operacji korelacji z użyciem splotu sygnału prostokątnego i szumu gaussowskiego. 
- }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{gauss_kor_hist_2.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wyniku operacji korelacji bezpośredniej sygnału prostokątnego i szumu gaussowskiego. 
- }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Eksperyment nr 8 - Operacja korelacji bezpośredniej dla różnych typów sygnałów}
-
-W ósmym eksperymencie analizujemy dwa sygnały, sygnał trójkątny oraz sygnał sinusoidalny wyprostowany jednopołówkowo poddane operacji korelacji bezpośredniej. 
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla sygnału trójkątnego.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c}
-     \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda}  & \textbf{Okres} & \textbf{Współczynik wypełnienia}  \\
-\hline
-0 & 10 & 6 & 2 & 0.5 \\
-\end {tabular}
-\label {Parametry wejściowe dla trzeciego eksperymetnu. }
-\end{table}
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{trojkat.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany sygnał trójkątny. }
- \label{rysunek do eksperymentu 1 wariantu 51}
-\end{figure}
-\newpage
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla szumu sinusoidalnego wyprostowanego jednopołówkowo.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c }
-    \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda} &   & \textbf{Okres} \\
-\hline
-0 & 10 & 1 & 0.4 \\
-\end {tabular}
-\label {Parametry wejściowe dla trzeciego eksperymetnu. }
-\end{table}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{jedno.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany sygnał sinusoidalny wyprostowany jednopołówkowo. }
- \label{rysunek do eksperymentu 1 wariantu 4}
-\end{figure}
-\newpage
-
-Wygenerowany wykres operacji korelacji bezpośredniej dla sygnału trójkątnego oraz sygnału sinusoidalnego wyprostowanego jednopołówkowo.
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{jedno_kor_bez.png}
- \vspace{-0.3cm}
- \caption{Wynik operacji korelacji bezpośredniej sygnału trójkątnego oraz sygnału sinusoidalnego wyprostowanego jednopołówkowo.}
- \label{rysunek do eksperymentu 1 wariantu 5}
-\end{figure}
-\newpage
-
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{jedno_kor_bez_hist.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wyniku operacji korelacji bezpośredniej sygnału trójkątnego oraz sygnału sinusoidalnego wyprostowanego jednopołówkowo.}
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Eksperyment nr 9 - Operacja korelacji z użyciem splotu dla różnych typów sygnałów}
-
-W dziwiątym eksperymencie analizujemy dwa sygnały, sygnał trójkątny oraz sygnał sinusoidalny wyprostowany jednopołówkowo poddane operacji korelacji z użyciem splotu. 
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla sygnału trójkątnego.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c}
-     \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda}  & \textbf{Okres} & \textbf{Współczynik wypełnienia}  \\
-\hline
-0 & 10 & 6 & 2 & 0.5 \\
-\end {tabular}
-\label {Parametry wejściowe dla trzeciego eksperymetnu. }
-\end{table}
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{trojkat.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany sygnał trójkątny. }
- \label{rysunek do eksperymentu 1 wariantu 51}
-\end{figure}
-\newpage
-
-\begin{table}[h!]
-\caption{Parametry wejściowe dla szumu sinusoidalnego wyprostowanego jednopołówkowo.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c c c }
-    \textbf{Czas Rozpoczecia} & \textbf{Czas Zakonczenia}   & \textbf{Amplituda} &   & \textbf{Okres} \\
-\hline
-0 & 10 & 1 & 0.4 \\
-\end {tabular}
-\label {Parametry wejściowe dla trzeciego eksperymetnu. }
-\end{table}
-\newpage
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{jedno.png}
- \vspace{-0.3cm}
- \caption{Oryginalny wygenerowany sygnał sinusoidalny wyprostowany jednopołówkowo. }
- \label{rysunek do eksperymentu 1 wariantu 4}
-\end{figure}
-\newpage
-
-Wygenerowany wykres operacji korelacji z użyciem splotu dla sygnału trójkątnego oraz sygnału sinusoidalnego wyprostowanego jednopołówkowo.
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{jedno_kor_bez.png}
- \vspace{-0.3cm}
- \caption{Wynik operacji korelacji z użyciem splotu sygnału trójkątnego oraz sygnału sinusoidalnego wyprostowanego jednopołówkowo.}
- \label{rysunek do eksperymentu 1 wariantu 5}
-\end{figure}
-\newpage
-
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{jedno_kor_bez_hist.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wyniku operacji korelacji z użyciem splotu sygnału trójkątnego oraz sygnału sinusoidalnego wyprostowanego jednopołówkowo.}
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Eksperyment nr 10 - Operacja filtracji dolnoprzepustowej z oknem prostokątnym}
-
-W dziesiątym eksperymencie generujemy filtrację dolnoprzepustową z oknem prostokątnym.
-
-\begin{table}[h!]
-\caption{Parametry wejściowe filtracji dolnoprzepustowej z oknem prostokątnym.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c}
-     \textbf{Częstotliwość próbkowania} & \textbf{Liczba próbek}   & \textbf{Częstosliwość odcięcia} \\
-\hline
-10 & 29 & 3 \\
-\end {tabular}
-\label {Parametry wejściowe dla trzeciego eksperymetnu. }
-\end{table}
-
-Wygenerowany wykres filtracji dolnoprzepustowej z oknem prostokątnym.
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{filtr_dol_n.png}
- \vspace{-0.3cm}
- \caption{Wynik filtracji dolnoprzepustowej z oknem prostokątnym. }
- \label{rysunek do eksperymentu 1 wariantu 5}
-\end{figure}
-\newpage
-
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{filtr_dol_n_hist.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wyniku filtracji dolnoprzepustowej z oknem prostokątnym. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Eksperyment nr 11 - Operacja filtracji dolnoprzepustowej z oknem Hamminga}
-
-W jedenastym eksperymencie generujemy filtrację dolnoprzepustową z oknem Hammina.
-
-\begin{table}[h!]
-\caption{Parametry wejściowe filtracji dolnoprzepustowej z oknem Hamminga.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c}
-     \textbf{Częstotliwość próbkowania} & \textbf{Liczba próbek}   & \textbf{Częstosliwość odcięcia} \\
-\hline
-10 & 29 & 3 \\
-\end {tabular}
-\label {Parametry wejściowe dla trzeciego eksperymetnu. }
-\end{table}
-
-Wygenerowany wykres filtracji dolnoprzepustowej z oknem Hamminga.
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{filtr_dol_n_ham.png}
- \vspace{-0.3cm}
- \caption{Wynik filtracji dolnoprzepustowej z oknem Hamminga. }
- \label{rysunek do eksperymentu 1 wariantu 5}
-\end{figure}
-\newpage
-
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{filtr_dol_n_ham_hist.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wyniku filtracji dolnoprzepustowej z oknem Hamminga. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Eksperyment nr 12 - Operacja filtracji środkowoprzepustowa z oknem prostokątnym}
-
-W dziesiątym eksperymencie generujemy filtrację środkowoprzepustowa z oknem prostokątnym.
-
-\begin{table}[h!]
-\caption{Parametry wejściowe filtracji środkowoprzepustowa z oknem prostokątnym.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c}
-     \textbf{Częstotliwość próbkowania} & \textbf{Liczba próbek}   & \textbf{Częstosliwość odcięcia} \\
-\hline
-10 & 29 & 3 \\
-\end {tabular}
-\label {Parametry wejściowe dla trzeciego eksperymetnu. }
-\end{table}
-
-Wygenerowany wykres filtracji środkowoprzepustowa z oknem prostokątnym.
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{filtr_srod_n.png}
- \vspace{-0.3cm}
- \caption{Wynik filtracji środkowoprzepustowa z oknem prostokątnym. }
- \label{rysunek do eksperymentu 1 wariantu 5}
-\end{figure}
-\newpage
-
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{filtr_srod_n_hist.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wyniku filtracji środkowoprzepustowa z oknem prostokątnym. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Eksperyment nr 13 - Operacja filtracji środkowoprzepustowa z oknem Hamminga}
-
-W jedenastym eksperymencie generujemy filtrację środkowoprzepustowa z oknem Hammina.
-
-\begin{table}[h!]
-\caption{Parametry wejściowe filtracji środkowoprzepustowa z oknem Hamminga.  }
-\centering
-\vspace{0.1cm}
- \begin{tabular}{c c c}
-     \textbf{Częstotliwość próbkowania} & \textbf{Liczba próbek}   & \textbf{Częstosliwość odcięcia} \\
-\hline
-10 & 29 & 3 \\
-\end {tabular}
-\label {Parametry wejściowe dla trzeciego eksperymetnu. }
-\end{table}
-
-Wygenerowany wykres filtracji środkowoprzepustowa z oknem Hamminga.
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{filtr_srod_n_ham.png}
- \vspace{-0.3cm}
- \caption{Wynik filtracji środkowoprzepustowa z oknem Hamminga. }
- \label{rysunek do eksperymentu 1 wariantu 5}
-\end{figure}
-\newpage
-
-
-\begin{figure}[h!]
- \centering
- \includegraphics[width=14cm]{filtr_srod_n_ham_hist.png}
- \vspace{-0.3cm}
- \caption{Histogram dla wyniku filtracji dolnoprzepustowej z oknem Hamminga. }
- \label{rysunek do eksperymentu 1 wariantu 1}
-\end{figure}
-\newpage
-
-
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Wnioski}
 
-Zbudowany program  umożliwia wykonanie operacji splotu, korelacji bezpośredniej oraz korelacji na podstawie splotu. W programie możliwa jest również filtracja dolnoprzepustowa oraz środkowoprzepustowa z możliwością wyboru okna prostokątnego bądź Hamminga. 
-
-Wykonanie operacji korelacji powoduje minimalne przesunięcie się wykresu w prawą stronę. Dla dwóch sygnałów sinusoidalnych wykonanie operacji korelacji daje wykres będący odwórconym wykresem operacji splotu wzdłuż osi poziomej przechodzącej przez środek wykresu. Natomiast dla różnych sygnałów - sygnału trójkątnego oraz sygnału sinusoidalnego wyprostowanego jednopołówkowo, a także dla sygnału prostokątnego oraz szumu gaussowskiego powoduje przesunięcie wykresu w sotsunku do wyrkesu splotu na tych smaych wykresach o minimalną odległość w prawo. Nie zauważyliśmy różnicy pomiędzy wykresami dla operacji korelacji bezpośredniej oraz wykresami dla korelacji z użyciem splotu. Wykresy operacji splotu oraz operacji korelacji są do siebie bardzo zbliżone.  
-
-Filtracja z oknem Hamminga daje wykres bardziej spłaszczony dla wartości bliskich zeru w porównaniu do wykresu filtracji z oknem prostokątnym. Wartości maksymalna oraz minimalna są takie same. 
-
-Opisane wnioski dla okna prostokątnego oraz okna Hamminga są identyczne dla filtracji dolnoprzepustowej oraz filtracji środkowoprzepustowej. 
-
-Natomiast porównując wykresy filtracji dolnoprzepustowej i środkowoprzepustowej zauważamy, że widoczna zmiana następuje w warotści minimalnej dla wykresu co powoduje, że dla wykresu filtracji dolnorprzepustowej punkty skupiające się przy wartości 0 znajdują sie na dole wykresu, natomaist dla wykresu filtracji środkowoprzepustowej znajdują się one na środku wykresu.
-
-Opisane wnioski dla filtracji dolnoprzepustowej oraz środkowoprzepustowej są identyczne dla okna prostokątnego oraz okna Hamminga. 
-
 
 \begin{thebibliography}{0}
-\bibitem{dane}  Wikamp, Instrukcja do zadania trzeciego, Dostępny w: \url{https://ftims.edu.p.lodz.pl/pluginfile.php/14039/mod_resource/content/1/zad3.pdf}
+\bibitem{dane}  Wikamp, Instrukcja do zadania trzeciego, Dostępny w: \url{https://ftims.edu.p.lodz.pl/pluginfile.php/14303/mod_resource/content/0/zadanie4.pdf}
 
 \end{thebibliography}
 

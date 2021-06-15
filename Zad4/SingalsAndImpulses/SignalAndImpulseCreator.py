@@ -567,10 +567,10 @@ class SignalData:
             return self.dft()
         else:
             x_even_number = self.fft2t_recursive(x[::2])
-            x_odd_number = self.fft2t_recursive(x[1::2])
+            x_odd = self.fft2t_recursive(x[1::2])
             coef = np.exp(-2j * np.pi * np.arange(N) / N)
-            return np.concatenate([x_even_number + coef[:N // 2] * x_odd_number,
-                                   x_even_number + coef[N // 2:] * x_odd_number])
+            return np.concatenate([x_even_number + coef[:N // 2] * x_odd,
+                                   x_even_number + coef[N // 2:] * x_odd])
 
     def dft(self):
         X = []

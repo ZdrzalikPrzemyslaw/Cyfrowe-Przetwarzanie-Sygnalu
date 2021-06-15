@@ -1,9 +1,12 @@
+import cmath
 import datetime
 import math
 import os
 import time
 from typing import Union
 
+import numpy as np
+import scipy.signal
 from matplotlib import pyplot as plt
 
 from SingalsAndImpulses.Filter.DownFilter import DownFilter
@@ -150,7 +153,7 @@ def wybor_1() -> Union[None, SignalData]:
 
     if choice == 3:
         # TODO: usunąć to ładnie
-        signal_impulse = SinusoidalSignal(amplitude, get_term(), math.pi / 2)
+        signal_impulse = SinusoidalSignal(amplitude, get_term())
         pass
 
     if choice == 4:
@@ -600,16 +603,23 @@ def plot(k):
     real = []
     imaginary = []
     mod = []
+    arg = []
     for i in k:
         real.append(i.real)
         imaginary.append(i.imag)
         mod.append(math.sqrt(i.real ** 2 + i.imag ** 2))
-    plt.plot(real)
-    plt.title("Część rzeczywista")
+        arg.append(cmath.phase(i))
+    fig, axs = plt.subplots(2)
+    axs[0].plot(real)
+    axs[0].set_title('Część rzeczywista')
+    axs[1].plot(imaginary)
+    axs[1].set_title('Część urojona')
+    fig.tight_layout()
     plt.show()
-    plt.plot(imaginary)
-    plt.title("Część urojona")
-    plt.show()
-    plt.plot(mod)
-    plt.title("Moduł")
+    fig, axs = plt.subplots(2)
+    axs[0].plot(mod)
+    axs[0].set_title('Moduł')
+    axs[1].plot(arg)
+    axs[1].set_title('Argument')
+    fig.tight_layout()
     plt.show()
