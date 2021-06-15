@@ -574,11 +574,15 @@ class SignalData:
                                    x_even_number + coef[N // 2:] * x_odd])
 
     def dft(self):
+        return self._dft(list(self.time_values_dict.values()))
+
+    @staticmethod
+    def _dft(lista):
         X = []
-        N = len(self.time_values_dict.values())
+        N = len(lista)
         for w in range(N):
             suma = 0
-            for y, x in enumerate(self.time_values_dict.values()):
+            for y, x in enumerate(lista):
                 suma += x * math.e ** (-1j * (2 * math.pi * w) / N * y)
             X.append(suma / N)
         return np.array(X)
@@ -664,6 +668,37 @@ class SignalData:
                                 is_new=False, T=self.T, time_values_dict=new_dict, is_real=self.is_real)
         new_signal.plot()
         new_signal.save_file()
+
+    def fast_cos_transform(self):
+        N = len(self.time_values_dict.values())
+        x = list(self.time_values_dict.values())
+
+        y = [0 for _ in range(N)]
+        for i in range(int(N/2)):
+            y[i] = x[2 * i]
+            y[N - 1 - i] = x[2 * i + 1]
+
+        dft = self._dft(y)
+
+        W = -1j*math.pi / (2 * N)
+
+        X = []
+        for i in range(N):
+            X.append((self.c(i, N) * dft[i] * math.e ** (W * i)).real)
+
+
+        new_dict = {}
+        counter = 0
+        for i in np.arange(self.start_time, self.end_time + self.delta / 2, self.delta):
+            new_dict[i] = X[counter]
+            counter += 1
+        new_signal = SignalData(start_time=self.start_time, end_time=self.end_time, is_signal=True, delta=self.delta,
+                                is_new=False, T=self.T, time_values_dict=new_dict, is_real=self.is_real)
+        new_signal.plot()
+        new_signal.save_file()
+
+
+
 
 
 DB4 = [(1.0 + math.sqrt(3.0)) / (4.0 * math.sqrt(2)),

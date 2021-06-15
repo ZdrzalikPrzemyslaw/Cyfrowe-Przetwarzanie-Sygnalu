@@ -34,7 +34,7 @@ EXIT_PROGRAM = 20
 
 def choose_mode():
     i = -1
-    while i not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, EXIT_PROGRAM]:
+    while i not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, EXIT_PROGRAM]:
         print("1. Generacja sygnału/szumu/impulsu \n"
               "2. Odczyt z pliku binarnego \n"
               "3. Operacje na sygnałach \n"
@@ -48,6 +48,7 @@ def choose_mode():
               "11. Prosta Transformacja DWT \n" +
               "12. Dyskretna Transformacja COS \n" +
               "13. Odwrotna Dyskretna Transformacja COS \n" +
+              "14. Szybka Transformacja COS \n" +
               str(EXIT_PROGRAM) + ". Wylacz program")
         try:
             i = int(input())
@@ -97,6 +98,8 @@ def program_loop():
             wybor_12()
         elif choice == 13:
             wybor_13()
+        elif choice == 14:
+            wybor_14()
 
 
 def wybor_1() -> Union[None, SignalData]:
@@ -654,6 +657,21 @@ def wybor_13():
             print("zly input")
             pass
     z.reverse_discrete_cos()
+
+def wybor_14():
+    while True:
+        print("Podaj sciezke pliku sygnalu h: ")
+        try:
+            inp = input()
+            if os.path.isfile(inp):
+                z = SignalData.load_file(inp)
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("zly input")
+            pass
+    z.fast_cos_transform()
 
 
 
