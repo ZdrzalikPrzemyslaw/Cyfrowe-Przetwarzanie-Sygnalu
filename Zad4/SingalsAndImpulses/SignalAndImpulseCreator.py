@@ -530,7 +530,7 @@ class SignalData:
 
     def _fft2t(self, x):
         x = np.asarray(x, dtype=complex)
-        N = len(x[0])
+        N = x.shape[0]
         if N > 32:
             x_even = self._fft2t(x[::2])
             x_odd = self._fft2t(x[1::2])
@@ -554,7 +554,7 @@ class SignalData:
             X.append(suma / N)
         return np.array(X)
 
-    def d4_transform(self):
+    def d4_transform_test(self):
         cA, cD = pywt.dwt(list(self.time_values_dict.values()), 'db4')
         org = pywt.idwt(cA, cD, 'db4')
         print(cA)
