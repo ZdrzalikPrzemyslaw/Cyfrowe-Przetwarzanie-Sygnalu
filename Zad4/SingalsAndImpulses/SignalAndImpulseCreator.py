@@ -1,10 +1,9 @@
 import math
-import sys
-import pywt
 from typing import Union
 
 import matplotlib.pyplot as plt
 import numpy as np
+import pywt
 
 from SingalsAndImpulses.Signal.Signal import Signal
 from SingalsAndImpulses.Signal.SinusoidalSignal import SinusoidalSignal
@@ -511,34 +510,6 @@ class SignalData:
         return SignalData(start_time=x.start_time, end_time=x.end_time, is_signal=x.is_signal, delta=x.delta,
                           is_new=False, T=x.T, is_real=x.is_real, time_values_dict=new_dict)
 
-    def fft2f(self):
-        a = np.mgrid[:5, :5][0]
-        # np.fft.fft2(a)
-        # a = np.fft.fft2(a=list(self.time_values_dict.values()), axes=[-1])
-        # real = []
-        # imaginary = []
-        # for i in a:
-        #     real.append(i.real)
-        #     imaginary.append(i.imag)
-        # plt.plot(real)
-        # plt.show()
-        # plt.plot(imaginary)
-        # plt.show()
-        # print(a)
-
-        # two_powers = [np.power(2, i) for i in range(14)]
-        # len_x = len(x)
-        #
-        # if len_x in two_powers:
-        #     return fft2t_recursive(x)
-        # else:
-        #     last = 0
-        #     for i in two_powers:
-        #         if len_x > i:
-        #             return fft2t_recursive(x[:last])
-        #         else:
-        #             last = i
-
     @staticmethod
     def is_power_of_two(x: int):
         return ((x & (x - 1)) == 0) and (x != 0)
@@ -546,32 +517,28 @@ class SignalData:
     def fft2t(self):
         powers = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192]
         x = list(self.time_values_dict.values())
-        len_x = len(x)
 
-        if self.is_power_of_two(len_x):
-            return self.fft2t_recursive(x)
+        if self.is_power_of_two(len(x)):
+            return self._fft2t(x)
         else:
             last = 0
             for i in powers:
-                if len_x > i:
-                    return self.fft2t_recursive(x[:last])
+                if len(x) > i:
+                    return self._fft2t(x[:last])
                 else:
                     last = i
 
-    def fft2t_recursive(self, x):
-        sys.setrecursionlimit(10 ** 6)
-
+    def _fft2t(self, x):
         x = np.asarray(x, dtype=complex)
-        N = x.shape[0]
-
-        if N <= 32:
-            return self.dft()
+        N = len(x[0])
+        if N > 32:
+            x_even = self._fft2t(x[::2])
+            x_odd = self._fft2t(x[1::2])
+            coef = np.exp(-2j * math.pi * np.arange(N) / N)
+            return np.concatenate([x_even + coef[:N // 2] * x_odd,
+                                   x_even + coef[N // 2:] * x_odd])
         else:
-            x_even_number = self.fft2t_recursive(x[::2])
-            x_odd = self.fft2t_recursive(x[1::2])
-            coef = np.exp(-2j * np.pi * np.arange(N) / N)
-            return np.concatenate([x_even_number + coef[:N // 2] * x_odd,
-                                   x_even_number + coef[N // 2:] * x_odd])
+            return self.dft()
 
     def dft(self):
         return self._dft(list(self.time_values_dict.values()))
@@ -674,18 +641,17 @@ class SignalData:
         x = list(self.time_values_dict.values())
 
         y = [0 for _ in range(N)]
-        for i in range(int(N/2)):
+        for i in range(int(N / 2)):
             y[i] = x[2 * i]
             y[N - 1 - i] = x[2 * i + 1]
 
         dft = self._dft(y)
 
-        W = -1j*math.pi / (2 * N)
+        W = -1j * math.pi / (2 * N)
 
         X = []
         for i in range(N):
             X.append((self.c(i, N) * dft[i] * math.e ** (W * i)).real)
-
 
         new_dict = {}
         counter = 0
@@ -696,9 +662,6 @@ class SignalData:
                                 is_new=False, T=self.T, time_values_dict=new_dict, is_real=self.is_real)
         new_signal.plot()
         new_signal.save_file()
-
-
-
 
 
 DB4 = [(1.0 + math.sqrt(3.0)) / (4.0 * math.sqrt(2)),
